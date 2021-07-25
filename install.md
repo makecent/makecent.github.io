@@ -4,9 +4,8 @@
 + Github Account
 
 ## Create Github Page Repository
-1. Create a repository named **makecent.github.io**
-2. Add a domain name resolution record of type ``CNMAE``, pointing to ``makecent.github.io``
-3. Go to Settings-Pages. Use your domian name as the ``Custom domain``
+1. Create a repository named **username.github.io**, make it empty
+
 
 ## Config Pages Locally
 1. install ruby: 
@@ -41,12 +40,7 @@
    bundler install
    jekyll build
    ```
-5. Create some basic files
 
-   ```
-   touch _config.yml
-   mkdir _posts
-   ```
 7. Test (Locally) & Push
 
    ```
@@ -58,22 +52,17 @@
    git commit -m 'Init commit'
    git push -u origin gh-pages
    ```
-## Add Theme (Optional)
+## Add Theme
+Some resources:
 + https://jekyllrb.com/resources/
 + https://jekyllrb.com/docs/themes/
 + https://jekyllthemes.io/github-pages-themes3
 + https://github.com/topics/jekyll-theme
 I choosed the *Minimal Mistakes* found in [here](https://github.com/mmistakes/minimal-mistakes)
-1. Add source into Gemfile:
+For simplicity, let's use the theme provided by Github:
+1. Go to repository settings-pages
+2. Choose a theme and apply.
 
-   ```yaml
-   gem "minimal-mistakes-jekyll"
-   ```
-2. update and install with command ``bundle``.
-3. select theme by adding lines into ``_config.yml``:
-
-   ```yaml
-   theme: minimal-mistakes-jekyll
-   minimal_mistakes_skin: "default" # "air", "aqua", "contrast", "dark", "dirt", "neon", "mint", "plum" "sunrise"
-   ```
-4. Create a index.md as homepage
+## (Optional) Link to domain name
+1. Add a domain name resolution record of type ``CNMAE``, pointing to ``username.github.io``
+2. Go to Settings-Pages. Use your domian name as the ``Custom domain``.
