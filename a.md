@@ -8,41 +8,42 @@
 2. Add a domain name resolution record of type ``CNMAE``, pointing to ``makecent.github.io``
 3. Go to Settings-Pages. Use your domian name as the ``Custom domain``
 
-## Config Pages
-1. install ruby, gem: 
+## Config Pages Locally
+1. install ruby: 
 
    ```
    sudo apt-get install ruby-full build-essential zlib1g-dev
    ```
-2. install bundle, jekyll bundler
+2. install gem, bundler
 
    ```
    echo '# Install Ruby Gems to ~/gems' >> ~/.bashrc
    echo 'export GEM_HOME="$HOME/gems"' >> ~/.bashrc
    echo 'export PATH="$HOME/gems/bin:$PATH"' >> ~/.bashrc
    source ~/.bashrc
-   gem install jekyll bundler
+   gem install bundler
+   gem update bundler
    ```
 3. clone your io repository: 
 
    ```
    git clone https://github.com/makecent/makecent.github.io.git
+   cd makecent.github.io.git
    ```
-4. Init jekyll
-"215" is the version of ``github-pages`` found here ["Dependency versions."](https://pages.github.com/versions/)
-![image](https://user-images.githubusercontent.com/42603768/126895368-98b584db-7d99-4746-bf81-25bc39fbee5c.png)
+4. Init bundler & Install github-pages & Build jekyll:
+   
+   ```
+   bundler init
+   ```
+   Add this to the first line of your ``Gemfile``:
+   gem 'github-pages', group: :jekyll_plugins
+   ```
+   bundler install
+   jekyll build
+   ```
+5. Test (Locally)
 
-   gem "github-pages", "~>GITHUB-PAGES-VERSION", group: :jekyll_plugins
-```
-Bundler could not find compatible versions for gem "terminal-table":
-  In snapshot (Gemfile.lock):
-    terminal-table (>= 2.0.0)
-
-  In Gemfile:
-    github-pages (~> 215) was resolved to 215, which depends on
-      terminal-table (~> 1.4)
-
-Running `bundle update` will rebuild your snapshot from scratch, using only
-the gems in your Gemfile, which may resolve the conflict.
-
-```
+   ```
+   bundle exec jekyll serve
+   ```
+   Open http://localhost:4000 to check your site.
