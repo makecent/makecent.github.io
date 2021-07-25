@@ -70,7 +70,7 @@ I choosed the *Minimal Mistakes* found in [here](https://github.com/mmistakes/mi
    gem "minimal-mistakes-jekyll"
    ```
 2. update and install with command ``bundle``.
-3. select theme by adding a line into ``_config.yml``:
+3. select theme by adding lines into ``_config.yml``:
 
    ```yaml
    theme: minimal-mistakes-jekyll
