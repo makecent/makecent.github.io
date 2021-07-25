@@ -1,2 +1,3 @@
-theme: minimal-mistakes-jekyll
+theme: minimal-mistakes-jekyll # select theme
 minimal_mistakes_skin: "default" # "air", "aqua", "contrast", "dark", "dirt", "neon", "mint", "plum" "sunrise"
+markdown: GFM # or kramdown. set markdown
