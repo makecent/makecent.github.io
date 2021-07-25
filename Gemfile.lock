@@ -229,6 +229,8 @@ PLATFORMS
 
 DEPENDENCIES
   github-pages
+  jekyll-include-cache
+  jekyll-remote-theme
   minimal-mistakes-jekyll
 
 BUNDLED WITH
