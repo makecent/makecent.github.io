@@ -1,7 +1,7 @@
 ---
 title: "Useful Console Commands"
 toc: true
-toc_icon: "cog" 
+toc_icon: "terminal" 
 toc_sticky: true
 ---
 
