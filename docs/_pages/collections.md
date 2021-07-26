@@ -2,4 +2,4 @@
 permalink: /collections/
 ---
 
-Some collections
+# Some collections
