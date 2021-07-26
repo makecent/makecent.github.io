@@ -30,7 +30,7 @@ masthead_title           : # overrides the website title displayed in the masthe
 # breadcrumbs            : false # true, false (default)
 words_per_minute         : 200
 comments:
-  provider               : "facebook", # "false", "disqus", "discourse", "facebook", "staticman", "staticman_v2", "utterances", "giscus", "custom"
+  provider               : # "utterances", # "false", "disqus", "discourse", "facebook", "staticman", "staticman_v2", "utterances", "giscus", "custom"
   disqus:
     shortname            : # https://help.disqus.com/customer/portal/articles/466208-what-s-a-shortname-
   discourse:
@@ -38,8 +38,8 @@ comments:
   facebook:
     # https://developers.facebook.com/docs/plugins/comments
     appid                :
-    num_posts            : 5 # (default)
-    colorscheme          : "light" # "light", "dark"
+    num_posts            : # 5 # (default)
+    colorscheme          : # "light" # "light", "dark"
   utterances:
     theme                : # "github-light" (default), "github-dark"
     issue_term           : # "pathname" (default)
@@ -282,9 +282,9 @@ defaults:
       type: posts
     values:
       layout: single
-      show_date: true
+      show_date: # true
       author_profile: true
       read_time: true
-      comments: true
+      comments: # true
       share: true
       related: true
