@@ -1,1 +1,5 @@
+---
+permalink: /collections/
+---
+
 Some collections
