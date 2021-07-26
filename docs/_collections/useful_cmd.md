@@ -4,13 +4,13 @@ toc: true
 toc_icon: "cog" 
 ---
 
-#### Get the **number of files** ``ls regex | wc -l``
+#### Get the **number of files**
 
 ```shell
 ls . | wc -l
 ls /foo/*.imgs | wc -l
 ```
-#### Get the **disk size** of folder ``du -hs``
+#### Get the **disk size** of folder
 
 ```shell
 du -hs ./datasets
