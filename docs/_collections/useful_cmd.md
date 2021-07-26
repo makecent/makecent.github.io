@@ -1,5 +1,6 @@
 ---
 title: "Useful Console Commands"
+toc: true
 ---
 
 1. Get the **number of files** ``ls regex | wc -l``
