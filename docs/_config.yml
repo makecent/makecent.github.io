@@ -298,13 +298,13 @@ defaults:
   # _collections
   - scope:
       path: ""
-      type: collection
+      type: collections
     values:
       layout: single
       author_profile: false
       share: true
 # Define
 collections:
-  collection:
+  collections:
     output: true
-    permalink: /:collection/:path/
+    permalink: /:collections/:path/
