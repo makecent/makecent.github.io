@@ -2,6 +2,7 @@
 title: "Useful Console Commands"
 toc: true
 toc_label: :title
+toc_icon = "cog" 
 ---
 
 1. Get the **number of files** ``ls regex | wc -l``
