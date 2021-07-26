@@ -1,8 +1,6 @@
 ---
 title: "Useful Console Commands"
-toc: true
 toc_icon: "terminal" 
-toc_sticky: true
 ---
 
 #### Get the **number of files**
