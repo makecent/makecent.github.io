@@ -24,13 +24,13 @@ title: "Useful Console Commands"
    ```
 4. Compression
 
-   ```
+   ```shell
    tar -cvzf a_folder.tar.gz a_folder
    tar -xvzf a_folder.tar.gz  # uncompression
    ```
 5. Copy huge amount of files
 
-   ```
+   ```shell
    rsync -ah --no-i-r --info=progress2 source destination
    ```
    <details>
