@@ -1,5 +1,0 @@
-# frozen_string_literal: true
-gem 'github-pages', group: :jeckyll_plugins
-source "https://rubygems.org"
-
-git_source(:github) { |repo_name| "https
