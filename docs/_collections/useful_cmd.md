@@ -4,33 +4,32 @@ toc: true
 toc_icon: "cog" 
 ---
 
-1. Get the **number of files** ``ls regex | wc -l``
+#### Get the **number of files** ``ls regex | wc -l``
 
-   ```shell
-   ls . | wc -l
-   ls /foo/*.imgs | wc -l
-   ```
-  
-2. Get the **disk size** of folder ``du -hs``
+```shell
+ls . | wc -l
+ls /foo/*.imgs | wc -l
+```
+#### Get the **disk size** of folder ``du -hs``
 
-   ```shell
-   du -hs ./datasets
-   ```
-3. Create and delete files
+```shell
+du -hs ./datasets
+```
+#### Create and delete files
 
-   ```shell
-   touch foo.txt
-   mkdir a_folder
-   rm foo.txt
-   rm -r a_folder
-   ```
-4. Compression
+```shell
+touch foo.txt
+mkdir a_folder
+rm foo.txt
+rm -r a_folder
+```
+#### Compression
 
-   ```shell
-   tar -cvzf a_folder.tar.gz a_folder
-   tar -xvzf a_folder.tar.gz  # uncompression
-   ```
-5. Copy huge amount of files
+```shell
+tar -cvzf a_folder.tar.gz a_folder
+tar -xvzf a_folder.tar.gz  # uncompression
+```
+#### Copy huge amount of files
 
    ```shell
    rsync -ah --no-i-r --info=progress2 source destination
