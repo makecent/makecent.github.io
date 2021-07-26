@@ -307,4 +307,4 @@ defaults:
 collections:
   collections:
     output: true
-    permalink: /:collections/:path/
+    permalink: /:collection/:path/
