@@ -9,7 +9,7 @@ title: "Useful Console Commands"
    ls /foo/*.imgs | wc -l
    ```
   
-2. check **disk size** of folder ``du -hs``
+2. Get the **disk size** of folder ``du -hs``
 
    ```shell
    du -hs ./datasets
