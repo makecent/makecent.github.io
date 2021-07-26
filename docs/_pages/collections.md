@@ -6,5 +6,3 @@ collection: collections
 entries_layout: grid
 classes: wide
 ---
-
-# Some collections
