@@ -295,3 +295,11 @@ defaults:
     values:
       layout: single
       author_profile: true
+  # _collections
+  - scope:
+      path: ""
+      type: collection
+    values:
+      layout: single
+      author_profile: false
+      share: true
