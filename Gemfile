@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 source "https://rubygems.org"
 
-gem 'github-pages', group: :jekyll_plugin
+gem 'github-pages', "~> 215", group: :jekyll_plugin
 gem "jekyll-remote-theme"
 gem "jekyll-include-cache", group: :jekyll_plugins
 
