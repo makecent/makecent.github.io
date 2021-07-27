@@ -288,6 +288,7 @@ defaults:
       comments: true
       share: true
       related: true
+      search: true
   # _pages
   - scope:
       path: ""
@@ -295,6 +296,7 @@ defaults:
     values:
       layout: single
       author_profile: true
+      search: true
   # _collections
   - scope:
       path: ""
@@ -305,6 +307,7 @@ defaults:
       share: false
       toc: true
       toc_sticky: true
+      search: true
 # Define
 collections:
   collections:
