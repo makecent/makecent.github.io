@@ -3,18 +3,18 @@ title: "Useful Console Commands"
 toc_icon: "terminal" 
 ---
 
-#### Get the **number of files**
+### Get the **number of files**
 
 ```shell
 ls . | wc -l
 ls /foo/*.imgs | wc -l
 ```
-#### Get the **disk size** of folder
+### Get the **disk size** of folder
 
 ```shell
 du -hs ./datasets
 ```
-#### Create and delete files
+### Create and delete files
 
 ```shell
 touch foo.txt
@@ -23,7 +23,7 @@ rm foo.txt
 rm -r a_folder
 ```
 
-#### Compression
+### Compression
 
 Compress and Uncompress:
 ```shell
@@ -37,7 +37,7 @@ cat a_folder.tar.gz.part_* > a_folder.tar.gz
 ```
 ``-d``: use numeric suffixes starting at 0, not alphabetic
 
-#### Copy huge amount of files
+### Copy huge amount of files
 
 ```shell
 rsync -ahW --no-i-r --info=progress2 source destination
