@@ -22,25 +22,35 @@ mkdir a_folder
 rm foo.txt
 rm -r a_folder
 ```
+
 #### Compression
 
+Compress and Uncompress:
 ```shell
 tar -cvzf a_folder.tar.gz a_folder
 tar -xvzf a_folder.tar.gz  # uncompression
 ```
+Split and Concat:
+```
+split -d 1G a_folder.tar.gz a_folder.tar.gz.part_
+cat a_folder.tar.gz.part_* > a_folder.tar.gz
+```
+``-d``: use numeric suffixes starting at 0, not alphabetic
+
 #### Copy huge amount of files
 
-   ```shell
-   rsync -ah --no-i-r --info=progress2 source destination
-   ```
-   <details>
+```shell
+rsync -ahW --no-i-r --info=progress2 source destination
+```
+<details>
+
+``-a``: keep file information, including owners, permissions, etc. \
+``-h``: make output human-readable. \
+``-W``: copy files whole (w/o delta-xfer algorithm), faster.
+``--no-i-r``: scan files before copying, rather than at the same time. Faster when lots of files. \
+``--info=progress2``: display a progress bar. \
+``--dry-run``: perform a trial run that doesn’t make any changes (and produces mostly the same output as a real run). \
+``source`` and ``destination``: the source file/folder and destination folder. \
+``source/``: If a trailing slash added, the **content** in ``source`` will be copied into the ``destination``. So if ``destination`` doesn't exist or is empty, this works like a combination of copy and rename.
    
-   ``-a``: keep file information, including owners, permissions, etc. \
-   ``-h``: make output human-readable. \
-   ``--no-i-r``: scan files before copying, rather than at the same time. Faster when lots of files. \
-   ``--info=progress2``: display a progress bar. \
-   ``--dry-run``: perform a trial run that doesn’t make any changes (and produces mostly the same output as a real run). \
-   ``source`` and ``destination``: the source file/folder and destination folder. \
-   ``source/``: If a trailing slash added, the **content** in ``source`` will be copied into the ``destination``. So if ``destination`` doesn't exist or is empty, this works like a combination of copy and rename.
-   
-   </details>
+</details>
