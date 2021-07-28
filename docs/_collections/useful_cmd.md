@@ -31,7 +31,7 @@ tar -cvzf a_folder.tar.gz a_folder
 tar -xvzf a_folder.tar.gz  # uncompression
 ```
 Split and Concat:
-```
+```shell
 split -d 1G a_folder.tar.gz a_folder.tar.gz.part_
 cat a_folder.tar.gz.part_* > a_folder.tar.gz
 ```
