@@ -32,10 +32,11 @@ tar -xvzf a_folder.tar.gz  # uncompression
 ```
 Split and Concat:
 ```shell
-split -d 1G a_folder.tar.gz a_folder.tar.gz.part_
+split -b 1024m -d --verbose a_folder.tar.gz a_folder.tar.gz.part_
 cat a_folder.tar.gz.part_* > a_folder.tar.gz
 ```
-``-d``: use numeric suffixes starting at 0, not alphabetic
+``-b``: split file by size. (use ``-n`` to split by number)
+``-d``: use numeric suffixes starting at 0, not alphabetic;
 
 ### Copy huge amount of files
 
