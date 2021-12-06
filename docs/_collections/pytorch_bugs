@@ -1,3 +1,7 @@
+---
+titlle: About python
+---
+
 ### RuntimeError: CUDA error: device-side assert triggered
 
 Normally because index out of tensor dimension, basically because wrong label values.
