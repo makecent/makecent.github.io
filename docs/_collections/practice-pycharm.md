@@ -19,4 +19,4 @@ Tick on the ``Settings -> Build, Extension,Depolyment -> Python Debugger -> Geve
 
 `Ctrl + Shift + L`: Reformat code.
 
-`Shift + LeftClick`: Go to function file.
+`Ctrl + LeftClick`: Go to function file.
