@@ -25,10 +25,10 @@ rm -r a_folder
 
 ### Compression
 
-Compress and Uncompress:
+Compress and Decompress:
 ```shell
 tar -cvzf a_folder.tar.gz a_folder
-tar -xvzf a_folder.tar.gz  # uncompression
+tar -xvzf a_folder.tar.gz  # decompression
 ```
 Split and Concat:
 ```shell
@@ -47,7 +47,7 @@ rsync -ahW --no-i-r --info=progress2 source destination
 
 ``-a``: keep file information, including owners, permissions, etc. \
 ``-h``: make output human-readable. \
-``-W``: copy files whole (w/o delta-xfer algorithm), faster.
+``-W``: copy files whole (w/o delta-xfer algorithm), faster. \
 ``--no-i-r``: scan files before copying, rather than at the same time. Faster when lots of files. \
 ``--info=progress2``: display a progress bar. \
 ``--dry-run``: perform a trial run that doesn’t make any changes (and produces mostly the same output as a real run). \
