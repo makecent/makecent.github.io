@@ -19,7 +19,9 @@ Tick on the ``Settings -> Build, Extension,Depolyment -> Python Debugger -> Geve
 
 `Ctrl + Alt + L`: Reformat code. Auto-fix space, indent, ...
 
-`Ctrl + Alt + Shift + L`: Reformat code dialog. Reformatting with options, e.g., optimize imports.
+`Ctrl + Alt + Shift + L`: Reformat code dialog. Reformatting with options, e.g., enable imports optimization.
+
+`Ctrl + Alt + O`: optimize imports
 
 `Ctrl + LeftClick`: Go to function file.
 
