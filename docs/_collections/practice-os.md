@@ -12,3 +12,5 @@
 
 `shift` + `CtrlC`/`CtrlV`: copy and paste in terminal
 
+`ctrl + U`: delete whole line
+
