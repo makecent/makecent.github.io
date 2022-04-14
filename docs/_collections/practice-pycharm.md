@@ -17,7 +17,9 @@ Tick on the ``Settings -> Build, Extension,Depolyment -> Python Debugger -> Geve
 
 `Ctrl + D`: Copy and paste a new line.
 
-`Ctrl + Shift + L`: Reformat code.
+`Ctrl + Alt + L`: Reformat code. Auto-fix space, indent, ...
+
+`Ctrl + Alt + Shift + L`: Reformat code dialog. Reformatting with options, e.g., optimize imports.
 
 `Ctrl + LeftClick`: Go to function file.
 
