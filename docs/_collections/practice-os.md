@@ -8,6 +8,8 @@
 `ctrl + D`: bookmark current directory
 
 ## Terminal ##
+`Preferences -> Shortcuts`: view all terminal shortcuts
+
 `ctrl + alt + T`: create a new terminal
 
 `shift` + `CtrlC`/`CtrlV`: copy and paste in terminal
