@@ -21,6 +21,8 @@ Tick on the ``Settings -> Build, Extension,Depolyment -> Python Debugger -> Geve
 
 `Ctrl + LeftClick`: Go to function file.
 
+`Shift + Enter`: Go to next line.
+
 ### Resolve updating index forever
 Commonly it's because you put datasets under the content root of your project. Pycharm takes forever to index these millions of images...
 Right-clik the datasets folder and `Mark Directory as Excluded` will help. 
