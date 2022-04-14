@@ -3,6 +3,12 @@
 `alt + space` -> 'Always on Top': to pin a window/app
 
 ## Files ##
-`ctrl + l`: browse with path string
+`ctrl + L`: browse with path string
 
-`ctrl + d`: bookmark current directory
+`ctrl + D`: bookmark current directory
+
+## Terminal ##
+`ctrl + alt + T`: create a new terminal
+
+`shift` + `CtrlC`/`CtrlV`: copy and paste in terminal
+
