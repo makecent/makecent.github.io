@@ -5,7 +5,8 @@ categories:
 ---
 
 # Installation (15 April 2022)
-```console
+```bash
+foo@bar:~$ whoami
 git clone https://github.com/facebookresearch/SlowFast.git
 cd SlowFast
 git clone https://github.com/facebookresearch/detectron2.git
@@ -16,4 +17,5 @@ conda install pytorch torchvision -c pytorch
 python -m pip install -e detectron2
 nano setup.py     #手动将PIL改称pillow
 pip install -v -e .
+rm -rf detectron2
 ```
