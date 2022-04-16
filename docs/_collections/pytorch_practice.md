@@ -9,3 +9,5 @@ Useful functions
 `Tensor.max(dim=1).values`: Directly return the max values along the specific dimension. No need of using `max_v, _ = Tensor.max(dim=1)`. Similary, `Tensor.max(dim=1).indices` directly return the max indices.
 
 `Tensor.topk(5)`: Get the topk (top-5 here) values and indices. Subsequent `.values` and `.indices` can be used to access the specific part.
+
+`A @ B`: Matrix multiplication on the last two dimensions of tensor A and B. Multiplication (with Broadcasting) on the remaining dimensions.
