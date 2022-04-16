@@ -1,6 +1,7 @@
 # Ubuntu
 ## Basic ##
 `alt + space` -> 'Always on Top': to pin a window/app
+`alt + F2`： run a command quickly, without opening a terminal.
 
 ## Files ##
 `ctrl + L`: browse with path string
@@ -15,4 +16,6 @@
 `shift` + `CtrlC`/`CtrlV`: copy and paste in terminal
 
 `ctrl + U`: delete whole line
+
+`xkill`: use cursor to select a window to kill.
 
