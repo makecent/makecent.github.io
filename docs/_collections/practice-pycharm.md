@@ -30,4 +30,4 @@ Tick on the ``Settings -> Build, Extension,Depolyment -> Python Debugger -> Geve
 ### Resolve updating index forever
 Commonly it's because you put datasets under the content root of your project. Pycharm takes forever to index these millions of images...
 Right-clik the datasets folder and `Mark Directory as Excluded` will help. 
-If still not help, try adding the regex-file-name (e.g., *.jpg) or folder-name (e.g. data) into the `Settings -- Editor -- Ignored Files and Folders`
+If still not help, try adding the regex-file-name (e.g., *.jpg) or folder-name (e.g. data) into the `Settings -- Editor -- File Types-- Ignored Files and Folders -- + -- <subdirectory/filetype-that-you-want-to-ignore>`
