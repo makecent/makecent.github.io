@@ -38,6 +38,7 @@ from torchvision.transforms._transforms_video import (
 device = "cpu"
 
 # Pick a pretrained model and load the pretrained weights
+# Use torch.hub.list("facebookresearch/pytorchvideo:main") to check all available models. Take care about the data pre-processing required by models.
 model_name = "mvit_base_16x4"
 model = torch.hub.load("facebookresearch/pytorchvideo", model=model_name, pretrained=True)
 
