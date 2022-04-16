@@ -1,6 +1,7 @@
 # Ubuntu
 ## Basic ##
 `alt + space` -> 'Always on Top': to pin a window/app
+
 `alt + F2`： run a command quickly, without opening a terminal.
 
 ## Files ##
