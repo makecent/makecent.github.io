@@ -1,7 +1,7 @@
 # Loss quantization
 
 ## Binary Cross Entropy
-Assume Label is 1.
+Assume Label is **1**.
 |Prediction         |  Loss   |
 |---------|---------|
 |0        |   100   |
