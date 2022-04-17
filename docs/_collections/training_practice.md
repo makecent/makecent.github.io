@@ -5,7 +5,7 @@ Assume Label is **1**.
 |Prediction |  Loss       | Commetns  |
 |-----------|-------------|------------|
 |0          |   100       | |
-|0.01       |   **4.61**  | :disappointed: imbalanced data? exploding gradient? |
+|0.01       |   **4.61**  | :disappointed: exploding gradient? |
 |0.1        |   2.30      | |
 |0.2        |   1.61      | |
 |0.3        |   1.20      | |
