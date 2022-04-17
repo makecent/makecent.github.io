@@ -2,7 +2,7 @@
 
 ## Binary Cross Entropy
 Assume Label is 1.
-|Pre      |  Loss   |
+|Prediction         |  Loss   |
 |---------|---------|
 |0        |   100   |
 |0.01 (imbalanced?) |   **4.61**  :disappointed:|
