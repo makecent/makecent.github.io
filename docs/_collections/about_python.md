@@ -1,5 +1,5 @@
 ---
-titlle: About python
+titlle: Python Collections
 ---
 
 ### Iteration, Iterable and Iterator
