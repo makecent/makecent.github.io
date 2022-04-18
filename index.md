@@ -6,4 +6,4 @@ description: "Just the Docs is a responsive Jekyll theme with built-in search th
 permalink: /
 ---
 
-## Welcome to chongkai' GitHub Pages
+## Welcome to chongkai.site
