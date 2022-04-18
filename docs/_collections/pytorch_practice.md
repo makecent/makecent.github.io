@@ -1,17 +1,30 @@
-Useful functions
+# Useful functions
+``` python
+# batch-wise matrice multiplication
+torch.bmm(A, B), A.bmn(B) 
 
-`torch.bmm` (Tensor.\*): batch-wise matrice multiplication.
+# buffer frequently reused values (non-parameters) for speed up
+nn.Module.register_buffer(name, tensor, persistent=True) 
 
-`nn.Module.register_buffer(name, tensor, persistent=True)`: buffer frequently reused values (non-parameters) for speed up.[link.](https://pytorch.org/docs/stable/generated/torch.nn.Module.html#torch.nn.Module.register_buffer)
+# Returns the upper/lower triangular part of the matrix, the other elements are set to 0.
+torch.triu(A), A.triu()
+torch.tril(A), A.tril()
 
-`torch.triu` and `torch.tril` (Tensor.\*): Returns the upper/lower triangular part of the matrix, the other elements are set to 0. [link.](https://pytorch.org/docs/stable/generated/torch.triu.html?highlight=triu#torch.triu)
+# Directly return the max values along the specific dimension. No need of using `max_v, _ = A.max(dim=1)`
+A.max(dim=1).values, A.max(dim=1).indices 
 
-`Tensor.max(dim=1).values`: Directly return the max values along the specific dimension. No need of using `max_v, _ = Tensor.max(dim=1)`. Similary, `Tensor.max(dim=1).indices` directly return the max indices.
+# Get the topk (top-5 here) values and indices. `.values` and `.indices` can be used to access the specific part.
+A.topk(5)
 
-`Tensor.topk(5)`: Get the topk (top-5 here) values and indices. Subsequent `.values` and `.indices` can be used to access the specific part.
+# Matrix multiplication on the last two dimensions of tensor A and B. Multiplication (with Broadcasting) on the remaining dimensions.
+A @ B 
 
-`A @ B`: Matrix multiplication on the last two dimensions of tensor A and B. Multiplication (with Broadcasting) on the remaining dimensions.
+# Casting tensor to target dtype
+A.double(), A.float(), A.long(), A.int(), A.bool()
 
-`Tensor.double()` `.float()` `.long()` `.int()` `.bool()`: Cast tensor to target dtype.
+# Convert A to the type of B, including `dtype` and `device`.
+A.type_as(B) 
 
-`A.type_as(B)`: Convert A to the type of B, including `dtype` and `device`.
+# Get zero/one tensor with type like a specific tensor.
+A.new_zeros(), A.new_ones()
+```
