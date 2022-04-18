@@ -84,12 +84,9 @@ plugins:
   - jekyll-seo-tag
   
 # About syntax highlighting
-highlighter: rouge
 kramdown:
   input: GFM
-  syntax_highlighter_opts:
-    block:
-      line_numbers: false
+  syntax_highlighter: coderay
 
 compress_html:
   clippings: all
