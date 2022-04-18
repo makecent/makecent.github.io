@@ -1,4 +1,7 @@
-People
+---
+title: "GitHub Markdown Cheat Sheet"
+---
+# People
 
 | :bowtie: `:bowtie:` | :smile: `:smile:` | :laughing: `:laughing:` |
 |---|---|---|
