@@ -19,4 +19,5 @@
 `ctrl + U`: delete whole line
 
 `xkill`: use cursor to select a window to kill. 
+a
 
