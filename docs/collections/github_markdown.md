@@ -1,6 +1,6 @@
 ---
 layout: default
-title: GitHub Markdown Cheat-Sheet
+title: Markdown
 parent: Collections
 nav_order: 8
 ---
