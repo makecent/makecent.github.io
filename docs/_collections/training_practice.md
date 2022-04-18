@@ -1,3 +1,6 @@
+---
+title: Training Practices
+---
 # Loss quantization
 
 ## Binary Cross Entropy
