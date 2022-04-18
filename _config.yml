@@ -82,7 +82,9 @@ ga_tracking_anonymize_ip: true # Use GDPR compliant Google Analytics settings (t
 
 plugins:
   - jekyll-seo-tag
-
+  
+# About syntax highlighting
+highlighter: rouge
 kramdown:
   input: GFM
   syntax_highlighter_opts:
