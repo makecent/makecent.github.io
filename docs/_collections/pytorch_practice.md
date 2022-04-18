@@ -28,4 +28,8 @@ A.type_as(B)
 # Get zero/one tensor like a specific tensor
 A.new_zeros(size, dtype=None, device=None, requires_grad=False), A.new_ones(...)
 torch.zeros_like(A), torch.ones_like(A)   # including size
+
+# Apply function
+A.apply_(func)
+A.map_(B, func)   # B as argument
 ```
