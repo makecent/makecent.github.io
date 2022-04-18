@@ -33,3 +33,4 @@ torch.zeros_like(A), torch.ones_like(A)   # including size
 A.apply_(func)
 A.map_(B, func)   # B as argument
 ```
+gogo
