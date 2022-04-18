@@ -1,5 +1,5 @@
 ---
-title: "GitHub Markdown Cheat Sheet"
+title: "GitHub Markdown Cheat-Sheet"
 ---
 # People
 

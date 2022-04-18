@@ -1,6 +1,5 @@
 ---
-title: "Useful Console Commands"
-toc_icon: "terminal" 
+title: Useful Console Commands
 ---
 
 ### Get the **number of files**
