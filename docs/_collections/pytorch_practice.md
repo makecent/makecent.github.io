@@ -1,3 +1,7 @@
+---
+title: Pytorch Practices
+---
+
 # Useful functions
 ``` python
 # batch-wise matrice multiplication
