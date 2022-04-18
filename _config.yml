@@ -1,6 +1,7 @@
 title: "Remote theme example"
 remote_theme: just-the-docs/just-the-docs
 description: A Jekyll theme for documentation
+url: "https://makecent.github.io" # the base hostname & protocol for your site, e.g. http://example.com
 
 permalink: pretty
 exclude: ["node_modules/", "*.gemspec", "*.gem", "Gemfile", "Gemfile.lock", "package.json", "package-lock.json",  "script/", "LICENSE.txt", "lib/", "bin/", "README.md", "Rakefile", "docs/tests/"
