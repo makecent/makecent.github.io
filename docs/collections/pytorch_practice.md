@@ -1,5 +1,8 @@
 ---
+layout: default
 title: Pytorch Practices
+parent: Collections
+nav_order: 1
 ---
 
 # Useful functions

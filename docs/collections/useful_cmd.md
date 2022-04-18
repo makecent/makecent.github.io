@@ -1,5 +1,8 @@
 ---
-title: Useful Console Commands
+layout: default
+title: Terminal
+parent: Collections
+nav_order: 6
 ---
 
 ### Get the **number of files**

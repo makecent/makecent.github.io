@@ -1,5 +1,8 @@
 ---
-title: "Pycharm Practice"
+layout: default
+title: Pycharm Practices
+parent: Collections
+nav_order: 4
 ---
 
 #### Speed up Pytorch Debugging

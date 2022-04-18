@@ -1,6 +1,10 @@
 ---
-title: Pytorch Debugging Record
+layout: default
+title: Pytorch Debugging
+parent: Collections
+nav_order: 2
 ---
+
 
 ### RuntimeError: CUDA error: device-side assert triggered
 Normally because index out of tensor dimension, frenquently happens to wrong label values.

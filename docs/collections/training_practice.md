@@ -1,6 +1,10 @@
 ---
+layout: default
 title: Training Practices
+parent: Collections
+nav_order: 7
 ---
+
 # Loss quantization
 
 ## Binary Cross Entropy

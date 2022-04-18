@@ -1,6 +1,10 @@
 ---
-title: Operating System Collections
+layout: default
+title: Operating System
+parent: Collections
+nav_order: 5
 ---
+
 # Ubuntu
 ## Basic ##
 `alt + space` -> 'Always on Top': to pin a window/app

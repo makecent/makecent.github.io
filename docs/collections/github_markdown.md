@@ -1,6 +1,10 @@
 ---
-title: "GitHub Markdown Cheat-Sheet"
+layout: default
+title: GitHub Markdown Cheat-Sheet
+parent: Collections
+nav_order: 8
 ---
+
 # People
 
 | :bowtie: `:bowtie:` | :smile: `:smile:` | :laughing: `:laughing:` |
