@@ -1,3 +1,6 @@
+---
+title: "OS Practice"
+---
 # Ubuntu
 ## Basic ##
 `alt + space` -> 'Always on Top': to pin a window/app
