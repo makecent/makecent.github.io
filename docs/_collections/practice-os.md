@@ -1,5 +1,5 @@
 ---
-title: "OS Practice"
+title: Operating System Collections
 ---
 # Ubuntu
 ## Basic ##
