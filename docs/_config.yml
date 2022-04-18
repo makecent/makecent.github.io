@@ -63,7 +63,7 @@ search                   : true # false (defaul)
 search_full_content      : true # true, false (default)
 search_provider          : algolia # lunr (default), algolia, google
 algolia:
-  application_id         : 3SC3CUW88V # YOUR_APPLICATION_ID
+  application_id         : U23MNZP5LJ # YOUR_APPLICATION_ID
   index_name             : chongkai_site # YOUR_INDEX_NAME
   search_only_api_key    : bc05fca79823cd2c88b74f3d7ad31332 # YOUR_SEARCH_ONLY_API_KEY
   powered_by             : true # true (default), false
