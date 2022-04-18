@@ -81,10 +81,13 @@ ga_tracking_anonymize_ip: true # Use GDPR compliant Google Analytics settings (t
 
 # highlitghting
 kramdown:
-  syntax_highlighter: coderay
-  syntax_highlighter_opts:
-    line_numbers: table
-    bold_every: 5
+    # Use GitHub flavored markdown, including triple backtick fenced code blocks
+    input: GFM
+    # Jekyll 3 and GitHub Pages now only support rouge for syntax highlighting
+    syntax_highlighter: rouge
+    syntax_highlighter_opts:
+        # Use existing pygments syntax highlighting css
+        css_class: 'highlight'
 
 plugins:
   - jekyll-seo-tag
