@@ -1,3 +1,7 @@
+---
+title: Python Practices
+---
+
 # Collections
 ## namedtuple
 ```python
