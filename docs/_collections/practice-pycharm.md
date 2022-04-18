@@ -1,5 +1,5 @@
 ---
-title: "Pycharm practice"
+title: "Pycharm Practice"
 ---
 
 #### Speed up Pytorch Debugging
