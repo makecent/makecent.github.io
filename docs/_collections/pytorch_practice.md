@@ -3,7 +3,7 @@
 # batch-wise matrice multiplication
 torch.bmm(A, B), A.bmn(B) 
 
-# buffer frequently reused values (non-parameters) for speed up
+# buffer frequently reused values (non-parameters) for speed up, e.g., positional embeddings
 nn.Module.register_buffer(name, tensor, persistent=True) 
 
 # Returns the upper/lower triangular part of the matrix, the other elements are set to 0.
