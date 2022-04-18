@@ -1,5 +1,5 @@
 ---
-titlle: About python
+title: "Pytorch Bugs"
 ---
 
 ### RuntimeError: CUDA error: device-side assert triggered
