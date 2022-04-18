@@ -25,6 +25,7 @@ A.double(), A.float(), A.long(), A.int(), A.bool()
 # Convert A to the type of B, including `dtype` and `device`.
 A.type_as(B) 
 
-# Get zero/one tensor with type like a specific tensor.
-A.new_zeros(), A.new_ones()
+# Get zero/one tensor like a specific tensor
+A.new_zeros(size, dtype=None, device=None, requires_grad=False), A.new_ones(...)
+torch.zeros_like(A), torch.ones_like(A)   # including size
 ```
