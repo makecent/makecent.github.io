@@ -302,7 +302,7 @@ defaults:
       path: ""
       type: collections
     values:
-      layout: single
+      layout: wide
       author_profile: false
       share: false
       toc: true
