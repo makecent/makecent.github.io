@@ -1,7 +1,5 @@
 ---
 title:  "Installation and Implementation Example of SlowFast and PytorchVideo (FAIR)"
-categories: 
-  - Coding
 ---
 
 # PytorchVideo Installation (15 April 2022)
