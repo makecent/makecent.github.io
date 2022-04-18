@@ -1,6 +1,10 @@
 ---
-title:  "Installation and Implementation Example of SlowFast and PytorchVideo (FAIR)"
+layout: default
+title: Installation and Implementation Example of SlowFast and PytorchVideo (FAIR)
+parent: Posts
+nav_order: 1
 ---
+
 
 # PytorchVideo Installation (15 April 2022)
 ```bash
