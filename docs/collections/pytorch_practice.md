@@ -6,7 +6,7 @@ nav_order: 1
 ---
 
 # Useful functions
-``` python
+```python
 # batch-wise matrice multiplication
 torch.bmm(A, B), A.bmn(B) 
 
@@ -39,4 +39,7 @@ torch.zeros_like(A), torch.ones_like(A)   # including size
 # Apply function
 A.apply_(func)
 A.map_(B, func)   # B as argument
+
+# Element-wise logical operators (and, or, xor)
+A & B, A | B, A ^ B
 ```
