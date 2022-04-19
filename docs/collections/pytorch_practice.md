@@ -42,4 +42,8 @@ A.map_(B, func)   # B as argument
 
 # Element-wise logical operators (and, or, xor)
 A & B, A | B, A ^ B
+
+# Reshape specific dimension(s) with `flatten` and `unflatten`. Alternatives: `nn.Unflatten` and `nn.Flatten`
+A.unflatten(dim, size)  # reshape the specific dimension to size
+A.flatten(start_dim, end_dim) # reshape the specific dimensions to 1.
 ```
