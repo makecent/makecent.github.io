@@ -12,7 +12,7 @@ conda create -n pytorchvideo
 conda activate pytorchvideo
 conda install pytorch torchvision -c pytorch 
 conda install -c conda-forge -c fvcore -c iopath fvcore=0.1.4 iopath
-pip install pytorchvideo opencv
+pip install pytorchvideo opencv-python
 ```
 
 ## Example
