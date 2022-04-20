@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Installation and Implementation Example of SlowFast and PytorchVideo (FAIR)
+title: Installation and Implementation of SlowFast and PytorchVideo (FAIR)
 parent: Posts
 nav_order: 1
 ---
