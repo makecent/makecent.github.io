@@ -38,3 +38,72 @@ To check what happens inside the code, create a `Run/Debug Configuration` for th
 ![image](https://user-images.githubusercontent.com/42603768/164440410-02ed52ec-c9ce-46ac-90fe-3f73bb6ceb8b.png)
 
 Now start the debug to check what exactly happens inside the codes.
+
+# Record of the investigation
+
+## Model architecture
+```python
+FPNIdentity(
+  (fpn_norms): ModuleList(
+    (0): LayerNorm()
+    (1): LayerNorm()
+    (2): LayerNorm()
+    (3): LayerNorm()
+    (4): LayerNorm()
+    (5): LayerNorm()
+  )
+)
+
+
+PointGenerator(
+  (buffer_points): BufferList()
+)
+
+PtTransformerClsHead(
+  (act): ReLU()
+  (head): ModuleList(
+    (0): MaskedConv1D(
+      (conv): Conv1d(512, 512, kernel_size=(3,), stride=(1,), padding=(1,), bias=False)
+    )
+    (1): MaskedConv1D(
+      (conv): Conv1d(512, 512, kernel_size=(3,), stride=(1,), padding=(1,), bias=False)
+    )
+  )
+  (norm): ModuleList(
+    (0): LayerNorm()
+    (1): LayerNorm()
+  )
+  (cls_head): MaskedConv1D(
+    (conv): Conv1d(512, 20, kernel_size=(3,), stride=(1,), padding=(1,))
+  )
+)
+
+PtTransformerRegHead(
+  (act): ReLU()
+  (head): ModuleList(
+    (0): MaskedConv1D(
+      (conv): Conv1d(512, 512, kernel_size=(3,), stride=(1,), padding=(1,), bias=False)
+    )
+    (1): MaskedConv1D(
+      (conv): Conv1d(512, 512, kernel_size=(3,), stride=(1,), padding=(1,), bias=False)
+    )
+  )
+  (norm): ModuleList(
+    (0): LayerNorm()
+    (1): LayerNorm()
+  )
+  (scale): ModuleList(
+    (0): Scale()
+    (1): Scale()
+    (2): Scale()
+    (3): Scale()
+    (4): Scale()
+    (5): Scale()
+  )
+  (offset_head): MaskedConv1D(
+    (conv): Conv1d(512, 2, kernel_size=(3,), stride=(1,), padding=(1,))
+  )
+)
+
+```
+
