@@ -28,3 +28,12 @@ Monitor the training with `tensorboard`
 ```bash
 tensorboard --logdir=./ckpt/thumos_i3d_reproduce/logs
 ```
+
+# Eval with Debugging
+The original author use the below command to evaluate the trained ckpt.
+```python
+python ./eval.py ./configs/thumos_i3d.yaml ./ckpt/thumos_i3d_reproduce
+```
+To check what happens inside the code, create a `Run/Debug Configuration` for the script `eval.py` and set the predefined `parameters`:
+![Screenshot from 2022-04-21 18-30-01](https://user-images.githubusercontent.com/42603768/164439593-092c535b-5798-4fcc-af2b-9d0b192acc0e.png)
+Now start the debug to check what exactly happens inside the codes.
