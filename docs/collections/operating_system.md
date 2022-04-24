@@ -26,5 +26,9 @@ nav_order: 5
 `ctrl + U`: delete whole line
 
 `xkill`: use cursor to select a window to kill. 
-a
+
+## Screenshot ##
+  1. `PrtScrn` to take a screenshot of the **desktop**.
+  2. `alt + PrtScrn` to take a screenshot of a **window**.
+  3. `shift + PrtScrn` to take a screenshot of an area you **select**.
 
