@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Python Practices
+title: Python
 parent: Collections
 nav_order: 3
 ---
