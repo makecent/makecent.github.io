@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Pycharm Practices
+title: Pycharm
 parent: Collections
 nav_order: 4
 ---
