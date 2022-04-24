@@ -1,5 +1,6 @@
 ---
 title: ActionFormer Implementation
+parent: Posts
 ---
 
 # Installation
