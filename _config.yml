@@ -92,7 +92,7 @@ kramdown:
 
 plugins:
   - jekyll-seo-tag
-  - just-the-docs, github: "pdmosses/just-the-docs", branch: "dark-highlight"
+  - just-the-docs, github: pdmosses/just-the-docs, branch: dark-highlight
 
 compress_html:
   clippings: all
