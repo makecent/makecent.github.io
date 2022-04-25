@@ -15,7 +15,7 @@ Description:
 ```python
 This hook will regularly perform evaluation on validation dataset in a given interval.
 ```
-Arguments:
+**Arguments:**
 ```python
     dataloader (DataLoader): A PyTorch dataloader.
     start (int | None, optional): Evaluation starting epoch. It enables
@@ -46,3 +46,7 @@ Arguments:
     **eval_kwargs: Evaluation arguments fed into the evaluate function
         of the dataset.
 ```
+**Tips:**
+
+- By setting the `by_epoch=False`, we can conduct validation in interval of iteration level. This can also be used to quicky enter to the validation phase for debugging purpose.
+- The argumetns of function `Dataset.evaluate()` are set in here.
