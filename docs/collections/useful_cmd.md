@@ -31,6 +31,7 @@ Compress and Decompress:
 ```shell
 tar -cvzf a_folder.tar.gz a_folder
 tar -xvzf a_folder.tar.gz  # decompression
+unzip a_folder.zip  # decompression
 ```
 Split and Concat:
 ```shell
