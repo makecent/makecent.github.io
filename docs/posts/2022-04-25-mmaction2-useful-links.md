@@ -17,7 +17,6 @@ This hook will regularly perform evaluation on validation dataset in a given int
 ```
 **Arguments:**
 ```python
-    dataloader (DataLoader): A PyTorch dataloader.
     start (int | None, optional): Evaluation starting epoch. It enables
         evaluation before the training starts if ``start`` <= the
         resuming epoch. If None, whether to evaluate is merely decided
@@ -48,5 +47,5 @@ This hook will regularly perform evaluation on validation dataset in a given int
 ```
 **Tips:**
 
-- By setting the `by_epoch=False`, we can conduct validation in interval of iteration level. This can also be used to quicky enter to the validation phase for debugging purpose.
+- By setting the `by_epoch=False`, we can conduct validation in a interval of iteration level. This can also be used to quicky enter to the validation phase for debugging purpose.
 - The argumetns of function `Dataset.evaluate()` are set in here.
