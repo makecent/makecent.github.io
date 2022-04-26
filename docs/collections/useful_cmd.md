@@ -6,7 +6,7 @@ nav_order: 6
 ---
 # Table of Content
 1. TOC
-   {:toc}
+{:toc}
 
 ### Get the **number of files**
 
