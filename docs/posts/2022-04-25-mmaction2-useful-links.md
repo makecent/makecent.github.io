@@ -161,7 +161,20 @@ Description:
 Configure how to update the learning rate. Constant lr will be used if no configuration. All available `policy` can be found in [here](https://github.com/open-mmlab/mmcv/blob/969e2af866045417dccbc3980422c80d9736d970/mmcv/runner/hooks/lr_updater.py)
 Example in config:
 ```python
-lr_config = dict(policy='step', step=[4, 8], gamma=0.1)  # lr = lr * 0.1 after epoch 4 and 8.
+lr_config = dict(policy='step', step=[4, 8], gamma=0.1, warmup='linear', warmup_ratio)  # lr = lr * 0.1 after epoch 4 and 8. No warmup used.
+```
+**Argments:**
+```python
+    by_epoch (bool): LR changes epoch by epoch
+    warmup (string): Type of warmup used. It can be None(use no warmup),
+        'constant', 'linear' or 'exp'
+    warmup_iters (int): The number of iterations or epochs that warmup
+        lasts
+    warmup_ratio (float): LR used at the beginning of warmup equals to
+        warmup_ratio * initial_lr
+    warmup_by_epoch (bool): When warmup_by_epoch == True, warmup_iters
+        means the number of epochs that warmup lasts, otherwise means the
+        number of iteration that warmup lasts
 ```
 ## [`policy="step"`](https://github.com/open-mmlab/mmcv/blob/969e2af866045417dccbc3980422c80d9736d970/mmcv/runner/hooks/lr_updater.py#L167)
 **args:**
