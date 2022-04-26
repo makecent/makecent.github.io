@@ -40,14 +40,14 @@ optimizer = dict(type='AdamW', lr=1e-4, weight_decay=0.05, )
 optimizer_config = dict(grad_clip=None)
 
 # learning policy
-lr_config = dict(policy='cosinerestart', periods=[5, 10, 20], min_lr_ratio=0.1,
+lr_config = dict(policy='CosineRestart', periods=[5, 10, 20], min_lr_ratio=0.1,
                  warmup='linear',
                  warmup_iters=5,
                  warmup_by_epoch=True)
 total_epochs = 40
 
 data = dict(
-    videos_per_gpu=16, # batch size 8 * 2 = 32, where 2 is the number of gpus 
+    videos_per_gpu=16, # batch size 16 * 2 = 32, where 2 is the number of gpus 
     ...
 ```
 Notes:
