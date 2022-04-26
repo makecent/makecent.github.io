@@ -97,8 +97,36 @@ Scale that specifics the mi
 
 ## [SampleFrames](https://github.com/open-mmlab/mmaction2/blob/01c94d365a429e06ff7515eac73d2a091d9cd513/mmaction/datasets/pipelines/loading.py#L83) and [DenseSampleFrames](https://github.com/open-mmlab/mmaction2/blob/01c94d365a429e06ff7515eac73d2a091d9cd513/mmaction/datasets/pipelines/loading.py#L333)
 
+Description:
 0. Let's note the `clip_len`, `frame_interval`, and `num_clips` as (clip_len x frame_interval x clip_len), e.g. (16x4x2)
 1. **`SampleFrames(16x4x1)`:** This is the most frequently used, and the most basic sampling strategy. It randomly samples *16* frames with interval *4* from the input video. It can be regarded as first randomly cropping a 64-frame sub-video from the input video, then uniformally sampling 16 frames from the cropped sub-video. The output shaoe is (16, H, W)
 2. `SampleFrames(16x4x8)`: Now the `num_clips=8`, this can be regarded as first dividing the input video into *8* sub-videos, then conducting the same operations as the `SampleFrames(16x4x1)` on each sub-video. This example is just for explanation. I have never seen such a combiantion of arguments. The output shape is (256, H, W)
 3. **`SampleFrames(1x1x8)`:** Same as the point 2, but in this case we only randomly sample *one* frame in each of the *8* sub-videos. This sampling strategy is what the *TSN* proposes to use to cover global information of the videos. And I found that TSN is the only one using this kind of arguments combination. The output shape is (8, H, W), whereas accoring to the TSN, each of the 8 frames will be seperately fed into a 2D ResNet, i.e., the 8 will be multiplied into the batch_size dimension.
 4. `DenseSampleFrames(16x4x2)`: Similar to `SampleFrames`, but in this case it first crop a sub-video of length 64-frames (arg of `DenseSampleFrames` default=64) from the input video, then apply the `SampleFrames(16x4x2)` on the cropped sub-video. When the `num_clips=1`, `DenseSampleFrames` is same as the `SampleFrames`. This pipeline is hardly used in mmaction2 and I have never seen similar sampling strategy in the literatures. Maybe it's a experimental pipeline.
+
+**Arguments:**
+```python
+    clip_len (int): Frames of each sampled output clip.
+    frame_interval (int): Temporal interval of adjacent sampled frames.
+        Default: 1.
+    num_clips (int): Number of clips to be sampled. Default: 1.
+    temporal_jitter (bool): Whether to apply temporal jittering.
+        Default: False.
+    twice_sample (bool): Whether to use twice sample when testing.
+        If set to True, it will sample frames with and without fixed shift,
+        which is commonly used for testing in TSM model. Default: False.
+    out_of_bound_opt (str): The way to deal with out of bounds frame
+        indexes. Available options are 'loop', 'repeat_last'.
+        Default: 'loop'.
+    test_mode (bool): Store True when building test or validation dataset.
+        Default: False.
+    start_index (None): This argument is deprecated and moved to dataset
+        class (``BaseDataset``, ``VideoDatset``, ``RawframeDataset``, etc),
+        see this: https://github.com/open-mmlab/mmaction2/pull/89.
+    keep_tail_frames (bool): Whether to keep tail frames when sampling.
+        Default: False.
+```
+**Tips:**
+- Don't worry about the arg `num_clips` (just set them to the defaul 1) unless you want to use sampling strategy like the TSN, TSM used.
+- `out_of_bound_opt` is used to handle the occasion that the input video is shorter than `clip_len x frame_interval`. Normally it's not important. I mention this just for better understanding.
+- For arg `keep_tail_frames`, its motivation can be found in [here](https://github.com/open-mmlab/mmaction2/issues/1048). Don't need care about it if `num_clips=1` 
