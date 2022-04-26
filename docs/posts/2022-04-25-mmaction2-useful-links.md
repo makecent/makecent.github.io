@@ -156,3 +156,44 @@ Description:
 - Don't worry about the arg `num_clips` (just set them to the defaul 1) unless you want to use sampling strategy like the TSN, TSM used.
 - `out_of_bound_opt` is used to handle the occasion that the input video is shorter than `clip_len x frame_interval`. Normally it's not important. I mention this just for better understanding.
 - For arg `keep_tail_frames`, its motivation can be found in [here](https://github.com/open-mmlab/mmaction2/issues/1048). Don't need care about it if `num_clips=1` 
+
+# [`lr_config`](https://github.com/open-mmlab/mmcv/blob/969e2af866045417dccbc3980422c80d9736d970/mmcv/runner/hooks/lr_updater.py#L9)
+Configure how to update the learning rate. Constant lr will be used if no configuration. All available `policy` can be found in [here](https://github.com/open-mmlab/mmcv/blob/969e2af866045417dccbc3980422c80d9736d970/mmcv/runner/hooks/lr_updater.py)
+Example in config:
+```python
+lr_config = dict(policy='step', step=[4, 8], gamma=0.1)  # lr = lr * 0.1 after epoch 4 and 8.
+```
+## [`policy="step"`](https://github.com/open-mmlab/mmcv/blob/969e2af866045417dccbc3980422c80d9736d970/mmcv/runner/hooks/lr_updater.py#L167)
+**args:**
+```python
+    step (int | list[int]): Step to decay the LR. If an int value is given,
+        regard it as the decay interval. If a list is given, decay LR at
+        these steps.
+    gamma (float, optional): Decay LR ratio. Default: 0.1.
+    min_lr (float, optional): Minimum LR value to keep. If LR after decay
+        is lower than `min_lr`, it will be clipped to this value. If None
+        is given, we don't perform lr clipping. Default: None.
+```
+
+## [`policy="cosinerestart"`](https://github.com/open-mmlab/mmcv/blob/969e2af866045417dccbc3980422c80d9736d970/mmcv/runner/hooks/lr_updater.py#L344)
+Example:
+```python
+lr_config = dict(policy='cosinerestart', periods=[5, 10, 15], restart_weights=[1, 1, 0.5], min_lr_ratio=0.1)
+```
+
+**args:**
+```python
+    periods (list[int]): Periods for each cosine anneling cycle.
+    restart_weights (list[float], optional): Restart weights at each
+        restart iteration. Default: [1].
+    min_lr (float, optional): The minimum lr. Default: None.
+    min_lr_ratio (float, optional): The ratio of minimum lr to the base lr.
+        Either `min_lr` or `min_lr_ratio` should be specified.
+        Default: None.
+```
+I finally find that the formula turns to be the most simple way to understand this lr_updater, which can be found in [related pytorch pages](https://pytorch.org/docs/stable/generated/torch.optim.lr_scheduler.CosineAnnealingWarmRestarts.html#torch.optim.lr_scheduler.CosineAnnealingWarmRestarts):
+![Screenshot from 2022-04-26 19-24-52](https://user-images.githubusercontent.com/42603768/165289721-bca32e51-9eaa-47dd-858c-f1209be40ec0.png)
+![Screenshot from 2022-04-26 19-26-50](https://user-images.githubusercontent.com/42603768/165290006-6506fb2b-d4c1-4f5b-b5a4-82e6797ab2b3.png)
+
+Unlike the pytorch that use the *period of first restart* `T_0` and the *period multiplicative factor* `T_mult` to control the lr, the `mmaction2` requires to specify the periods of all restarts. And it supports restarting with weights. For the above example, it has three consine restarts in its (5+10+15=30) epochs, the first two restarts begin with `base_lr` and end with `0.1*base_lr`, while the last restart begins with `0.5*base_lr` and end with `0.05*base_lr`. The weights is related to last restart.
+
