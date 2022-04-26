@@ -4,7 +4,6 @@ title: Terminal
 parent: Collections
 nav_order: 6
 ---
-# Table of Content
 1. TOC
 {:toc}
 
