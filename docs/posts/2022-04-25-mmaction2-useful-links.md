@@ -84,7 +84,7 @@ optimizer_config = dict(grad_clip=dict(max_norm=20, norm_type=2))
 ```
 
 Description:
-> Point to the [torch.nn.utils.clip_grad_norm_] (https://pytorch.org/docs/stable/generated/torch.nn.utils.clip_grad_norm_.html).
+> Point to the [torch.nn.utils.clip_grad_norm_](https://pytorch.org/docs/stable/generated/torch.nn.utils.clip_grad_norm_.html).
 
 **Arguments:**
 ```python
