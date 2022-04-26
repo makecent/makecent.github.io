@@ -4,6 +4,7 @@ title: Terminal
 parent: Collections
 nav_order: 6
 ---
+{:toc}
 
 ### Get the **number of files**
 
