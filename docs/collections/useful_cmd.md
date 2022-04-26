@@ -5,7 +5,8 @@ parent: Collections
 nav_order: 6
 ---
 # Table of Content
-{:toc}
+1. TOC
+   {:toc}
 
 ### Get the **number of files**
 
