@@ -58,7 +58,7 @@ This hook will regularly perform evaluation on validation dataset in a given int
 
 Description:
 ```python
-Random crop that specifics the area and height-weight ratio range.
+Random crop that specifics the *area* and *height-weight ratio* range of the **cropped shape**.
 ```
 
 **Arguments:**
@@ -73,3 +73,22 @@ Random crop that specifics the area and height-weight ratio range.
 **Tips:**
 
 - This data augmentation mimic the `torch.RandomResizedCrop`, which widly used in image-based tasks, known as the Inception-style random cropping. It first determine the cropping shape, whose aspect ratio and area is randomly selected in the given range. Then with the specific cropping shape, it randomly crop a sub-area from the input.
+- This pipeline is normally followed by a `Resize(scale=(224, 224), keep_ratio=False)`.
+
+## [`PytorchVideoTrans(type='RandomShortSideScale')`](https://pytorchvideo.readthedocs.io/en/latest/_modules/pytorchvideo/transforms/transforms.html#RandomShortSideScale)
+
+Description:
+```python
+Scale that specifics the mi
+```
+
+**Arguments:**
+```python
+    min_size (int): 256
+    max_size (int): 320
+```
+
+**Tips:**
+
+- This data augmentation is used by the vgg, non-local, slowfast, x3d. Compared to the `RandomResizedCrop`, it scale the input volume's short side to a randomly selected int from the given range.
+- This pipeline is normally followed by a `RandomCrop(size=(224, 224))`.
