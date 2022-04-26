@@ -189,10 +189,26 @@ lr_config = dict(policy='step', step=[4, 8], gamma=0.1, warmup='linear', warmup_
         is given, we don't perform lr clipping. Default: None.
 ```
 
+## [`policy="CosineAnnealing"`](https://github.com/open-mmlab/mmcv/blob/969e2af866045417dccbc3980422c80d9736d970/mmcv/runner/hooks/lr_updater.py#L258)
+Example:
+```python
+lr_config = dict(policy='CosineAnnealing', min_lr_ratio=0.01)
+```
+
+**args:**
+```python
+    min_lr (float, optional): The minimum lr. Default: None.
+    min_lr_ratio (float, optional): The ratio of minimum lr to the base lr.
+        Either `min_lr` or `min_lr_ratio` should be specified.
+        Default: None.
+```
+**tips:**
+Altough the this lr_updater does not contains the restart, it is more frequently used, maybe because it has less parameters.
+
 ## [`policy="CosineRestart"`](https://github.com/open-mmlab/mmcv/blob/969e2af866045417dccbc3980422c80d9736d970/mmcv/runner/hooks/lr_updater.py#L344)
 Example:
 ```python
-lr_config = dict(policy='cosinerestart', periods=[5, 10, 15], restart_weights=[1, 1, 0.5], min_lr_ratio=0.1)
+lr_config = dict(policy='CosineRestart', periods=[5, 10, 15], restart_weights=[1, 1, 0.5], min_lr_ratio=0.1)
 ```
 
 **args:**
@@ -205,7 +221,9 @@ lr_config = dict(policy='cosinerestart', periods=[5, 10, 15], restart_weights=[1
         Either `min_lr` or `min_lr_ratio` should be specified.
         Default: None.
 ```
-I finally find that the formula turns to be the most simple way to understand this lr_updater, which can be found in [related pytorch pages](https://pytorch.org/docs/stable/generated/torch.optim.lr_scheduler.CosineAnnealingWarmRestarts.html#torch.optim.lr_scheduler.CosineAnnealingWarmRestarts):
+This should be the ultra version of cosine annealing according to the [original paper](https://arxiv.org/abs/1608.03983). But it's less used.
+
+I finally find that the formula turns to be the most simple way to understand the cosine annealing, which can be found in [related pytorch pages](https://pytorch.org/docs/stable/generated/torch.optim.lr_scheduler.CosineAnnealingWarmRestarts.html#torch.optim.lr_scheduler.CosineAnnealingWarmRestarts):
 ![Screenshot from 2022-04-26 19-24-52](https://user-images.githubusercontent.com/42603768/165289721-bca32e51-9eaa-47dd-858c-f1209be40ec0.png)
 ![Screenshot from 2022-04-26 19-26-50](https://user-images.githubusercontent.com/42603768/165290006-6506fb2b-d4c1-4f5b-b5a4-82e6797ab2b3.png)
 
