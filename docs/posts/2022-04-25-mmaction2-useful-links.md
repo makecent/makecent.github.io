@@ -153,6 +153,7 @@ Description:
         Default: False.
 ```
 **Tips:**
+- If `test_mode=True`, then the cropping in each clip happens at the temporal center.
 - Don't worry about the arg `num_clips` (just set them to the defaul 1) unless you want to use sampling strategy like the TSN, TSM used.
 - `out_of_bound_opt` is used to handle the occasion that the input video is shorter than `clip_len x frame_interval`. Normally it's not important. I mention this just for better understanding.
 - For arg `keep_tail_frames`, its motivation can be found in [here](https://github.com/open-mmlab/mmaction2/issues/1048). Don't need care about it if `num_clips=1` 
