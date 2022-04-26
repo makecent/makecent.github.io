@@ -2,6 +2,8 @@
 title: Useful links for using mmaction2
 parent: Posts
 ---
+1. TOC
+{:toc}
 
 # Config varibales
 Here we do NOT expalin the meaning of variables in the config, which we refer the reader to the [official document](https://github.com/open-mmlab/mmaction2/blob/master/docs/tutorials/1_config.md). Instead, we go deep into the **arguments of config variables**, e.g. `by_epoch` of variables `evaluation`
@@ -49,3 +51,25 @@ This hook will regularly perform evaluation on validation dataset in a given int
 
 - By setting the `by_epoch=False`, we can conduct validation in a interval of iteration level. This can also be used to quicky enter to the validation phase for debugging purpose.
 - The argumetns of function `Dataset.evaluate()` are set in here.
+
+# Pipelines
+
+## [`RandomResizedCrop`](https://github.com/open-mmlab/mmaction2/blob/c87482f6b53e839bc00506d474b38f797db0fd8f/mmaction/datasets/pipelines/augmentations.py#L701)
+
+Description:
+```python
+Random crop that specifics the area and height-weight ratio range.
+```
+
+**Arguments:**
+```python
+    area_range (Tuple[float]): The candidate area scales range of
+        output cropped images. Default: (0.08, 1.0).
+    aspect_ratio_range (Tuple[float]): The candidate aspect ratio range of
+        output cropped images. Default: (3 / 4, 4 / 3).
+    lazy (bool): Determine whether to apply lazy operation. Default: False.
+```
+
+**Tips:**
+
+- This data augmentation mimic the `torch.RandomResizedCrop`, which widly used in image-based tasks, known as the Inception-style random cropping. It first determine the cropping shape, whose aspect ratio and area is randomly selected in the given range. Then with the specific cropping shape, it randomly crop a sub-area from the input.
