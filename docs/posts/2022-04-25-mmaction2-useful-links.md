@@ -177,7 +177,7 @@ lr_config = dict(policy='step', step=[4, 8], gamma=0.1, warmup='linear', warmup_
         means the number of epochs that warmup lasts, otherwise means the
         number of iteration that warmup lasts
 ```
-## [`policy="step"`](https://github.com/open-mmlab/mmcv/blob/969e2af866045417dccbc3980422c80d9736d970/mmcv/runner/hooks/lr_updater.py#L167)
+## [`policy="Step"`](https://github.com/open-mmlab/mmcv/blob/969e2af866045417dccbc3980422c80d9736d970/mmcv/runner/hooks/lr_updater.py#L167)
 **args:**
 ```python
     step (int | list[int]): Step to decay the LR. If an int value is given,
@@ -189,7 +189,7 @@ lr_config = dict(policy='step', step=[4, 8], gamma=0.1, warmup='linear', warmup_
         is given, we don't perform lr clipping. Default: None.
 ```
 
-## [`policy="cosinerestart"`](https://github.com/open-mmlab/mmcv/blob/969e2af866045417dccbc3980422c80d9736d970/mmcv/runner/hooks/lr_updater.py#L344)
+## [`policy="CosineRestart"`](https://github.com/open-mmlab/mmcv/blob/969e2af866045417dccbc3980422c80d9736d970/mmcv/runner/hooks/lr_updater.py#L344)
 Example:
 ```python
 lr_config = dict(policy='cosinerestart', periods=[5, 10, 15], restart_weights=[1, 1, 0.5], min_lr_ratio=0.1)
