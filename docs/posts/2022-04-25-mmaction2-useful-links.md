@@ -174,7 +174,7 @@ optimizer_config = dict(grad_clip=dict(max_norm=20, norm_type=2))
 
 Example in config:
 ```python
-lr_config = dict(policy='step', step=[4, 8], gamma=0.1, warmup='linear', warmup_ratio)  # lr = lr * 0.1 after epoch 4 and 8. No warmup used.
+lr_config = dict(policy='step', step=[4, 8], gamma=0.1)  # lr = lr * 0.1 after epoch 4 and 8. No warmup used.
 ```
 **Argments:**
 ```python
