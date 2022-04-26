@@ -52,6 +52,24 @@ This hook will regularly perform evaluation on validation dataset in a given int
 - By setting the `by_epoch=False`, we can conduct validation in a interval of iteration level. This can also be used to quicky enter to the validation phase for debugging purpose.
 - The argumetns of function `Dataset.evaluate()` are set in here.
 
+## [`optimizer`](https://github.com/open-mmlab/mmcv/blob/de0c1039f756ef2b29fd357a2a64968497323a86/mmcv/runner/optimizer/default_constructor.py#L13)
+Description:
+```python
+Configure a optimizer that exists in the `pytorch` pacakge.
+```
+**Arguments**:
+```python
+    Positional fields are
+        - `type`: class name of the optimizer.
+    Optional fields are
+        - any arguments of the corresponding optimizer type, e.g.,
+          lr, weight_decay, momentum, etc.
+    paramwise_cfg (dict, optional): Parameter-wise options.
+```
+**Tips:**
+
+- It points to the optimizers in the `pytorch`. All available optimizer can be found in the [pytorch optimizer page](https://pytorch.org/docs/stable/optim.html#algorithms).
+- The `paramwise_cfg` can be used to set different learning rate for different model parts. For example, `paramwise_cfg = dict(custom_keys={'backbone': dict(lr_mult=0.1)})` will used `0.1*lr` for the backbone parameters. But pls noted that the `paramwise_cfg` is not a varibale of the `optimizer` but an independent config variable. `paramwise_cfg` can do more than setting different `lr` for different model layers, and the details can be found in the [source code page](https://github.com/open-mmlab/mmcv/blob/de0c1039f756ef2b29fd357a2a64968497323a86/mmcv/runner/optimizer/default_constructor.py#L13).
 # Pipelines
 
 ## [`RandomResizedCrop`](https://github.com/open-mmlab/mmaction2/blob/c87482f6b53e839bc00506d474b38f797db0fd8f/mmaction/datasets/pipelines/augmentations.py#L701)
