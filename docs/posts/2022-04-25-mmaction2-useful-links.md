@@ -73,8 +73,7 @@ Random crop that specifics the *area* and *height-weight ratio* range of the **c
 **Tips:**
 
 - This data augmentation mimic the `torch.RandomResizedCrop`, which is widly used in image-based tasks, known as the Inception-style random cropping. It first determine the cropping shape, whose aspect ratio and area is randomly selected in the given range. Then with the specific cropping shape, it randomly crop a sub-area from the input.
-- This pipeline is normally followed by a `Resize(scale=(224, 224), keep_ratio=False)`. Besides, it normally follows a `Rescale(scale=(-1, 256))`, i.e., rescale the short-side to 256. I suggest to conduct the short-side rescaling *offline* because it is fixed. Offline rescaling can reduce the dataset size
-and reduce the time of data augmentation.
+- This pipeline is normally followed by a `Resize(scale=(224, 224), keep_ratio=False)`. Besides, it normally follows a `Rescale(scale=(-1, 256))`, i.e., rescale the short-side to 256. I suggest to conduct the short-side rescaling *offline* because it is fixed. Offline rescaling can reduce the data augmentation time and sometimes can significantly reduce the disk size used by the datasets, e.g., kinetics400.
 
 ## [`PytorchVideoTrans(type='RandomShortSideScale')`](https://pytorchvideo.readthedocs.io/en/latest/_modules/pytorchvideo/transforms/transforms.html#RandomShortSideScale)
 
