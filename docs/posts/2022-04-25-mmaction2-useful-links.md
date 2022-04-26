@@ -72,8 +72,9 @@ Random crop that specifics the *area* and *height-weight ratio* range of the **c
 
 **Tips:**
 
-- This data augmentation mimic the `torch.RandomResizedCrop`, which widly used in image-based tasks, known as the Inception-style random cropping. It first determine the cropping shape, whose aspect ratio and area is randomly selected in the given range. Then with the specific cropping shape, it randomly crop a sub-area from the input.
-- This pipeline is normally followed by a `Resize(scale=(224, 224), keep_ratio=False)`.
+- This data augmentation mimic the `torch.RandomResizedCrop`, which is widly used in image-based tasks, known as the Inception-style random cropping. It first determine the cropping shape, whose aspect ratio and area is randomly selected in the given range. Then with the specific cropping shape, it randomly crop a sub-area from the input.
+- This pipeline is normally followed by a `Resize(scale=(224, 224), keep_ratio=False)`. Besides, it normally follows a `Rescale(scale=(-1, 256))`, i.e., rescale the short-side to 256. I suggest to conduct the short-side rescaling *offline* because it is fixed. Offline rescaling can reduce the dataset size
+and reduce the time of data augmentation.
 
 ## [`PytorchVideoTrans(type='RandomShortSideScale')`](https://pytorchvideo.readthedocs.io/en/latest/_modules/pytorchvideo/transforms/transforms.html#RandomShortSideScale)
 
@@ -90,5 +91,7 @@ Scale that specifics the mi
 
 **Tips:**
 
-- This data augmentation is used by the vgg, non-local, slowfast, x3d. Compared to the `RandomResizedCrop`, it scale the input volume's short side to a randomly selected int from the given range.
+- Compared to the `RandomResizedCrop`, it scale the input volume's short side to a randomly selected int from the given range.
 - This pipeline is normally followed by a `RandomCrop(size=(224, 224))`.
+- For these whose datasets are already rescaled to short-side=256, this pipeline is not a good choice.
+- This data augmentation was used by the vgg, non-local, slowfast, x3d. However, the latest paper MViT2, from the same team of x3d and slowfast, now also used the Inception-style cropping, i.e. `RandomResizedCrop`, for data augmention in training.
