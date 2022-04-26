@@ -9,7 +9,6 @@ parent: Posts
 Here we do NOT expalin the meaning of variables in the config, which we refer the reader to the [official document](https://github.com/open-mmlab/mmaction2/blob/master/docs/tutorials/1_config.md). Instead, we go deep into the **arguments of config variables**, e.g. `by_epoch` of variables `evaluation`
 
 ## [`evalution`](https://github.com/open-mmlab/mmaction2/blob/c87482f6b53e839bc00506d474b38f797db0fd8f/mmaction/core/evaluation/eval_hooks.py#L45)
-Description:
 > This hook will regularly perform evaluation on validation dataset in a given interval.
 
 Example in config:
@@ -53,7 +52,6 @@ evaluation = dict(interval=5, metrics=['top_k_accuracy', 'mean_class_accuracy'])
 - The argumetns of function `Dataset.evaluate()` are set in here.
 
 ## [`optimizer`](https://github.com/open-mmlab/mmcv/blob/de0c1039f756ef2b29fd357a2a64968497323a86/mmcv/runner/optimizer/default_constructor.py#L13)
-Description:
 > Configure a optimizer that exists in the `pytorch` pacakge.
 
 Example in config:
@@ -78,7 +76,6 @@ optimizer = dict(type='SGD', lr=0.01, momentum=0.9, weight_decay=0.0001)
 - The `paramwise_cfg` can be used to set different learning rate for different model parts. For example, `paramwise_cfg = dict(custom_keys={'backbone': dict(lr_mult=0.1)})` will used `0.1*lr` for the backbone parameters. But pls noted that the `paramwise_cfg` is not a varibale of the `optimizer` but an independent config variable. `paramwise_cfg` can do more than setting different `lr` for different model layers, and the details can be found in the [source code page](https://github.com/open-mmlab/mmcv/blob/de0c1039f756ef2b29fd357a2a64968497323a86/mmcv/runner/optimizer/default_constructor.py#L13).
 
 ## [`optimizer_config`](https://github.com/open-mmlab/mmcv/blob/22e73d69867b11b6e2c82e53cdd4385929d436f5/mmcv/runner/hooks/optimizer.py#L22)
-Description:
 > Point to the [torch.nn.utils.clip_grad_norm_](https://pytorch.org/docs/stable/generated/torch.nn.utils.clip_grad_norm_.html).
 
 Example:
@@ -105,7 +102,6 @@ optimizer_config = dict(grad_clip=dict(max_norm=20, norm_type=2))
 # Pipelines
 
 ## [`RandomResizedCrop`](https://github.com/open-mmlab/mmaction2/blob/c87482f6b53e839bc00506d474b38f797db0fd8f/mmaction/datasets/pipelines/augmentations.py#L701)
-Description:
 > Random crop that specifics the *area* and *height-weight ratio* range of the **cropped shape**.
 
 **Arguments:**
@@ -123,7 +119,6 @@ Description:
 - This pipeline is normally followed by a `Resize(scale=(224, 224), keep_ratio=False)`. Besides, it normally follows a `Rescale(scale=(-1, 256))`, i.e., rescale the short-side to 256. I suggest to conduct the short-side rescaling *offline* because it is fixed. Offline rescaling can reduce the data augmentation time and sometimes can significantly reduce the disk size used by the datasets, e.g., kinetics400.
 
 ## [`PytorchVideoTrans(type='RandomShortSideScale')`](https://pytorchvideo.readthedocs.io/en/latest/_modules/pytorchvideo/transforms/transforms.html#RandomShortSideScale)
-Description:
 > Scale that specifics the range short-side size.
 
 **Arguments:**
@@ -140,8 +135,6 @@ Description:
 - This data augmentation was used by the vgg, non-local, slowfast, x3d. However, the latest paper MViT2, from the same team of x3d and slowfast, now also used the Inception-style cropping, i.e. `RandomResizedCrop`, for data augmention in training.
 
 ## [SampleFrames](https://github.com/open-mmlab/mmaction2/blob/01c94d365a429e06ff7515eac73d2a091d9cd513/mmaction/datasets/pipelines/loading.py#L83) and [DenseSampleFrames](https://github.com/open-mmlab/mmaction2/blob/01c94d365a429e06ff7515eac73d2a091d9cd513/mmaction/datasets/pipelines/loading.py#L333)
-
-Description:
 0. Let's note the `clip_len`, `frame_interval`, and `num_clips` as (clip_len x frame_interval x clip_len), e.g. (16x4x2)
 1. **`SampleFrames(16x4x1)`:** This is the most frequently used, and the most basic sampling strategy. It randomly samples *16* frames with interval *4* from the input video. It can be regarded as first randomly cropping a 64-frame sub-video from the input video, then uniformally sampling 16 frames from the cropped sub-video. The output shaoe is (16, H, W)
 2. `SampleFrames(16x4x8)`: Now the `num_clips=8`, this can be regarded as first dividing the input video into *8* sub-videos, then conducting the same operations as the `SampleFrames(16x4x1)` on each sub-video. This example is just for explanation. I have never seen such a combiantion of arguments. The output shape is (256, H, W)
@@ -177,7 +170,8 @@ Description:
 - For arg `keep_tail_frames`, its motivation can be found in [here](https://github.com/open-mmlab/mmaction2/issues/1048). Don't need care about it if `num_clips=1` 
 
 # [`lr_config`](https://github.com/open-mmlab/mmcv/blob/969e2af866045417dccbc3980422c80d9736d970/mmcv/runner/hooks/lr_updater.py#L9)
-Configure how to update the learning rate. Constant lr will be used if no configuration. All available `policy` can be found in [here](https://github.com/open-mmlab/mmcv/blob/969e2af866045417dccbc3980422c80d9736d970/mmcv/runner/hooks/lr_updater.py)
+> Configure how to update the learning rate. Constant lr will be used if no configuration. All available `policy` can be found in [here](https://github.com/open-mmlab/mmcv/blob/969e2af866045417dccbc3980422c80d9736d970/mmcv/runner/hooks/lr_updater.py)
+
 Example in config:
 ```python
 lr_config = dict(policy='step', step=[4, 8], gamma=0.1, warmup='linear', warmup_ratio)  # lr = lr * 0.1 after epoch 4 and 8. No warmup used.
