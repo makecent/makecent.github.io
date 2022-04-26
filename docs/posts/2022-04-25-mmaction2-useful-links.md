@@ -78,6 +78,32 @@ Configure a optimizer that exists in the `pytorch` pacakge.
 - It points to the optimizers in the `pytorch`. All available optimizer can be found in the [pytorch optimizer page](https://pytorch.org/docs/stable/optim.html#algorithms).
 - You may be interested in my personal [recommended optimizer setting]().
 - The `paramwise_cfg` can be used to set different learning rate for different model parts. For example, `paramwise_cfg = dict(custom_keys={'backbone': dict(lr_mult=0.1)})` will used `0.1*lr` for the backbone parameters. But pls noted that the `paramwise_cfg` is not a varibale of the `optimizer` but an independent config variable. `paramwise_cfg` can do more than setting different `lr` for different model layers, and the details can be found in the [source code page](https://github.com/open-mmlab/mmcv/blob/de0c1039f756ef2b29fd357a2a64968497323a86/mmcv/runner/optimizer/default_constructor.py#L13).
+
+## [`optimizer_config`](https://github.com/open-mmlab/mmcv/blob/22e73d69867b11b6e2c82e53cdd4385929d436f5/mmcv/runner/hooks/optimizer.py#L22)
+Description:
+```python
+Point to the [torch.nn.utils.clip_grad_norm_] (https://pytorch.org/docs/stable/generated/torch.nn.utils.clip_grad_norm_.html).
+```
+Example:
+```python
+optimizer_config = dict(grad_clip=dict(max_norm=20, norm_type=2))
+```
+**Arguments:**
+```python
+        grad_clip (dict, optional): A config dict to control the clip_grad.
+            Default: None.
+        detect_anomalous_params (bool): This option is only used for
+            debugging which will slow down the training speed.
+            Detect anomalous parameters that are not included in
+            the computational graph with `loss` as the root.
+            There are two cases
+                - Parameters were not used during
+                  forward pass.
+                - Parameters were not used to produce
+                  loss.
+            Default: False.
+```
+
 # Pipelines
 
 ## [`RandomResizedCrop`](https://github.com/open-mmlab/mmaction2/blob/c87482f6b53e839bc00506d474b38f797db0fd8f/mmaction/datasets/pipelines/augmentations.py#L701)
