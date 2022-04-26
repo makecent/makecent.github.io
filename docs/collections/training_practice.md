@@ -50,4 +50,6 @@ data = dict(
     videos_per_gpu=8, # batch size 8 * 2 = 16, where 2 is my number of gpus 
     ...
 ```
-Notes: There is a known [linear scaling rule](https://arxiv.org/abs/1706.02677) -- *When the minibatch size is multiplied by k, multiply the learning rate by k.*
+Notes:
+- There is a known [linear scaling rule](https://arxiv.org/abs/1706.02677) -- *When the minibatch size is multiplied by k, multiply the learning rate by k.*
+- Warmup seems to be important when the backbone network is Transformer ([ActionFormer](https://arxiv.org/abs/2202.07925), [Liyuan Liu 2020](https://arxiv.org/abs/2004.08249)).
