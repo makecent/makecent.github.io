@@ -100,7 +100,7 @@ kramdown:
 
 # define collections
 collections:
-  collections:
+  docs:
     permalink: "/:collection/:path/"
     output: true
   posts:
@@ -109,8 +109,8 @@ collections:
 
 just_the_docs:
   collections:
-    collections:
-      name: Collections
+    docs:
+      name: Docs
     posts:
       name: Posts
       
