@@ -1,11 +1,9 @@
 ---
-layout: default
 title: Terminal
 parent: Collections
+has_toc: true
 nav_order: 6
 ---
-1. TOC
-{:toc}
 
 ### Get the **number of files**
 
