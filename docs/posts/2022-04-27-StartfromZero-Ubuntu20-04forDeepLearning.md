@@ -100,77 +100,30 @@ Reboot and check the installation:
 reboot
 nvidia-smi
 ```
-# 8. Install CUDA and cuDNN
-As mentioned in Section 7, you are recommended to install cuda-toolkit and cuDNN with pytorch/tensorflow at the conda virtual enviroment. But if you'd like to install CUDA and cuDNN in the base enviroment. You can do the following:
-## 8.0 Check the compatibility (Optional)
-- [Driver-CUDA](https://docs.nvidia.com/deploy/cuda-compatibility/index.html#default-to-minor-version)
-- [Pytorch-CUDA](https://pytorch.org/get-started/previous-versions/)
-- [Tensorflow-CUDA](https://www.tensorflow.org/install/source#tested_build_configurations)
-## 8.1 Install CUDA via network (checked on 2080ti and 1080 ti, 27 April 2022)
-Below commands are copied from the website [CUDA Toolkit Archive](https://developer.nvidia.com/cuda-downloads?target_os=Linux&target_arch=x86_64&Distribution=Ubuntu&target_version=20.04&target_type=deb_network). It will install a **cuda-toolkit** and a **nvidia-driver** of the appropriate versions.
-```shell
-wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2004/x86_64/cuda-ubuntu2004.pin
-sudo mv cuda-ubuntu2004.pin /etc/apt/preferences.d/cuda-repository-pin-600
-sudo apt-key adv --fetch-keys https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2004/x86_64/7fa2af80.pub
-sudo add-apt-repository "deb https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2004/x86_64/ /"
-sudo apt-get update
-# sudo apt list cuda*  # list all effective cuda versions (optional)
-sudo apt-get -y install cuda  # you may specify the version of cuda to install, e.g., cuda-11-1
-```
-Reboot after the CUDA installation, and use the below command to check if CUDA was installed successfully:
-```
-nvidia-smi
-```
+Outputs:
 
-## 8.2 Supplement
-### Removing all nvidia relative files.
-In case encountering any error, below commands can be used to remove all files related to nvidia-cuda and nvidia-driver. Please use them after careful consideration:
-```shell
-# sudo rm /etc/apt/sources.list.d/cuda*
-# sudo apt-get --purge remove "*cublas*" "cuda*" "nsight*" 
-# sudo apt-get --purge remove "*nvidia*"
-# sudo apt-get autoremove
-# sudo apt-get autoclean
-# sudo rm -rf /usr/local/cuda*
-```
-### GCC version problem
-If you installed the **CUDA 10.1** of Ubuntu 18.04. You might will meet the problem of "GCC version is too high", the solution
-如果是在20.04上安装适配18.04的CUDA 10.1，会有一个GCC版本过高的问题，解决方法：
-sudo apt install build-essential
-sudo apt -y install gcc-8 g++-8
-sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-8 8
-sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-8 8
+![Screenshot from 2022-04-27 15-42-16](https://user-images.githubusercontent.com/42603768/165467361-d213cf14-8aaa-469d-aaa7-16e3041e70e6.png)
 
-## 8.3 Install cuDNN
-cuDNN can speed up the GPU computation based on CUDA.
-### 8.3.1 Download cuDNN
-[Download](https://developer.nvidia.com/rdp/cudnn-download) the cuDNN (you may need to sign up first) according to the version of you installed CUDA.
-![Screenshot from 2022-04-27 14-12-18](https://user-images.githubusercontent.com/42603768/165452917-ae7d357a-8573-4b1a-bf3e-4b5fd4f06d24.png)
-
-Install the downloaded `.deb` file:
-```shell
-sudo dpkg -i ~/Downloads/cudnn-local-repo-ubuntu2004-8.4.0.27_1.0-1_amd64.deb
-```
-
+Note that the `CUDA Version: 11.6` in the above picture does NOT mean that a CUDA is installed.
 
 # 8. Install Pytorch/TensorFlow
-## [Pytorch](https://pytorch.org/get-started/locally/)
+Follow the official installation tutorials of [Pytorch](https://pytorch.org/get-started/locally/) and [Tensorflow](https://www.tensorflow.org/install). Alternatively, you may run the following given commands to install pytorch/tensorflow in a new conda env (cuda and cuDNN are all installed automatically).
+## Pytorch
 ```
-conda create -n pyt
+conda create -n pyt  # replace 'pyt' with name you like
 conda activate pyt
-conda install pytorch torchvision torchaudio -c pytorch  # you can specify the version, e.g., cudatoolkit=11.3
+conda install pytorch torchvision torchaudio -c pytorch
 conda list
 ```
 
 ## TensorFlow
 ```shell
-# conda create -n tf-gpu tensorflow-gpu  # configure with one command, including cuda-toolkit and cuDNN
 conda create -n tf-gpu
 conda activate tf-gpu
-conda install tensorflow-gpu  # you can specify the versions, e.g., tensorflow-gpu=2.4.1 cudatoolkit=10.1
+conda install tensorflow-gpu 
 conda list
 ```
-
+Noted that you can specify version that you want, e.g., `tensorflow-gpu=2.4.1 cudatoolkit=10.1` and `pytorch=1.11.0 cudatoolkit=11.3`.
 - Conda virtual enviroment is flexible and simple to use. It can install cuda-toolkit and cuDNN easily. We can configure multiple envs with different versions of cuda/pytorch/tensorflow and switch among them quickly. 
 - Note that if you have installed cuda in the base enviroment, i.e., completed the Section 8, it's recommended to install the same version of the cuda-toolkit in the virtual env to avoid possible version conflict. Alternatively, you can install pytorch/tensorflow sololy without cuda by using `pip install` (instead of `conda install`). In this case, your virtual env doesn't contain cuda and it will use the cuda installed in the base enviroment.
 
