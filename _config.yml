@@ -90,6 +90,14 @@ kramdown:
         # Use existing pygments syntax highlighting css
         css_class: 'highlight'
 
+# default front matter
+defaults:
+  -
+    scope:
+      path: "docs/collections"
+    values:
+      layout: "default"
+      parent: "Collections"
 plugins:
   - jekyll-seo-tag
 
