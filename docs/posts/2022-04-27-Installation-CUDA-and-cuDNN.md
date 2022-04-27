@@ -1,6 +1,7 @@
 ---
 title: Installation of CUDA and cuDNN
 parent: posts
+nav_exclude: true
 ---
 1.TOC
 {:toc}
