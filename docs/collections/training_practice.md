@@ -10,6 +10,7 @@ nav_order: 7
 # Loss quantization
 ## Binary Cross Entropy
 Assume Label is **1**.
+
 |Prediction |  Loss       | Comment  |
 |:----------|:------------|:---------|
 |0          |   100       | |
@@ -24,7 +25,7 @@ Assume Label is **1**.
 |0.8        |   0.22      | :wink: great|
 |0.9        |   **0.11**  |:relaxed: pretty good |
 |0.95       |   0.05      | |
-|0.99       |   **0.01**  |:triumph: (perfect) |
+|0.99       |   **0.01**  |:triumph: perfect |
  
 # Optimizer setting
 
