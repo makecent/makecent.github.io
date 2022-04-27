@@ -31,17 +31,17 @@ nvidia-smi
 
 # Install cuDNN
 cuDNN can speed up the GPU computation based on CUDA.
-## Download cuDNN
+## Download
 [Download](https://developer.nvidia.com/rdp/cudnn-download) the cuDNN (you may need to sign up first) according to the version of you installed CUDA.
 ![Screenshot from 2022-04-27 14-12-18](https://user-images.githubusercontent.com/42603768/165452917-ae7d357a-8573-4b1a-bf3e-4b5fd4f06d24.png)
 
-## Install cuDNN
+## Install
 Install the downloaded `.deb` file:
 ```shell
 sudo dpkg -i ~/Downloads/cudnn-local-repo-ubuntu2004-8.4.0.27_1.0-1_amd64.deb
 ```
 
-# Supplement
+# Supplementary content
 ## Removing all nvidia relative files.
 In case encountering any error, below commands can be used to remove all files related to nvidia-cuda and nvidia-driver. Please use them after careful consideration:
 ```shell
