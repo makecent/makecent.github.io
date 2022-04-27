@@ -97,6 +97,23 @@ defaults:
       path: "docs/collections"
     values:
       layout: "default"
+
+# define collections
+collections:
+  collections:
+    permalink: "/:collection/:path/"
+    output: true
+  posts:
+    permalink: "/:collection/:path/"
+    output: true
+
+just_the_docs:
+  collections:
+    collections:
+      name: Collections
+    Posts:
+      name: Posts
+      
 plugins:
   - jekyll-seo-tag
 
