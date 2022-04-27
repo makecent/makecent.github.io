@@ -125,69 +125,30 @@ conda list
 ```
 Noted that you can specify version that you want, e.g., `tensorflow-gpu=2.4.1 cudatoolkit=10.1` and `pytorch=1.11.0 cudatoolkit=11.3`.
 - Conda virtual enviroment is flexible and simple to use. It can install cuda-toolkit and cuDNN easily. We can configure multiple envs with different versions of cuda/pytorch/tensorflow and switch among them quickly. 
-- Note that if you have installed cuda in the base enviroment, i.e., completed the Section 8, it's recommended to install the same version of the cuda-toolkit in the virtual env to avoid possible version conflict. Alternatively, you can install pytorch/tensorflow sololy without cuda by using `pip install` (instead of `conda install`). In this case, your virtual env doesn't contain cuda and it will use the cuda installed in the base enviroment.
+- If you have installed a global cuda in the system, and a different version of the cuda-toolkit in the virtual env, you then might encounter the error of version conflict. You can install pytorch/tensorflow solely by using `pip install` (instead of `conda install`). In this case, your virtual env will use the cuda installed in the system.
 
 # 9. Configure PyCharm
-以tf-gpu为例。主要的工作是将刚刚用conda创建的名为tf-gpu环境，作为基于tensorflow的项目的python interpreter。Ctrl+Alt+S或通过File->Settings进入设置，并进入Project: xxx栏目中的Project Interpreter：
-​
+To use the created conda virtual in Pycharm, you need to configure it as the `Python Interpreter` of your project. Open the `File --> Settings --> Project --> Python Interpreter`：
+![Screenshot from 2022-04-27 16-06-48](https://user-images.githubusercontent.com/42603768/165471644-a27e4838-5e37-46e9-926b-bf6a873b1087.png)
 
-编辑
+Click the gear icon at the right-up corner, chose 'Add':
+![Screenshot from 2022-04-27 16-11-18](https://user-images.githubusercontent.com/42603768/165472491-5b0ffca1-61cf-4dc4-9ddb-af2c218393e1.png)
 
-切换为居中
-添加图片注释，不超过 140 字（可选）
-点击右上角的齿轮图标，并在弹出的列表里点击Add：
-​
+Choose `Conda Enviroment --> Exsiting enviroment`, then configure the executable python path of your conda env:
+![Screenshot from 2022-04-27 16-23-22](https://user-images.githubusercontent.com/42603768/165474863-54fb60f5-d04b-4fc5-931f-87ab64808a49.png)
 
-编辑
+The executable python path will be automatically detected by the Pycharm. In case not, it normally locates at `/home/<user_name>/miniconda3/env/<env_name>/bin/python`.
 
-切换为居中
-添加图片注释，不超过 140 字（可选）
-在左边栏目中选中Conda Environment，在右侧选择Exsiting environment，一般Pycharm能自动检测到conda软件和已有的conda环境，选择刚才创建的tf-gpu环境即可。最后当然是点击OK。
-如此，这个Project就配置上tf-gpu这个环境了：
-​
-
-编辑
-
-切换为居中
-添加图片注释，不超过 140 字（可选）
-这个界面只会显示python packages，所以看不到cuda和cudnn。如需要添加，删除和升级package，可分别通过列表右侧的加（+），减（-）以及上三角符号完成。
-当然这些操作都可以通过在命令行里面用conda install或pip install来执行，前提是记得用conda activate tf-gpu进入虚拟环境，否则就是安装在base的主环境了。
-10. 硬盘管理
-10.1 只修改挂载选项
-由于安装系统只影响装系统的硬盘，其他硬盘的内容和设置不会受影响。所以如果其他硬盘之前已经设置得当，那只需要简单设置一下挂载选项即可。进入Disks软件（系统自带）：
-​
-
-编辑
-
-切换为居中
-添加图片注释，不超过 140 字（可选）
-左边显示了电脑上的硬盘。装了系统的硬盘无须理会，对别的硬盘进行设置。选中要设置的硬盘，如果硬盘已经处在挂载状态，先点击Unmount（黑色正方形）取消挂载；点击齿轮图标，如果你没有给硬盘命名过label，则点击Edit Filesystem，在弹出的对话框内给硬盘取个lable名字。之后选择Edit Mount Options：
-​
-
-编辑
-
-切换为居中
-添加图片注释，不超过 140 字（可选）
-关闭Use Session Default，进行自定义设置。勾选Mount at system startup可以让系统开机时自动挂载该硬盘；Show in user interface一般也勾选；重要的修改Identify As，我一般选择by-label。选择完后Mount Point会自动修改，这就是以后访问该硬盘的路径。这样设置的硬盘路经比较短，也有辨识度。之后点击OK即可。设置完之后，可以再将硬盘挂载上电脑，点击Mount按钮（与Unmount按钮是同一个）即可。挂载后就可以去文件系统 (Files) 的Other Locations里访问该硬盘了。
-你可能会发现你对硬盘没有什么权限，甚至无法创建新的文件夹。那是因为该硬盘默认归root所有，可以考虑将该硬盘改为归你所有：
-sudo chown -R $USER:$USER /mnt/disk-label  #注意改成你自己的硬盘路径(Mount Point)
-10.2 给硬盘格式化，分区等
-如果想直接对硬盘进行改动，比如格式化，分区等（这些操作都非常危险，对硬盘里数据进行备份），可以用GParted软件：
-sudo apt install gparted
-GParted软件使用其实非常简单，功能也很多。这里不再详细介绍，网上有很多攻略。需要注意的是，如果你要用GParted对系统盘进行操作，如划分出一部分新的区域安装Windows，在系统盘运行的状态下是不可行的。这个时候你可以插入之前的U盘，重启电脑，按第一节讲的进入BIOS并选择以U盘里的系统开机，之后选择试用Ubuntu (Try Ubuntu) 进入U盘内的试用版Ubuntu，里面已经自动安装好了GParted，用它便可以系统盘进行分区和格式化了。
-11. 安装TeamViewer
-免费的远程操作电脑软件。
+# 10. Install TeamViewer (optional)
+Control your computer remotely:
+```shell
 wget https://download.teamviewer.com/download/linux/teamviewer_amd64.deb
 sudo apt install -y ./teamviewer_amd64.deb
 sudo rm teamviewer_amd64.deb
+```
+TeamViewer didn't restart with the system even after I checked the box `Extras --> Options --> Start TeamViewer with system`. The solution I found: 
 打开TeamViewer，通过Extras->Options->勾选Start TeamViewer with system。但是重启后发现TeamViewer并没有随开机启动。
+```shell
 sudo systemctl start teamviewerd.service
 sudo systemctl enable teamviewerd.service
-12. 结语
-部分材料借鉴于：
-TensorFlow - Anaconda documentation
-​
-docs.anaconda.com
-Li-Wen's Blog
-​
-liwen.site
+```
