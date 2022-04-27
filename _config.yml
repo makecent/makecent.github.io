@@ -97,7 +97,6 @@ defaults:
       path: "docs/collections"
     values:
       layout: "default"
-      parent: "Collections"
 plugins:
   - jekyll-seo-tag
 
