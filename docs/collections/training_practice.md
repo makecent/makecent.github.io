@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Training Practices
+title: Training
 parent: Collections
 nav_order: 7
 ---
