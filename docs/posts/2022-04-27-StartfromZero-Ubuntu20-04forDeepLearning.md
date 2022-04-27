@@ -15,13 +15,13 @@ parent: Posts
 {: .no_toc }
 This post documents how I configure a brand new computer into a work station that could be used for deep learning. It was first posted on the ZhiHu [in Chinese](https://zhuanlan.zhihu.com/p/142923008), which is no longer updated. This page is maintained by me to be up-to-date. Last update: 27 April 2022.
 
-# 1. Install Ubuntu 20.04
-## 1.1 Create a bootable USB stick.
+# Install Ubuntu 20.04
+## Create a bootable USB stick.
 > Requirement: A 4GB or larger USB stick/flash drive
 
 Follow the the offical tutorials for creating a bootable USB stick on [Windows](https://ubuntu.com/tutorials/create-a-usb-stick-on-windows#1-overview), [masOS](https://ubuntu.com/tutorials/create-a-usb-stick-on-macos#1-overview), or [Ubuntu](https://ubuntu.com/tutorials/create-a-usb-stick-on-ubuntu#1-overview).
 
-## 1.2 Install Ubuntu 20.04 desktop
+## Install Ubuntu 20.04 desktop
 Follow the [offical tutorial](https://ubuntu.com/tutorials/install-ubuntu-desktop#1-overview). We can start from its [step-4](https://ubuntu.com/tutorials/install-ubuntu-desktop#4-boot-from-usb-flash-drive) since we have already created a bootable USB stack.
 
 **Configuration adivces:**
@@ -46,7 +46,7 @@ Follow the [offical tutorial](https://ubuntu.com/tutorials/install-ubuntu-deskto
   Different motherboards have BIOS of different styles. Find and get into the setting of `Boot Menu`, and there should be the name of your USB flash in the list. Select your USB and continue the booting.
 </details>
 
-# 2. Configure Input Method 
+# Configure Input Method 
 Take the configuration of input source of Chinese as an example.
 1. `Settings --> Region&Language --> Manage Installed Language --> Install/Remove Language --> check "Chinese" --> Apply` 
 ![Screenshot from 2022-04-27 14-39-44](https://user-images.githubusercontent.com/42603768/165456822-b5f59cd0-4294-489a-b03e-fc61b74240f0.png)
@@ -57,13 +57,13 @@ Take the configuration of input source of Chinese as an example.
 4. Configuration completed. Now you can use the shortcut `Super + Space` to switch between the input sources. The status is shown in the right-up corner：
 ![Screenshot from 2022-04-27 14-42-41](https://user-images.githubusercontent.com/42603768/165457310-e3f623f2-e0e1-4b55-8a46-db229e8195bb.png)
 
-# 3. Install Chrome
+# Install Chrome
 ```shell
 wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
 sudo dpkg -i google-chrome-stable_current_amd64.deb
 ```
 
-# 4. Install PyCharm
+# Install PyCharm
 Search Pycharm in `Software` and install the one you like:
 ![Screenshot from 2022-04-27 12-17-48](https://user-images.githubusercontent.com/42603768/165439907-01ce19cb-1975-4e92-8850-2de5792a764d.png)
 
@@ -71,12 +71,12 @@ Search Pycharm in `Software` and install the one you like:
 
 > External reading: [Ubuntu Software vs Software](https://askubuntu.com/questions/866755/differences-between-ubuntu-software-center-and-ubuntu-software-their-pros-and)
 
-# 5. Install Git
+# Install Git
 ```shell
 sudo apt install git
 ```
 
-# 6. Install Anaconda
+# Install Anaconda
 Here we install the [miniconda](https://docs.conda.io/en/latest/miniconda.html#)
 ```shell
 wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
@@ -85,9 +85,9 @@ sudo rm Miniconda3-latest-Linux-x86_64.sh
 conda update -n base -c defaults conda  # restart the terminal before run this line
 ```
 
-# 7. Install GPU-driver
+# Install GPU-driver
 Nowadays, you don NOT have to install cuda-toolkit or cuDNN because they will come with the installation of pytorch/tensorflow using conda. Therefore, you only need to install a NVIDIA driver. Check the compatibility of [GPU-Driver](https://www.nvidia.com/Download/index.aspx) (optional).
-## 7.1 Add PPA repository
+## Add PPA repository
 ```shell
 sudo add-apt-repository ppa:graphics-drivers
 sudo apt update
@@ -98,7 +98,7 @@ Output (1080ti, 27 April 2022):
 
 ![Screenshot from 2022-04-27 13-17-11](https://user-images.githubusercontent.com/42603768/165445679-dd30d3e0-effe-4905-8fb1-98cc7d87aedf.png)
 
-## 7.2 Install driver
+## Install driver
 Choose one appropriate version, install it:
 ```shell
 sudo apt install nvidia-driver-510
@@ -114,7 +114,7 @@ Outputs:
 
 Note that the `CUDA Version: 11.6` in the above picture does NOT mean that a CUDA is installed.
 
-# 8. Install Pytorch/TensorFlow
+# Install Pytorch/TensorFlow
 Follow the official installation tutorials of [Pytorch](https://pytorch.org/get-started/locally/) and [Tensorflow](https://www.tensorflow.org/install). Alternatively, you may run the following given commands to install pytorch/tensorflow in a new conda env (cuda and cuDNN are all installed automatically).
 ## Pytorch
 ```
@@ -135,7 +135,7 @@ Noted that you can specify version that you want, e.g., `tensorflow-gpu=2.4.1 cu
 - Conda virtual enviroment is flexible and simple to use. It can install cuda-toolkit and cuDNN easily. We can configure multiple envs with different versions of cuda/pytorch/tensorflow and switch among them quickly. 
 - If you have installed a global cuda in the system, and a different version of the cuda-toolkit in the virtual env, you then might encounter the error of version conflict. You can install pytorch/tensorflow solely by using `pip install` (instead of `conda install`). In this case, your virtual env will use the cuda installed in the system.
 
-# 9. Configure PyCharm
+# Configure PyCharm
 To use the created conda virtual in Pycharm, you need to configure it as the `Python Interpreter` of your project. Open the `File --> Settings --> Project --> Python Interpreter`：
 ![Screenshot from 2022-04-27 16-06-48](https://user-images.githubusercontent.com/42603768/165471644-a27e4838-5e37-46e9-926b-bf6a873b1087.png)
 
@@ -147,7 +147,7 @@ Choose `Conda Enviroment --> Exsiting enviroment`, then configure the executable
 
 The executable python path will be automatically detected by the Pycharm. In case not, it normally locates at `/home/<user_name>/miniconda3/env/<env_name>/bin/python`.
 
-# 10. Install TeamViewer (optional)
+# Install TeamViewer (optional)
 Control your computer remotely:
 ```shell
 wget https://download.teamviewer.com/download/linux/teamviewer_amd64.deb
