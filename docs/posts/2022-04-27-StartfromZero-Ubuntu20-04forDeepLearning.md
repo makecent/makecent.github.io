@@ -155,7 +155,6 @@ sudo apt install -y ./teamviewer_amd64.deb
 sudo rm teamviewer_amd64.deb
 ```
 TeamViewer didn't restart with the system even after I checked the box `Extras --> Options --> Start TeamViewer with system`. The solution I found: 
-打开TeamViewer，通过Extras->Options->勾选Start TeamViewer with system。但是重启后发现TeamViewer并没有随开机启动。
 ```shell
 sudo systemctl start teamviewerd.service
 sudo systemctl enable teamviewerd.service
