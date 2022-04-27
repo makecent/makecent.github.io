@@ -11,38 +11,43 @@ parent: posts
 ## 1.1 Create a bootable USB stick.
 > Requirement: A 4GB or larger USB stick/flash drive
 
-We follow the offical tutorials for creating a bootable USB stick on [Windows](https://ubuntu.com/tutorials/create-a-usb-stick-on-windows#1-overview), [masOS](https://ubuntu.com/tutorials/create-a-usb-stick-on-macos#1-overview), or [Ubuntu](https://ubuntu.com/tutorials/create-a-usb-stick-on-ubuntu#1-overview).
+I refer the readers to the the offical tutorials for creating a bootable USB stick on [Windows](https://ubuntu.com/tutorials/create-a-usb-stick-on-windows#1-overview), [masOS](https://ubuntu.com/tutorials/create-a-usb-stick-on-macos#1-overview), or [Ubuntu](https://ubuntu.com/tutorials/create-a-usb-stick-on-ubuntu#1-overview).
+
 ## 1.2 Install Ubuntu 20.04 desktop
-We follow the [offical tutorial](https://ubuntu.com/tutorials/install-ubuntu-desktop#1-overview). We can start from its [step-4](https://ubuntu.com/tutorials/install-ubuntu-desktop#4-boot-from-usb-flash-drive) since we have already created a bootable USB stack.
+I refer the readers to the [offical tutorial](https://ubuntu.com/tutorials/install-ubuntu-desktop#1-overview). We can start from its [step-4](https://ubuntu.com/tutorials/install-ubuntu-desktop#4-boot-from-usb-flash-drive) since we have already created a bootable USB stack.
 
-### `F12` not working?
-
-1. *"F12 is the most common key for bringing up your system’s boot menu, but Escape, F2 and F10 are common alternatives."*
-2. *"If you’re unsure, look for a brief message when your system starts – this will often inform you of which key to press to bring up the boot menu."*
-3. If there is not brief message guiding you to press which key to get into the system’s boot menu (BIOS), Google the BIOS key of your motherboard.
-4. If pressing the right BIOS key (repeatedly/and holding) is still not working, it's probably because the Fast Boot is enable on your computer, which will skip the BIOS access. Google how to disable the Fast Boot for your motherboard.
-
-### Cannot boot from USB in BIOS?
-
-Different motherboards have BIOS of different styles. Find and get into the setting of `Boot Menu`, and there should be the name of your USB flash in the list. Select your USB and continue the booting.
-
-### Other adivces
-
-1. Don't use dual boot, i.e., install two operating systems (e.g., Ubuntu and Windows) in your computer.
-2. Install system on SSD drive if possible.
-3. *"Erase disk and install Ubuntu"* is good unless you are famialr with disk partition. Make sure that important data in the disk have been backed up.
-4. Make `your name` and `computer's name` short to have a nice prefix in the terminal:
+**Configuration adivces:**
+- Don't use dual boot, i.e., install two operating systems (e.g., Ubuntu and Windows) in your computer.
+- Install system on SSD drive if possible.
+- *"Erase disk and install Ubuntu"* is good unless you are famialr with disk partition. Make sure that important data in the disk have been backed up.
+- Make `your name` and `computer's name` short to have a nice prefix in the terminal:
 ![image](https://user-images.githubusercontent.com/42603768/165436583-226ce206-26ac-43e8-92e6-3f76831e1650.png)
-5. If you accidently configured some wrong/unwanted settings, reinstallation could be one of the simplest solution.
-6. Do not waste time on trying to install Windows apps on Ubuntu.
-7. Install the version of English.
+- If you accidently configured some wrong/unwanted settings, reinstallation could be one of the simplest solution.
+- Do not waste time on trying to install Windows apps on Ubuntu.
+- Install the version of English.
+<details>
+  <summary>Got BIOS problems?</summary>
+  
+  **F12 not working?**
+  1. *"F12 is the most common key for bringing up your system’s boot menu, but Escape, F2 and F10 are common alternatives."*
+  2. *"If you’re unsure, look for a brief message when your system starts – this will often inform you of which key to press to bring up the boot menu."*
+  3. If there is not brief message guiding you to press which key to get into the system’s boot menu (BIOS), Google the BIOS key of your motherboard.
+  4. If pressing the right BIOS key (repeatedly/and holding) is still not working, it's probably because the Fast Boot is enable on your computer, which will skip the BIOS access. Google how to disable the Fast Boot for your motherboard.
+
+  **Cannot boot from USB in BIOS?**
+  Different motherboards have BIOS of different styles. Find and get into the setting of `Boot Menu`, and there should be the name of your USB flash in the list. Select your USB and continue the booting.
+</details>
 
 # 2. Configure Input Method 
-0. Chinese as an example.
+Take the configuration of input source of Chinese as an example.
 1. `Settings --> Region&Language --> Manage Installed Language --> Install/Remove Language --> check "Chinese" --> Apply` 
-2. Open a terminal and run `ibus restart`
-3. `Settings --> Region&Language --> "+" Input Sources --> Chinese (Intelligent Pinyin) --> Add`
-4. Configuration completed. Now you can use the shortcut `Super + Space` to switch between the input sources. The status is shown in the right-up corner.
+![Screenshot from 2022-04-27 14-39-44](https://user-images.githubusercontent.com/42603768/165456822-b5f59cd0-4294-489a-b03e-fc61b74240f0.png)
+2. Open a terminal and run `ibus restart`:
+![Screenshot from 2022-04-27 14-40-57](https://user-images.githubusercontent.com/42603768/165457048-e912f80d-4070-4f27-809e-214ab9804c90.png)
+3. `Settings --> Region&Language --> "+" Input Sources --> Chinese (Intelligent Pinyin) --> Add`:
+![Screenshot from 2022-04-27 14-42-04](https://user-images.githubusercontent.com/42603768/165457209-3fe0ea69-96ee-4f04-8995-5945b8d0c89f.png)
+4. Configuration completed. Now you can use the shortcut `Super + Space` to switch between the input sources. The status is shown in the right-up corner：
+![Screenshot from 2022-04-27 14-42-41](https://user-images.githubusercontent.com/42603768/165457310-e3f623f2-e0e1-4b55-8a46-db229e8195bb.png)
 
 # 3. Install Chrome
 ```shell
@@ -71,6 +76,7 @@ sh Miniconda3-latest-Linux-x86_64.sh
 sudo rm Miniconda3-latest-Linux-x86_64.sh
 conda update -n base -c defaults conda  # restart the terminal before run this line
 ```
+
 # 7. Install GPU-driver
 Nowadays, you don NOT have to install cuda-toolkit or cuDNN because they will come with the installation of pytorch/tensorflow. Therefore, you only need to install a NVIDIA driver.
 ## 7.0 Check the compatibility (Optional)
