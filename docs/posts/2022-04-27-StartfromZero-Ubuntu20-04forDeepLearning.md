@@ -1,10 +1,17 @@
 ---
 title: "Start From Zero: Deep Learning on Ubuntu 20.04"
 parent: Posts
-has_toc: true
 ---
+<details open markdown="block">
+  <summary>
+    Table of contents
+  </summary>
+  {: .text-delta }
+1. TOC
+{:toc}
+</details>
 
-# 0. Introduction
+# Introduction
 {: .no_toc }
 This post documents how I configure a brand new computer into a work station that could be used for deep learning. It was first posted on the ZhiHu [in Chinese](https://zhuanlan.zhihu.com/p/142923008), which is no longer updated. This page is maintained by me to be up-to-date. Last update: 27 April 2022.
 
