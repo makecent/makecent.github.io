@@ -1,5 +1,5 @@
 ---
-title: Terminal
+title: Console
 parent: Collections
 nav_order: 6
 ---
