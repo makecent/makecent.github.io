@@ -91,12 +91,12 @@ kramdown:
         css_class: 'highlight'
 
 # default front matter
-defaults:
-  -
-    scope:
-      path: "docs/collections"
-    values:
-      layout: "default"
+# defaults:
+#   -
+#     scope:
+#       path: "docs/collections"
+#     values:
+#       layout: "default"
 
 # define collections
 collections:
@@ -111,7 +111,7 @@ just_the_docs:
   collections:
     collections:
       name: Collections
-    Posts:
+    posts:
       name: Posts
       
 plugins:
