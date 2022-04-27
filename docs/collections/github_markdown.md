@@ -1,5 +1,6 @@
 ---
 title: Markdown
+parent: Collections
 nav_order: 8
 ---
 
