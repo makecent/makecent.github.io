@@ -5,8 +5,10 @@ parent: Posts
 
 1. TOC
 {:toc}
+
 # 0. Introduction
-..
+This post documents how I configure a brand new computer into a work station that could be used for deep learning. It was first posted on the [Zhihu](https://zhuanlan.zhihu.com/p/142923008) in Chinese, which is no longer updated. This page is maintained by me to be up-to-date. Last update: 27 April 2022.
+
 # 1. Install Ubuntu 20.04
 ## 1.1 Create a bootable USB stick.
 > Requirement: A 4GB or larger USB stick/flash drive
