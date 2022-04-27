@@ -13,7 +13,9 @@ parent: Posts
 
 # Introduction
 {: .no_toc }
-This post documents how I configure a brand new computer into a work station that could be used for deep learning. It was first posted on the ZhiHu [in Chinese](https://zhuanlan.zhihu.com/p/142923008), which is no longer updated. This page is maintained by me to be up-to-date. Last update: 27 April 2022.
+This post documents how I configure a brand new computer into a work station that could be used for deep learning. It was first posted on the ZhiHu [in Chinese](https://zhuanlan.zhihu.com/p/142923008), which is no longer updated. This page is maintained by me to be up-to-date. 
+
+Lastest Update: 27 April 2022.
 
 # Install Ubuntu 20.04
 ## Create a bootable USB stick.
