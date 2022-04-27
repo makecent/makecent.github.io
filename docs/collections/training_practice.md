@@ -10,8 +10,8 @@ nav_order: 7
 # Loss quantization
 ## Binary Cross Entropy
 Assume Label is **1**.
-|Prediction |  Loss       | Commetns  |
-|-----------|-------------|------------|
+|Prediction |  Loss       | Comment  |
+|:----------|:------------|:----------|
 |0          |   100       | |
 |0.01       |   **4.61**  | :disappointed: exploding gradient? |
 |0.1        |   2.30      | |
