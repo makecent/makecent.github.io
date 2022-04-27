@@ -11,10 +11,10 @@ parent: posts
 ## 1.1 Create a bootable USB stick.
 > Requirement: A 4GB or larger USB stick/flash drive
 
-I refer the readers to the the offical tutorials for creating a bootable USB stick on [Windows](https://ubuntu.com/tutorials/create-a-usb-stick-on-windows#1-overview), [masOS](https://ubuntu.com/tutorials/create-a-usb-stick-on-macos#1-overview), or [Ubuntu](https://ubuntu.com/tutorials/create-a-usb-stick-on-ubuntu#1-overview).
+Follow the the offical tutorials for creating a bootable USB stick on [Windows](https://ubuntu.com/tutorials/create-a-usb-stick-on-windows#1-overview), [masOS](https://ubuntu.com/tutorials/create-a-usb-stick-on-macos#1-overview), or [Ubuntu](https://ubuntu.com/tutorials/create-a-usb-stick-on-ubuntu#1-overview).
 
 ## 1.2 Install Ubuntu 20.04 desktop
-I refer the readers to the [offical tutorial](https://ubuntu.com/tutorials/install-ubuntu-desktop#1-overview). We can start from its [step-4](https://ubuntu.com/tutorials/install-ubuntu-desktop#4-boot-from-usb-flash-drive) since we have already created a bootable USB stack.
+Follow the [offical tutorial](https://ubuntu.com/tutorials/install-ubuntu-desktop#1-overview). We can start from its [step-4](https://ubuntu.com/tutorials/install-ubuntu-desktop#4-boot-from-usb-flash-drive) since we have already created a bootable USB stack.
 
 **Configuration adivces:**
 - Don't use dual boot, i.e., install two operating systems (e.g., Ubuntu and Windows) in your computer.
