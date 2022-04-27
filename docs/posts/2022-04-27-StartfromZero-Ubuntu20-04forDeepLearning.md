@@ -78,7 +78,7 @@ conda update -n base -c defaults conda  # restart the terminal before run this l
 ```
 
 # 7. Install GPU-driver
-Nowadays, you don NOT have to install cuda-toolkit or cuDNN because they will come with the installation of pytorch/tensorflow. Therefore, you only need to install a NVIDIA driver. Check the compatibility of [GPU-Driver](https://www.nvidia.com/Download/index.aspx) (optional).
+Nowadays, you don NOT have to install cuda-toolkit or cuDNN because they will come with the installation of pytorch/tensorflow using conda. Therefore, you only need to install a NVIDIA driver. Check the compatibility of [GPU-Driver](https://www.nvidia.com/Download/index.aspx) (optional).
 ## 7.1 Add PPA repository
 ```shell
 sudo add-apt-repository ppa:graphics-drivers
