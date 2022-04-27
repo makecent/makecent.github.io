@@ -87,6 +87,7 @@ ubuntu-drivers devices  # list all effetive drivers
 # sudo apt list nvidia-driver*  # (alternative) list all effective drivers 
 ```
 Output (1080ti, 27 April 2022):
+
 ![Screenshot from 2022-04-27 13-17-11](https://user-images.githubusercontent.com/42603768/165445679-dd30d3e0-effe-4905-8fb1-98cc7d87aedf.png)
 
 ## 7.2 Install driver
@@ -99,8 +100,7 @@ Reboot and check the installation:
 reboot
 nvidia-smi
 ```
-
-# 8. Install CUDA and cuDNN (optional, not recommended)
+# 8. Install CUDA and cuDNN
 As mentioned in Section 7, you are recommended to install cuda-toolkit and cuDNN with pytorch/tensorflow at the conda virtual enviroment. But if you'd like to install CUDA and cuDNN in the base enviroment. You can do the following:
 ## 8.0 Check the compatibility (Optional)
 - [Driver-CUDA](https://docs.nvidia.com/deploy/cuda-compatibility/index.html#default-to-minor-version)
@@ -152,7 +152,8 @@ Install the downloaded `.deb` file:
 sudo dpkg -i ~/Downloads/cudnn-local-repo-ubuntu2004-8.4.0.27_1.0-1_amd64.deb
 ```
 
-# 9. Create virtual enviroment for Pytorch/TensorFlow
+
+# 8. Install Pytorch/TensorFlow
 ## [Pytorch](https://pytorch.org/get-started/locally/)
 ```
 conda create -n pyt
