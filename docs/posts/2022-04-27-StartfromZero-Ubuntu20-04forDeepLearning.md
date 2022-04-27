@@ -44,83 +44,132 @@ Different motherboards have BIOS of different styles. Find and get into the sett
 3. `Settings --> Region&Language --> "+" Input Sources --> Chinese (Intelligent Pinyin) --> Add`
 4. Configuration completed. Now you can use the shortcut `Super + Space` to switch between the input sources. The status is shown in the right-up corner.
 
-# 3. 安装Chrome
+# 3. Install Chrome
+```shell
 wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
 sudo dpkg -i google-chrome-stable_current_amd64.deb
-4. 安装PyCharm
-PyCharm是著名的Python开发环境软件。
-直接在Ubuntu自带的Ubuntu Store里搜索Pycharm，便可以直接找到三个版本的Pycharm，安装即可。我个人装的是Pycham Pro，学生可以免费使用，否则需要购买激活。
-5. 安装Git
-Git是代码版本管理软件。
+```
+
+# 4. Install PyCharm
+Search Pycharm in `Software` and install the one you like:
+![Screenshot from 2022-04-27 12-17-48](https://user-images.githubusercontent.com/42603768/165439907-01ce19cb-1975-4e92-8850-2de5792a764d.png)
+
+> I installed pro because I have free license of student.
+
+> External reading: [Ubuntu Software vs Software](https://askubuntu.com/questions/866755/differences-between-ubuntu-software-center-and-ubuntu-software-their-pros-and)
+
+# 5. Install Git
+```shell
 sudo apt install git
-6. 安装Anaconda
-Anaconda是用来管理环境和python库的软件。
-这里选择安装轻量版的Miniconda3，在Terminal里面执行下列命令即可，建议全程回车（yes）使用默认设置：
-wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh #下载
-sh Miniconda3-latest-Linux-x86_64.sh  #执行安装文件
-sudo rm Miniconda3-latest-Linux-x86_64.sh  #删除安装文件
-conda update -n base -c defaults conda
-使用默认设置安装之后会自动添加conda到环境变量，但需要重新启动命令行生效。
-7. 安装CUDA，显卡驱动和cuDNN
-7.0 确定版本
-找到与自己的GPU适配的CUDA版本：
-Tensorflow-CUDA: https://www.tensorflow.org/install/source;
-2. Pytorch-CUDA: PyTorch;
-3. GPU-Driver: Download Drivers.
-4. Driver-CUDA: CUDA Compatibility;
-如果对tensorflow和pytorch版本没有要求，可跳过1，2步。
-7.1 安装cuda，自动安装驱动
-# 彻底清理nvidia驱动和cuda相关，出现问题才执行。
+```
+
+# 6. Install Anaconda
+Here we install the [miniconda](https://docs.conda.io/en/latest/miniconda.html#)
+```shell
+wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
+sh Miniconda3-latest-Linux-x86_64.sh 
+sudo rm Miniconda3-latest-Linux-x86_64.sh
+conda update -n base -c defaults conda  # restart the terminal before run this line
+```
+# 7. Install GPU-driver
+Nowadays, you don NOT have to install cuda-toolkit or cuDNN because they will come with the installation of pytorch/tensorflow. Therefore, you only need to install a NVIDIA driver.
+## 7.0 Check the compatibility (Optional)
+- [GPU-Driver](https://www.nvidia.com/Download/index.aspx)
+## 7.1 Add PPA repository
+```shell
+sudo add-apt-repository ppa:graphics-drivers
+sudo apt update
+ubuntu-drivers devices  # list all effetive drivers
+# sudo apt list nvidia-driver*  # (alternative) list all effective drivers 
+```
+Output (1080ti, 27 April 2022):
+![Screenshot from 2022-04-27 13-17-11](https://user-images.githubusercontent.com/42603768/165445679-dd30d3e0-effe-4905-8fb1-98cc7d87aedf.png)
+
+## 7.2 Install driver
+Choose one appropriate version, install it:
+```shell
+sudo apt install nvidia-driver-510
+```
+Reboot and check the installation:
+```shell
+reboot
+nvidia-smi
+```
+
+# 8. Install CUDA and cuDNN (optional, not recommended)
+As mentioned in Section 7, you are recommended to install cuda-toolkit and cuDNN with pytorch/tensorflow at the conda virtual enviroment. But if you'd like to install CUDA and cuDNN in the base enviroment. You can do the following:
+## 8.0 Check the compatibility (Optional)
+- [Driver-CUDA](https://docs.nvidia.com/deploy/cuda-compatibility/index.html#default-to-minor-version)
+- [Pytorch-CUDA](https://pytorch.org/get-started/previous-versions/)
+- [Tensorflow-CUDA](https://www.tensorflow.org/install/source#tested_build_configurations)
+## 8.1 Install CUDA via network (checked on 2080ti and 1080 ti, 27 April 2022)
+Below commands are copied from the website [CUDA Toolkit Archive](https://developer.nvidia.com/cuda-downloads?target_os=Linux&target_arch=x86_64&Distribution=Ubuntu&target_version=20.04&target_type=deb_network). It will install a **cuda-toolkit** and a **nvidia-driver** of the appropriate versions.
+```shell
+wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2004/x86_64/cuda-ubuntu2004.pin
+sudo mv cuda-ubuntu2004.pin /etc/apt/preferences.d/cuda-repository-pin-600
+sudo apt-key adv --fetch-keys https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2004/x86_64/7fa2af80.pub
+sudo add-apt-repository "deb https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2004/x86_64/ /"
+sudo apt-get update
+# sudo apt list cuda*  # list all effective cuda versions (optional)
+sudo apt-get -y install cuda  # you may specify the version of cuda to install, e.g., cuda-11-1
+```
+Reboot after the CUDA installation, and use the below command to check if CUDA was installed successfully:
+```
+nvidia-smi
+```
+
+## 8.2 Supplement
+### Removing all nvidia relative files.
+In case encountering any error, below commands can be used to remove all files related to nvidia-cuda and nvidia-driver. Please use them after careful consideration:
+```shell
 # sudo rm /etc/apt/sources.list.d/cuda*
 # sudo apt-get --purge remove "*cublas*" "cuda*" "nsight*" 
 # sudo apt-get --purge remove "*nvidia*"
 # sudo apt-get autoremove
 # sudo apt-get autoclean
 # sudo rm -rf /usr/local/cuda*
-在cuda archive网页选择自己想要的cuda版本，按指示下载安装（本地）。或者直接联网安装(deb-network， 建议)，下面是最新的(14.04.2022)Ubuntu 20.04联网安装cuda的命令：
-wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2004/x86_64/cuda-ubuntu2004.pin
-sudo mv cuda-ubuntu2004.pin /etc/apt/preferences.d/cuda-repository-pin-600
-sudo apt-key adv --fetch-keys https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2004/x86_64/7fa2af80.pub
-sudo add-apt-repository "deb https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2004/x86_64/ /"
-sudo apt-get update
-sudo apt-get -y install cuda #自动安装合适的cuda版本（可以通过加后缀来指定cuda版本）；附带合适的GPU驱动！！！
+```
+### GCC version problem
+If you installed the **CUDA 10.1** of Ubuntu 18.04. You might will meet the problem of "GCC version is too high", the solution
 如果是在20.04上安装适配18.04的CUDA 10.1，会有一个GCC版本过高的问题，解决方法：
 sudo apt install build-essential
 sudo apt -y install gcc-8 g++-8
 sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-8 8
 sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-8 8
-安装完成后要重启生效，重启后用'nvidia-smi'命令看看是否成功安装吧。
-7.2 安装cuDNN
-cuDNN是加速CUDA GPU运算的扩展包，非必须。
-进入cuDNN官网下载界面（下载cuDNN需要登陆，注册一个账号登陆即可），根据CUDA版本选择cuDNN版本，展开：
-​
 
-编辑
+## 8.3 Install cuDNN
+cuDNN can speed up the GPU computation based on CUDA.
+### 8.3.1 Download cuDNN
+[Download](https://developer.nvidia.com/rdp/cudnn-download) the cuDNN (you may need to sign up first) according to the version of you installed CUDA.
+![Screenshot from 2022-04-27 14-12-18](https://user-images.githubusercontent.com/42603768/165452917-ae7d357a-8573-4b1a-bf3e-4b5fd4f06d24.png)
 
-切换为居中
-添加图片注释，不超过 140 字（可选）
-这里也还是暂时不支持Ubuntu20.04，选择18.04的文件下载即可（三个都下载）。在下载的路径上执行安装程序：
-cd ~/Downloads  #进入下载好的三个文件的路径
-sudo dpkg -i libcudnn*  #同时安装
-#sudo dpkg -i libcudnn7_7.6.5.32-1+cuda10.2_amd64.deb  #逐个安装
-#sudo dpkg -i libcudnn7-dev_7.6.5.32-1+cuda10.2_amd64.deb
-#sudo dpkg -i libcudnn7-doc_7.6.5.32-1+cuda10.2_amd64.deb
-8. 用conda创建自带CUDA和cuDNN的虚拟环境（可选）
-配置TensorFlow环境：
-#conda create -n tf-gpu tensorflow-gpu  #一行完成。安装最新TF，自动配置合适的cuda和cudnn
-conda create -n tf-gpu  #创建环境，命名可自定义
-conda activate tf-gpu  #进入tf-gpu虚拟环境
-conda install tensorflow-gpu=2.1.0 cudatoolkit=10.1  #根据需求自行更改
-conda list -n tf-gpu  #查看tf-gpu环境下安装了哪些package
-配置Pytorch环境：按照Pytorch官网指示
-conda create -n pyt #创建环境，命名可自定义
-conda activate pyt #进入pyt虚拟环境
-conda install pytorch torchvision cudatoolkit=10.1 -c pytorch  #选择合适的参数
-用conda install安装tensorflow和pytorch的优势非常明显，conda会自动帮我们安装好合适的cuda和cuDNN（也可以指定cuda版本），可以创建多个虚拟环境使用不同的CUDA版本，非常灵活。
-建议在虚拟环境中安装与主环境相同版本的CUDA。如果你既在主环境上装了cuda（上节），又使用该节的方式在虚拟环境中安装了不同版本的CUDA，则在虚拟环境中的CUDA可能会和主环境的CUDA有所冲突。解决方法是：
-要么直接跳过第6节，不在主环境下安装CUDA，只使用虚拟环境。
-要么不在虚拟环境中安装cuda。由于conda install安装tensorflow或pytorch是默认安装CUDA的，所以需要用pip install来安装tensorflow和pytorch。这样就不会在虚拟环境里安装cuda和cuDNN。而使用此虚拟环境运行代码时，系统会自动使用电脑（主环境）上的cuda和cuDNN。
-9. 配置PyCharm
+Install the downloaded `.deb` file:
+```shell
+sudo dpkg -i ~/Downloads/cudnn-local-repo-ubuntu2004-8.4.0.27_1.0-1_amd64.deb
+```
+
+# 9. Create virtual enviroment for Pytorch/TensorFlow
+## [Pytorch](https://pytorch.org/get-started/locally/)
+```
+conda create -n pyt
+conda activate pyt
+conda install pytorch torchvision torchaudio -c pytorch  # you can specify the version, e.g., cudatoolkit=11.3
+conda list
+```
+
+## TensorFlow
+```shell
+# conda create -n tf-gpu tensorflow-gpu  # configure with one command, including cuda-toolkit and cuDNN
+conda create -n tf-gpu
+conda activate tf-gpu
+conda install tensorflow-gpu  # you can specify the versions, e.g., tensorflow-gpu=2.4.1 cudatoolkit=10.1
+conda list
+```
+
+- Conda virtual enviroment is flexible and simple to use. It can install cuda-toolkit and cuDNN easily. We can configure multiple envs with different versions of cuda/pytorch/tensorflow and switch among them quickly. 
+- Note that if you have installed cuda in the base enviroment, i.e., completed the Section 8, it's recommended to install the same version of the cuda-toolkit in the virtual env to avoid possible version conflict. Alternatively, you can install pytorch/tensorflow sololy without cuda by using `pip install` (instead of `conda install`). In this case, your virtual env doesn't contain cuda and it will use the cuda installed in the base enviroment.
+
+# 9. Configure PyCharm
 以tf-gpu为例。主要的工作是将刚刚用conda创建的名为tf-gpu环境，作为基于tensorflow的项目的python interpreter。Ctrl+Alt+S或通过File->Settings进入设置，并进入Project: xxx栏目中的Project Interpreter：
 ​
 
