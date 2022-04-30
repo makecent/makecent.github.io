@@ -5,7 +5,7 @@ parent: Posts
 1. TOC
 {:toc}
 
-# Config varibales
+# Basic config variables
 Here we do NOT expalin the meaning of variables in the config, which we refer the reader to the [official document](https://github.com/open-mmlab/mmaction2/blob/master/docs/tutorials/1_config.md). Instead, we go deep into the **arguments of config variables**, e.g. `by_epoch` of variables `evaluation`
 
 ## [`evalution`](https://github.com/open-mmlab/mmaction2/blob/c87482f6b53e839bc00506d474b38f797db0fd8f/mmaction/core/evaluation/eval_hooks.py#L45)
@@ -99,7 +99,7 @@ optimizer_config = dict(grad_clip=dict(max_norm=20, norm_type=2))
             Default: False.
 ```
 
-# Pipelines
+# About pipelines
 
 ## [`RandomResizedCrop`](https://github.com/open-mmlab/mmaction2/blob/c87482f6b53e839bc00506d474b38f797db0fd8f/mmaction/datasets/pipelines/augmentations.py#L701)
 > Random crop that specifics the *area* and *height-weight ratio* range of the **cropped shape**.
@@ -134,12 +134,13 @@ optimizer_config = dict(grad_clip=dict(max_norm=20, norm_type=2))
 - For these whose datasets are already rescaled to short-side=256, this pipeline is not a good choice.
 - This data augmentation was used by the vgg, non-local, slowfast, x3d. However, the latest paper MViT2, from the same team of x3d and slowfast, now also used the Inception-style cropping, i.e. `RandomResizedCrop`, for data augmention in training.
 
-## [SampleFrames](https://github.com/open-mmlab/mmaction2/blob/01c94d365a429e06ff7515eac73d2a091d9cd513/mmaction/datasets/pipelines/loading.py#L83) and [DenseSampleFrames](https://github.com/open-mmlab/mmaction2/blob/01c94d365a429e06ff7515eac73d2a091d9cd513/mmaction/datasets/pipelines/loading.py#L333)
+## [`SampleFrames`](https://github.com/open-mmlab/mmaction2/blob/01c94d365a429e06ff7515eac73d2a091d9cd513/mmaction/datasets/pipelines/loading.py#L83) and [`DenseSampleFrames`](https://github.com/open-mmlab/mmaction2/blob/01c94d365a429e06ff7515eac73d2a091d9cd513/mmaction/datasets/pipelines/loading.py#L333)
 0. Let's note the `clip_len`, `frame_interval`, and `num_clips` as (clip_len x frame_interval x clip_len), e.g. (16x4x2)
 1. **`SampleFrames(16x4x1)`:** This is the most frequently used, and the most basic sampling strategy. It randomly samples *16* frames with interval *4* from the input video. It can be regarded as first randomly cropping a 64-frame sub-video from the input video, then uniformally sampling 16 frames from the cropped sub-video. The output shaoe is (16, H, W)
 2. `SampleFrames(16x4x8)`: Now the `num_clips=8`, this can be regarded as first dividing the input video into *8* sub-videos, then conducting the same operations as the `SampleFrames(16x4x1)` on each sub-video. This example is just for explanation. I have never seen such a combiantion of arguments. The output shape is (256, H, W)
 3. **`SampleFrames(1x1x8)`:** Same as the point 2, but in this case we only randomly sample *one* frame in each of the *8* sub-videos. This sampling strategy is what the *TSN* proposes to use to cover global information of the videos. And I found that TSN is the only one using this kind of arguments combination. The output shape is (8, H, W), whereas accoring to the TSN, each of the 8 frames will be seperately fed into a 2D ResNet, i.e., the 8 will be multiplied into the batch_size dimension.
 4. `DenseSampleFrames(16x4x2)`: Similar to `SampleFrames`, but in this case it first crop a sub-video of length 64-frames (arg of `DenseSampleFrames` default=64) from the input video, then apply the `SampleFrames(16x4x2)` on the cropped sub-video. When the `num_clips=1`, `DenseSampleFrames` is same as the `SampleFrames`. This pipeline is hardly used in mmaction2 and I have never seen similar sampling strategy in the literatures. Maybe it's a experimental pipeline.
+5. **`SampleFrames(16x4x10, test_mode=True)`**: Uniformly dividing the input video to *10* clips; At the *center* of each clip, sampling *16* frames in interval 4. This is the most frequently used temporal sampling strategy during the inference, known as *10 views*.
 
 **Arguments:**
 ```python
@@ -169,7 +170,29 @@ optimizer_config = dict(grad_clip=dict(max_norm=20, norm_type=2))
 - `out_of_bound_opt` is used to handle the occasion that the input video is shorter than `clip_len x frame_interval`. Normally it's not important. I mention this just for better understanding.
 - For arg `keep_tail_frames`, its motivation can be found in [here](https://github.com/open-mmlab/mmaction2/issues/1048). Don't need care about it if `num_clips=1` 
 
-# [`lr_config`](https://github.com/open-mmlab/mmcv/blob/969e2af866045417dccbc3980422c80d9736d970/mmcv/runner/hooks/lr_updater.py#L9)
+## [`ThreeCrop`](https://github.com/makecent/mmaction2/blob/5e853b1029d30e76786ebd92997e4f13e3e2cc03/mmaction/datasets/pipelines/augmentations.py#L1653)
+> Uniformly crops three crops along the longer side. 
+> Normally conducted on short-side rescaled inputs and the crop_size is equal to the short-side, e.g., `Resize(-1, 256)`-`ThreeCrop(crop_size=256)`.
+
+**Arguments:**
+```python
+    crop_size(int | tuple[int]): (w, h) of crop size.
+```
+**Tips:**
+- The `crop_size` normally is NOT equal to the training crop size. For example, x3d, slowfast, non-local all use the `Resize(-1, 256)`- `RandomResizedCrop`-`Resize(224, 224)` in the training, but the `Resize(-1, 256)`-`ThreeCrop(crop_size=256)` in the testing. It means the spatial size of the model input used in the test is larger (256 vs. 224) than the ones used in the traning. It won't cause dimension error because of the AdaptivePool between the backbone and the head. Its technical reason can be found in the paper -- [Very Deep Convolutional Networks for Large-Scale Image Recognition](https://arxiv.org/abs/1409.1556). A complete config example can be found in [here](https://github.com/makecent/mmaction2/blob/master/configs/recognition/slowonly/slowonly_r50_4x16x1_256e_kinetics400_rgb.py)
+
+##  [`TenCrop`](https://github.com/makecent/mmaction2/blob/5e853b1029d30e76786ebd92997e4f13e3e2cc03/mmaction/datasets/pipelines/augmentations.py#L1726)
+> Spatially crop the images into 10 crops (8corner + 1center + 1flip).
+> Normally share the same `Rescale` and `Resize` opreations with the training, e.g., `Resize(-1, 256)`-`ThreeCrop(crop_size=224)`.
+
+**Arguments:**
+```python
+    crop_size(int | tuple[int]): (w, h) of crop size.
+```
+**Tips:**
+- Better performance compared with `ThreeCrop` but higher computational complexity, sometimes even cause the OOM problem.
+
+# About learning rate updater [`lr_config`](https://github.com/open-mmlab/mmcv/blob/969e2af866045417dccbc3980422c80d9736d970/mmcv/runner/hooks/lr_updater.py#L9)
 > Configure how to update the learning rate. Constant lr will be used if no configuration. All available `policy` can be found in [here](https://github.com/open-mmlab/mmcv/blob/969e2af866045417dccbc3980422c80d9736d970/mmcv/runner/hooks/lr_updater.py)
 
 Example in config:
