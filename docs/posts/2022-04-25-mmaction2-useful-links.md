@@ -81,7 +81,7 @@ checkpoint_config = dict(interval=5)
 - Set `max_keep_ckpts` to save disk space.
 
 ## [`log_config`](https://github.com/open-mmlab/mmcv/blob/94c071b31088fd29640377ef46ac123d28cb9bfe/mmcv/runner/base_runner.py#L463)
-> Control the printed infomations and saved content in the .log file.
+> Control the printed infomations and saved content in the .log file (`TextLoggerHook`). Other hooks like `TensorboardLoggerHook` can save specific logs.
 
 > [Base logger hook class](https://mmcv.readthedocs.io/en/latest/api.html#mmcv.runner.LoggerHook), search "loggerhook" in this page to check all the logger hooks.
 
@@ -103,6 +103,7 @@ log_config = dict(interval=20, hooks=[dict(type='TextLoggerHook'), dict(type='Te
 ```
 **Tips:**
 - only `interval` in `log_config` will be passed into every logger hook. That means you have to set `by_epoch=False` in every logger hook if you want to log by iterations.
+- Enbale `TensorboardLoggerHook` is recommended. You can then use the command `tensorboad --logdir=$path2work_dir` to visualize the training.
 
 ## [`optimizer`](https://github.com/open-mmlab/mmcv/blob/de0c1039f756ef2b29fd357a2a64968497323a86/mmcv/runner/optimizer/default_constructor.py#L13)
 > Configure a optimizer that exists in the `pytorch` pacakge.
