@@ -102,8 +102,10 @@ log_config = dict(interval=20, hooks=[dict(type='TextLoggerHook'), dict(type='Te
     **kwargs: Other arguments depends on the type of loggerhook.
 ```
 **Tips:**
-- only `interval` in `log_config` will be passed into every logger hook. That means you have to set `by_epoch=False` in every logger hook if you want to log by iterations.
 - Enbale `TensorboardLoggerHook` is recommended. You can then use the command `tensorboad --logdir=$path2work_dir` to visualize the training.
+- only `interval` in `log_config` will be passed into every logger hook.
+- `by_epoch=True` does NOT means log by epochs.
+
 
 ## [`optimizer`](https://github.com/open-mmlab/mmcv/blob/de0c1039f756ef2b29fd357a2a64968497323a86/mmcv/runner/optimizer/default_constructor.py#L13)
 > Configure a optimizer that exists in the `pytorch` pacakge.
