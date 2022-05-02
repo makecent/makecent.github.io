@@ -51,6 +51,30 @@ evaluation = dict(interval=5, metrics=['top_k_accuracy', 'mean_class_accuracy'])
 - By setting the `by_epoch=False`, we can conduct validation in a interval of iteration level. This can also be used to quicky enter to the validation phase for debugging purpose.
 - The argumetns of function `Dataset.evaluate()` are set in here.
 
+## [`checkpoint_config`](https://github.com/open-mmlab/mmcv/blob/9ecd6b0d5ff9d2172c49a182eaa669e9f27bb8e7/mmcv/runner/hooks/checkpoint.py#L9)
+> Save checkpoints periodically.
+
+**Arguments:**
+```python
+    interval (int): The saving period. If ``by_epoch=True``, interval
+        indicates epochs, otherwise it indicates iterations.
+        Default: -1, which means "never".
+    by_epoch (bool): Saving checkpoints by epoch or by iteration.
+        Default: True.
+    save_optimizer (bool): Whether to save optimizer state_dict in the
+        checkpoint. It is usually used for resuming experiments.
+        Default: True.
+    out_dir (str, optional): The directory to save checkpoints. If not
+        specified, ``runner.work_dir`` will be used by default.
+    max_keep_ckpts (int, optional): The maximum checkpoints to keep.
+        In some cases we want only the latest few checkpoints and would
+        like to delete old ones to save the disk space.
+        Default: -1, which means unlimited.
+```
+**Tips:**
+- Set `by_epoch=False` can save checkpoints by iterations.
+- Set `max_keep_ckpts` to save disk space.
+
 ## [`optimizer`](https://github.com/open-mmlab/mmcv/blob/de0c1039f756ef2b29fd357a2a64968497323a86/mmcv/runner/optimizer/default_constructor.py#L13)
 > Configure a optimizer that exists in the `pytorch` pacakge.
 
