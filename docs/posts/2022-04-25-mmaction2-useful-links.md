@@ -80,6 +80,30 @@ checkpoint_config = dict(interval=5)
 - Set `by_epoch=False` can save checkpoints by iterations.
 - Set `max_keep_ckpts` to save disk space.
 
+## [`log_config`](https://github.com/open-mmlab/mmcv/blob/94c071b31088fd29640377ef46ac123d28cb9bfe/mmcv/runner/base_runner.py#L463)
+> Control the printed infomations and saved content in the .log file.
+
+> [Base logger hook class](https://mmcv.readthedocs.io/en/latest/api.html#mmcv.runner.LoggerHook), search "loggerhook" in this page to check all the logger hooks.
+
+
+Example:
+```python
+log_config = dict(interval=20, hooks=[dict(type='TextLoggerHook'), dict(type='TensorboardLoggerHook')])
+```
+
+**LoggerHook Arguments:**
+```python
+    interval (int): Logging interval (every k iterations). Default 10.
+    ignore_last (bool): Ignore the log of last iterations in each epoch
+        if less than `interval`. Default True.
+    reset_flag (bool): Whether to clear the output buffer after logging.
+        Default False.
+    by_epoch (bool): Whether EpochBasedRunner is used. Default True.
+    **kwargs: Other arguments depends on the type of loggerhook.
+```
+**Tips:**
+- only `interval` in `log_config` will be passed into every logger hook. That means you have to set `by_epoch=False` in every logger hook if you want to log by iterations.
+
 ## [`optimizer`](https://github.com/open-mmlab/mmcv/blob/de0c1039f756ef2b29fd357a2a64968497323a86/mmcv/runner/optimizer/default_constructor.py#L13)
 > Configure a optimizer that exists in the `pytorch` pacakge.
 
