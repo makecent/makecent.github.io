@@ -54,6 +54,11 @@ evaluation = dict(interval=5, metrics=['top_k_accuracy', 'mean_class_accuracy'])
 ## [`checkpoint_config`](https://github.com/open-mmlab/mmcv/blob/9ecd6b0d5ff9d2172c49a182eaa669e9f27bb8e7/mmcv/runner/hooks/checkpoint.py#L9)
 > Save checkpoints periodically.
 
+Example:
+```python
+checkpoint_config = dict(interval=5)
+```
+
 **Arguments:**
 ```python
     interval (int): The saving period. If ``by_epoch=True``, interval
