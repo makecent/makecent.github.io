@@ -5,7 +5,7 @@ parent: Collections
 nav_order: 1
 ---
 
-# Useful functions
+# Useful `Tensor` functions
 ```python
 # batch-wise matrice multiplication
 torch.bmm(A, B), A.bmn(B) 
@@ -46,4 +46,19 @@ A & B, A | B, A ^ B
 # Reshape specific dimension(s) with `flatten` and `unflatten`. Alternatives: `nn.Unflatten` and `nn.Flatten`
 A.unflatten(dim, size)  # reshape the specific dimension to size
 A.flatten(start_dim, end_dim) # reshape the specific dimensions to 1.
+```
+# Useful `Module` function
+## [`Module.register_forward_hook(hook)`](https://pytorch.org/docs/stable/generated/torch.nn.Module.html?highlight=register_forward_hook#torch.nn.Module.register_forward_hook)
+Retrieve the weigths in a model is easy, but what about retrieve an output, e.g. activation after layer1.ReLU, in model with a given input? We can use the `Module.register_module_forward_hook(hook)` to do this. For example
+```python
+features = []
+def hook(module, input, output): 
+    features.append(output.clone().detach())
+
+net = LeNet() 
+x = torch.randn(2, 3, 32, 32)  
+handle = net.conv2.register_forward_hook(hook)
+y = net(x)
+print(features[0])
+handle.remove()
 ```
