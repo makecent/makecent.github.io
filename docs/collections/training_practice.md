@@ -76,6 +76,12 @@ Notes:
 - Warmup seems to be impactful when the backbone network is Transformer ([ActionFormer](https://arxiv.org/abs/2202.07925), [Liyuan Liu 2020](https://arxiv.org/abs/2004.08249)).
 
 # Params and FLOPs
+
+Results comparison:
+|---|---|---|
+
+
+
 ## [fvcore](https://github.com/facebookresearch/fvcore)
 > FAIR is responsible for maintaining this library.
 
