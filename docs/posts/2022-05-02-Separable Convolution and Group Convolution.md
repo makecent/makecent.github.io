@@ -1,5 +1,6 @@
 ---
 title:  Separable convolution and Group Convolution
+parent: Posts
 ---
 # Normall convolution
 > approximate complexity = `out_dim` x `kernel` x `conv` = 4 x 9 x `conv`. (`conv` = `in_dim` x `in_pixels`)
