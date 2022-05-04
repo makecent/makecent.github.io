@@ -81,13 +81,13 @@ Notes:
 Results comparison:
 | X3D | fvcore | torchinfo | thop | official |
 |:-------|:------|:------|:------|:-----|
-| params | 3.79M | 3.79M | 3.79M | 3.8M |
-| FLOPs  | 5.14G | 4.73G | 4.90G | 6.2G |
+| params (M) | 3.79 | 3.79 | 3.79 | 3.8 |
+| FLOPs (G)  | 5.14 | 4.73 | 4.90 | 6.2 |
 
 | ResNet50 | fvcore | torchinfo | thop | official |
 |:-------|:------|:------|:------|:-----|
-| params | 25.56M | 25.56M | 25.56M | 25.6M |
-| FLOPs  | 4.14G | 4.09G | 4.11G | 3.8G |
+| params (M) | 25.56 | 25.56 | 25.56 | 25.6 |
+| FLOPs (G)  | 4.14 | 4.09 | 4.11 | 3.8 |
 
 ## [fvcore](https://github.com/facebookresearch/fvcore)
 > FAIR is responsible for maintaining this library.
