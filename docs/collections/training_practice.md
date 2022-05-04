@@ -96,11 +96,12 @@ flops = FlopCountAnalysis(model, imgs)
 print(flops.total())
 
 params = parameter_count(model)
-print(params['']) # output: 3794274
+print(params[''])
 ```
 
 FLOPs Output:
 ```shell
+Using cache found in /home/louis/.cache/torch/hub/facebookresearch_pytorchvideo_main
 Unsupported operator aten::add_ encountered 83 time(s)
 Unsupported operator aten::mean encountered 15 time(s)
 Unsupported operator aten::sigmoid encountered 15 time(s)
@@ -111,6 +112,7 @@ Unsupported operator aten::avg_pool3d encountered 1 time(s)
 Unsupported operator aten::softmax encountered 1 time(s)
 Unsupported operator aten::adaptive_avg_pool3d encountered 1 time(s)
 5141904896
+3794274
 ```
 
 More details can be found in this [docs](https://github.com/facebookresearch/fvcore/blob/main/docs/flop_count.md), API of [FlopCountAnalysis](https://detectron2.readthedocs.io/en/latest/modules/fvcore.html#fvcore.nn.FlopCountAnalysis), API of [parameter_count](https://detectron2.readthedocs.io/en/latest/modules/fvcore.html#fvcore.nn.parameter_count)
