@@ -78,7 +78,11 @@ Notes:
 # Params and FLOPs
 
 Results comparison:
-|---|---|---|
+|        | fvcore | torchinfo | thop |
+|:-------|:------|:------|:------|
+| params | 3.79M | 3.79M | 3.79M |
+| FLOPs  | 5.14G | 4.73G | 4.90G |
+
 
 
 
