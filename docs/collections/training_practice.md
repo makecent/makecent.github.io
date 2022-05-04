@@ -76,15 +76,18 @@ Notes:
 - Warmup seems to be impactful when the backbone network is Transformer ([ActionFormer](https://arxiv.org/abs/2202.07925), [Liyuan Liu 2020](https://arxiv.org/abs/2004.08249)).
 
 # Params and FLOPs
+> Flop is not a well-defined concept.
 
 Results comparison:
-|        | fvcore | torchinfo | thop |
-|:-------|:------|:------|:------|
-| params | 3.79M | 3.79M | 3.79M |
-| FLOPs  | 5.14G | 4.73G | 4.90G |
+| X3D | fvcore | torchinfo | thop | official |
+|:-------|:------|:------|:------|:-----|
+| params | 3.79M | 3.79M | 3.79M | 3.8M |
+| FLOPs  | 5.14G | 4.73G | 4.90G | 6.2G |
 
-
-
+| ResNet50 | fvcore | torchinfo | thop | official |
+|:-------|:------|:------|:------|:-----|
+| params | 25.56M | 25.56M | 25.56M | 25.6M |
+| FLOPs  | 4.14G | 4.09G | 4.11G | 3.8G |
 
 ## [fvcore](https://github.com/facebookresearch/fvcore)
 > FAIR is responsible for maintaining this library.
