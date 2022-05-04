@@ -173,7 +173,8 @@ Estimated Total Size (MB): 1383.22
 ==============================================================================================================
 ```
 
-## [thop]
+## [thop](https://github.com/Lyken17/pytorch-OpCounter)
+> Simple, 3.4k stars
 
 Installation:
 ```shell
