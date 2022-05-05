@@ -67,6 +67,7 @@ Create new session:     `tmux -s name`
 Detach current session: `C-b` + 'd'
 List all sessions:      `tmux ls`
 Attach to a session:    `tmux a -t name`
-Copy-paste mode:        `C-b` + `]` (Esc to exit)
+Kill a session:         `tmux kill-session -t name` or `C-b` + 'x' (inside)
+Copy-paste mode:        `C-b` + `[` (`q` to exit)
 Short-cut list:         `C-b` + `?`
 
