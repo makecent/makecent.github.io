@@ -62,7 +62,7 @@ rsync -ahW --no-i-r --info=progress2 source destination
 </details>
 
 # tmux
-command mode: `Ctrl` + 'B'. Let's call it `C-b`.
+Command mode: `Ctrl` + `B`. Let's call it `C-b`.
 
 Create new session:     `tmux -s name`
 
