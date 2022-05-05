@@ -63,11 +63,18 @@ rsync -ahW --no-i-r --info=progress2 source destination
 
 # tmux
 command mode: `Ctrl` + 'B'. Let's call it `C-b`.
+
 Create new session:     `tmux -s name`
+
 Detach current session: `C-b` + 'd'
+
 List all sessions:      `tmux ls`
+
 Attach to a session:    `tmux a -t name`
+
 Kill a session:         `tmux kill-session -t name` or `C-b` + 'x' (inside)
+
 Copy-paste mode:        `C-b` + `[` (`q` to exit)
+
 Short-cut list:         `C-b` + `?`
 
