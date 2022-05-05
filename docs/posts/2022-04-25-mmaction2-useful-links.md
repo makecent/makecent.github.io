@@ -50,6 +50,7 @@ evaluation = dict(interval=5, metrics=['top_k_accuracy', 'mean_class_accuracy'])
 
 - By setting the `by_epoch=False`, we can conduct validation in a interval of iteration level. This can also be used to quicky enter to the validation phase for debugging purpose.
 - The argumetns of function `Dataset.evaluate()` are set in here.
+- `--resume-from work_dirs/foo/epoch_3.pth --cfg-options evaluation.start=3` can resume the training starting with a validation.
 
 ## [`checkpoint_config`](https://github.com/open-mmlab/mmcv/blob/9ecd6b0d5ff9d2172c49a182eaa669e9f27bb8e7/mmcv/runner/hooks/checkpoint.py#L9)
 > Save checkpoints periodically.
