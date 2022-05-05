@@ -63,7 +63,7 @@ rsync -ahW --no-i-r --info=progress2 source destination
 
 # tmux
 command mode: `Ctrl` + 'B'. Let's call it `C-b`.
-Create new session:     `tmux new -s name`
+Create new session:     `tmux -s name`
 Detach current session: `C-b` + 'd'
 List all sessions:      `tmux ls`
 Attach to a session:    `tmux a -t name`
