@@ -6,6 +6,7 @@ nav_order: 6
 ---
 1. TOC
 {:toc}
+# Miscellaneous
 ### Get the **number of files**
 
 ```shell
@@ -59,3 +60,13 @@ rsync -ahW --no-i-r --info=progress2 source destination
 ``source/``: If a trailing slash added, the **content** in ``source`` will be copied into the ``destination``. So if ``destination`` doesn't exist or is empty, this works like a combination of copy and rename.
    
 </details>
+
+# tmux
+command mode: `Ctrl` + 'B'. Let's call it `C-b`.
+Create new session:     `tmux new -s name`
+Detach current session: `C-b` + 'd'
+List all sessions:      `tmux ls`
+Attach to a session:    `tmux a -t name`
+Copy-paste mode:        `C-b` + `]` (Esc to exit)
+Short-cut list:         `C-b` + `?`
+
