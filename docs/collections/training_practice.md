@@ -37,8 +37,8 @@ Accoring to the recently published papers, [**AdamW**](https://pytorch.org/docs/
 However, I don't have much computation resource compared with the FAIR. It limits the range of my training setting, e.g., the batch size and epochs. The cost of grid search of hyper-parameter is too high for me. Therefore, I only adopt the settings from FAIR that are relatively more impactful and not depend on heavy engenerring. 
 
 My current settings:
-
-Training a X3D-M on Kinetics400 (optimal):
+##
+Training a X3D-M on Kinetics400 (optimal, 112x112):
 ```python
 # optimizer
 optimizer = dict(type='AdamW', lr=1e-4, weight_decay=0.05)
@@ -56,7 +56,16 @@ data = dict(
     videos_per_gpu=16, # batch size 16 * 2 = 32, where 2 is the number of gpus 
     ...
 ```
+Training (val) top_1 curve:
 
+![val_top1_acc](https://user-images.githubusercontent.com/42603768/167079508-6c67eace-21f7-405e-a360-c41cb900df71.png)
+
+Test (30 views) results:
+```
+top1_acc: 0.6090
+top5_acc: 0.8353
+```
+##
 Training a X3D-M on Kinetics400 (fast):
 ```python
 # optimizer
