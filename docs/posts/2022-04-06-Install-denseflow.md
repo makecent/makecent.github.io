@@ -1,4 +1,0 @@
----
-title: denseflow
-parent: Posts
----
