@@ -79,7 +79,8 @@ Notes:
 > Flop is not a well-defined concept.
 
 Results comparison:
-| X3D | fvcore | torchinfo | thop | official |
+
+| X3D-M | fvcore | torchinfo | thop | official |
 |:-------|:------|:------|:------|:-----|
 | params (M) | 3.79 | 3.79 | 3.79 | 3.8 |
 | FLOPs (G)  | 5.14 | 4.73 | 4.90 | 6.2 |
