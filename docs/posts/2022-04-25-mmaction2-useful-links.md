@@ -132,8 +132,12 @@ optimizer = dict(type='SGD', lr=0.01, momentum=0.9, weight_decay=0.0001)
 - You may be interested in my personal [recommended optimizer setting]().
 - The `paramwise_cfg` can be used to set different learning rate for different model parts. For example, `paramwise_cfg = dict(custom_keys={'backbone': dict(lr_mult=0.1)})` will used `0.1*lr` for the backbone parameters.
 
-## [`optimizer_config`](https://github.com/open-mmlab/mmcv/blob/22e73d69867b11b6e2c82e53cdd4385929d436f5/mmcv/runner/hooks/optimizer.py#L22)
-> Point to the [torch.nn.utils.clip_grad_norm_](https://pytorch.org/docs/stable/generated/torch.nn.utils.clip_grad_norm_.html).
+## [`optimizer_config`](https://github.com/open-mmlab/mmcv/blob/085e63629bca7eefacbb26b477ebf72b1c40b8b1/mmcv/runner/base_runner.py#L441)
+> Define the optimizer hook
+All available [hooks](https://github.com/open-mmlab/mmcv/blob/22e73d69867b11b6e2c82e53cdd4385929d436f5/mmcv/runner/hooks/optimizer.py#L22).
+
+### [OptimizerHook](https://github.com/open-mmlab/mmcv/blob/22e73d69867b11b6e2c82e53cdd4385929d436f5/mmcv/runner/hooks/optimizer.py#L23)
+> The default optimizer hook. It simply points to the [torch.nn.utils.clip_grad_norm_](https://pytorch.org/docs/stable/generated/torch.nn.utils.clip_grad_norm_.html).
 
 Example:
 ```python
