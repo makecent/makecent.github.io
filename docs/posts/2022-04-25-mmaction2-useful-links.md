@@ -254,71 +254,52 @@ optimizer_config = dict(grad_clip=dict(max_norm=20, norm_type=2))
 **Tips:**
 - Better performance compared with `ThreeCrop` but higher computational complexity, sometimes even cause the OOM problem.
 
-## [lr_config](https://github.com/open-mmlab/mmcv/blob/969e2af866045417dccbc3980422c80d9736d970/mmcv/runner/hooks/lr_updater.py#L9)
-> Configure how to update the learning rate. Constant lr will be used if no configuration. All available `policy` can be found in [here](https://github.com/open-mmlab/mmcv/blob/969e2af866045417dccbc3980422c80d9736d970/mmcv/runner/hooks/lr_updater.py)
+## [lr_config](https://github.com/open-mmlab/mmcv/blob/085e63629bca7eefacbb26b477ebf72b1c40b8b1/mmcv/runner/base_runner.py#L399)
+> Configure how to update the learning rate. Constant lr will be used if no configuration.
+> All lr_updater [hooks](https://github.com/open-mmlab/mmcv/blob/969e2af866045417dccbc3980422c80d9736d970/mmcv/runner/hooks/lr_updater.py)
 
 Example in config:
 ```python
 lr_config = dict(policy='step', step=[4, 8], gamma=0.1)  # lr = lr * 0.1 after epoch 4 and 8. No warmup used.
 ```
-**Argments:**
-```python
-    by_epoch (bool): LR changes epoch by epoch
-    warmup (string): Type of warmup used. It can be None(use no warmup),
-        'constant', 'linear' or 'exp'
-    warmup_iters (int): The number of iterations or epochs that warmup
-        lasts
-    warmup_ratio (float): LR used at the beginning of warmup equals to
-        warmup_ratio * initial_lr
-    warmup_by_epoch (bool): When warmup_by_epoch == True, warmup_iters
-        means the number of epochs that warmup lasts, otherwise means the
-        number of iteration that warmup lasts
-```
-### [`policy="Step"`](https://github.com/open-mmlab/mmcv/blob/969e2af866045417dccbc3980422c80d9736d970/mmcv/runner/hooks/lr_updater.py#L167)
+
+### [LrUpdaterHook](https://github.com/open-mmlab/mmcv/blob/969e2af866045417dccbc3980422c80d9736d970/mmcv/runner/hooks/lr_updater.py#L9)
 **args:**
 ```python
-    step (int | list[int]): Step to decay the LR. If an int value is given,
-        regard it as the decay interval. If a list is given, decay LR at
-        these steps.
-    gamma (float, optional): Decay LR ratio. Default: 0.1.
-    min_lr (float, optional): Minimum LR value to keep. If LR after decay
-        is lower than `min_lr`, it will be clipped to this value. If None
-        is given, we don't perform lr clipping. Default: None.
+by_epoch=True,
+warmup=None,
+warmup_iters=0,
+warmup_ratio=0.1,
+warmup_by_epoch=False
 ```
 
-### [`policy="CosineAnnealing"`](https://github.com/open-mmlab/mmcv/blob/969e2af866045417dccbc3980422c80d9736d970/mmcv/runner/hooks/lr_updater.py#L258)
-Example:
-```python
-lr_config = dict(policy='CosineAnnealing', min_lr_ratio=0.01)
-```
+### [FixedLrUpdaterHook](https://github.com/open-mmlab/mmcv/blob/969e2af866045417dccbc3980422c80d9736d970/mmcv/runner/hooks/lr_updater.py#L157)
 
+### [StepLrUpdaterHook](https://github.com/open-mmlab/mmcv/blob/969e2af866045417dccbc3980422c80d9736d970/mmcv/runner/hooks/lr_updater.py#L167)
 **args:**
 ```python
-    min_lr (float, optional): The minimum lr. Default: None.
-    min_lr_ratio (float, optional): The ratio of minimum lr to the base lr.
-        Either `min_lr` or `min_lr_ratio` should be specified.
-        Default: None.
-```
-**tips:**
-Altough the this lr_updater does not contains the restart, it is more frequently used, maybe because it has less parameters.
-
-### [`policy="CosineRestart"`](https://github.com/open-mmlab/mmcv/blob/969e2af866045417dccbc3980422c80d9736d970/mmcv/runner/hooks/lr_updater.py#L344)
-Example:
-```python
-lr_config = dict(policy='CosineRestart', periods=[5, 10, 15], restart_weights=[1, 1, 0.5], min_lr_ratio=0.1)
+step,
+gamma=0.1,
+min_lr=None
 ```
 
+### [CosineAnnealingLrUpdaterHook](https://github.com/open-mmlab/mmcv/blob/969e2af866045417dccbc3980422c80d9736d970/mmcv/runner/hooks/lr_updater.py#L258)
 **args:**
 ```python
-    periods (list[int]): Periods for each cosine anneling cycle.
-    restart_weights (list[float], optional): Restart weights at each
-        restart iteration. Default: [1].
-    min_lr (float, optional): The minimum lr. Default: None.
-    min_lr_ratio (float, optional): The ratio of minimum lr to the base lr.
-        Either `min_lr` or `min_lr_ratio` should be specified.
-        Default: None.
+min_lr=None,
+min_lr_ratio=None
 ```
-This should be the ultra version of cosine annealing according to the [original paper](https://arxiv.org/abs/1608.03983). But it's less used.
+This cosine-anneling does NOT include the restart, but it is more frequently used because it has less hyper-parameters.
+
+### [CosineRestartLrUpdaterHook](https://github.com/open-mmlab/mmcv/blob/969e2af866045417dccbc3980422c80d9736d970/mmcv/runner/hooks/lr_updater.py#L344)
+**args:**
+```python
+periods,
+restart_weights=[1],
+min_lr=None,
+min_lr_ratio=None
+```
+This is the complete cosine-annealing of the [original paper](https://arxiv.org/abs/1608.03983). But it's less used.
 
 I finally find that the formula turns to be the most simple way to understand the cosine annealing, which can be found in [related pytorch pages](https://pytorch.org/docs/stable/generated/torch.optim.lr_scheduler.CosineAnnealingWarmRestarts.html#torch.optim.lr_scheduler.CosineAnnealingWarmRestarts):
 ![Screenshot from 2022-04-26 19-24-52](https://user-images.githubusercontent.com/42603768/165289721-bca32e51-9eaa-47dd-858c-f1209be40ec0.png)
