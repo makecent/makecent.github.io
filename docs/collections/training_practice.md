@@ -21,7 +21,7 @@ However, I don't have much computational resource compared with the FAIR. Theref
 ![Screenshot from 2022-04-26 17-28-41](https://user-images.githubusercontent.com/42603768/165269127-7e93bf07-f7a4-4259-a8f4-780e5a41877f.png)
 
 ### [VideoSwin](https://arxiv.org/abs/2106.13230):
-![Screenshot from 2022-05-05 21-20-15](https://user-images.githubusercontent.com/42603768/167239214-1ed8d479-a9d7-4e05-985e-506b9540f229.png)
+![Screenshot from 2022-05-07 13-35-38](https://user-images.githubusercontent.com/42603768/167240101-669e07d4-c2a0-477e-b438-7fbfaa9d7bd1.png)
 
 
 ### My current used configs:
