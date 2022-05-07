@@ -108,57 +108,53 @@ log_config = dict(interval=20, hooks=[dict(type='TextLoggerHook'), dict(type='Te
 - `by_epoch=True` does NOT means log by epochs.
 
 
-## [optimizer](https://github.com/open-mmlab/mmcv/blob/de0c1039f756ef2b29fd357a2a64968497323a86/mmcv/runner/optimizer/default_constructor.py#L13)
-> Configure a optimizer that exists in the `pytorch` pacakge.
+## [optimizer](https://github.com/open-mmlab/mmcv/blob/c47c9196d067a0900b7b8987a8e82768edab2fff/mmcv/runner/optimizer/builder.py#L35)
+Define the optimizer. In short, it points to the [pytorch optimizers](https://pytorch.org/docs/stable/optim.html#algorithms).
 
 Example in config:
 ```python
 optimizer = dict(type='SGD', lr=0.01, momentum=0.9, weight_decay=0.0001)
 ```
+- Configure `paramwise_cfg` to set different learning rate for different model parts. For example, `paramwise_cfg=dict(custom_keys={'backbone': dict(lr_mult=0.1)})` will used `0.1*lr` for the backbone parameters.
 
+<details>
+  <summary>Details</summary>
+
+In details, it [builds an optimizer-constructor](https://github.com/open-mmlab/mmcv/blob/00b003da230b5b9c42da634db09de537191941ea/mmcv/runner/optimizer/builder.py#L38), then the constructor [builds an optimizer from the registry](https://github.com/open-mmlab/mmcv/blob/00b003da230b5b9c42da634db09de537191941ea/mmcv/runner/optimizer/default_constructor.py#L243) and links the optimizer with model parameters. The [DefaultOptimizerConstructor](https://github.com/open-mmlab/mmcv/blob/00b003da230b5b9c42da634db09de537191941ea/mmcv/runner/optimizer/default_constructor.py#L13) is used by dafault and the only one available in `mmcv`. The DefaultOptimizerConstructor already supports some basic customization, e.g., different `lr` for `backbone` and `head`. If complext customization is needed, user may design their own optimizer-construtor to set different optimizer argumets, such as `lr`, `weight_decay`, for different model parameters. For example, the [TSMOptimizerConstructor](https://github.com/open-mmlab/mmaction2/blob/26a105b32666d0ea6e9e33d7dbef8affa936f099/mmaction/core/optimizer/tsm_optimizer_constructor.py#L8) in `mmaction2`.
+
+### [DefaultOptimizerConstructor](https://github.com/open-mmlab/mmcv/blob/00b003da230b5b9c42da634db09de537191941ea/mmcv/runner/optimizer/default_constructor.py#L13)
 **Arguments**:
 ```python
-    Positional fields are
-        - `type`: class name of the optimizer.
-    Optional fields are
-        - any arguments of the corresponding optimizer type, e.g.,
-          lr, weight_decay, momentum, etc.
-    paramwise_cfg (dict, optional): Parameter-wise options.
+Positional fields are
+    - `type`: class name of the optimizer.
+Optional fields are
+    - any arguments of the corresponding optimizer type, e.g.,
+      lr, weight_decay, momentum, etc.
+paramwise_cfg (dict, optional): Parameter-wise options.
 ```
-
-**Tips:**
-
-- It points to the optimizers in the `pytorch`. All available optimizer can be found in the [pytorch optimizer page](https://pytorch.org/docs/stable/optim.html#algorithms).
-- You may be interested in my personal [recommended optimizer setting]().
-- The `paramwise_cfg` can be used to set different learning rate for different model parts. For example, `paramwise_cfg = dict(custom_keys={'backbone': dict(lr_mult=0.1)})` will used `0.1*lr` for the backbone parameters.
+</details>
+    
 
 ## [optimizer_config](https://github.com/open-mmlab/mmcv/blob/085e63629bca7eefacbb26b477ebf72b1c40b8b1/mmcv/runner/base_runner.py#L441)
-> Define the optimizer hook
-All available [hooks](https://github.com/open-mmlab/mmcv/blob/22e73d69867b11b6e2c82e53cdd4385929d436f5/mmcv/runner/hooks/optimizer.py#L22).
-
-### [OptimizerHook](https://github.com/open-mmlab/mmcv/blob/22e73d69867b11b6e2c82e53cdd4385929d436f5/mmcv/runner/hooks/optimizer.py#L23)
-> The default optimizer hook. It simply points to the [torch.nn.utils.clip_grad_norm_](https://pytorch.org/docs/stable/generated/torch.nn.utils.clip_grad_norm_.html).
+Define the optimizer hook. In short, it points to the [torch.nn.utils.clip_grad_norm_](https://pytorch.org/docs/stable/generated/torch.nn.utils.clip_grad_norm_.html).  
 
 Example:
 ```python
-optimizer_config = dict(grad_clip=dict(max_norm=20, norm_type=2))
+optimizer_config = dict(grad_clip=dict(max_norm=40, norm_type=2))
 ```
+<details>
+  <summary>Details</summary>
+  
+All available optimizer hooks can be found in [here](https://github.com/open-mmlab/mmcv/blob/22e73d69867b11b6e2c82e53cdd4385929d436f5/mmcv/runner/hooks/optimizer.py#L22). Some hooks are used for GradientCumulative and some are for the Fp16.
 
+### [OptimizerHook](https://github.com/open-mmlab/mmcv/blob/22e73d69867b11b6e2c82e53cdd4385929d436f5/mmcv/runner/hooks/optimizer.py#L23)
 **Arguments:**
 ```python
-        grad_clip (dict, optional): A config dict to control the clip_grad.
-            Default: None.
-        detect_anomalous_params (bool): This option is only used for
-            debugging which will slow down the training speed.
-            Detect anomalous parameters that are not included in
-            the computational graph with `loss` as the root.
-            There are two cases
-                - Parameters were not used during
-                  forward pass.
-                - Parameters were not used to produce
-                  loss.
-            Default: False.
+grad_clip=None,
+detect_anomalous_params=False
 ```
+</details>
+
 
 # Meticulous config variables
 
