@@ -8,7 +8,7 @@ parent: Posts
 # Basic config variables
 Here we do NOT expalin the meaning of variables in the config, which we refer the reader to the [official document](https://github.com/open-mmlab/mmaction2/blob/master/docs/tutorials/1_config.md). Instead, we go deep into the **arguments of config variables**, e.g. `by_epoch` of variables `evaluation`
 
-## [`evalution`](https://github.com/open-mmlab/mmaction2/blob/c87482f6b53e839bc00506d474b38f797db0fd8f/mmaction/core/evaluation/eval_hooks.py#L45)
+## [evalution](https://github.com/open-mmlab/mmaction2/blob/c87482f6b53e839bc00506d474b38f797db0fd8f/mmaction/core/evaluation/eval_hooks.py#L45)
 > This hook will regularly perform evaluation on validation dataset in a given interval.
 
 Example in config:
@@ -52,7 +52,7 @@ evaluation = dict(interval=5, metrics=['top_k_accuracy', 'mean_class_accuracy'])
 - The argumetns of function `Dataset.evaluate()` are set in here.
 - `--resume-from work_dirs/foo/epoch_3.pth --cfg-options evaluation.start=3` can resume the training starting with a validation.
 
-## [`checkpoint_config`](https://github.com/open-mmlab/mmcv/blob/9ecd6b0d5ff9d2172c49a182eaa669e9f27bb8e7/mmcv/runner/hooks/checkpoint.py#L9)
+## [checkpoint_config](https://github.com/open-mmlab/mmcv/blob/9ecd6b0d5ff9d2172c49a182eaa669e9f27bb8e7/mmcv/runner/hooks/checkpoint.py#L9)
 > Save checkpoints periodically.
 
 Example:
@@ -81,7 +81,7 @@ checkpoint_config = dict(interval=5)
 - Set `by_epoch=False` can save checkpoints by iterations.
 - Set `max_keep_ckpts` to save disk space.
 
-## [`log_config`](https://github.com/open-mmlab/mmcv/blob/94c071b31088fd29640377ef46ac123d28cb9bfe/mmcv/runner/base_runner.py#L463)
+## [log_config](https://github.com/open-mmlab/mmcv/blob/94c071b31088fd29640377ef46ac123d28cb9bfe/mmcv/runner/base_runner.py#L463)
 > Control the printed infomations and saved content in the .log file (`TextLoggerHook`). Other hooks like `TensorboardLoggerHook` can save specific logs.
 
 > [Base logger hook class](https://mmcv.readthedocs.io/en/latest/api.html#mmcv.runner.LoggerHook), search "loggerhook" in this page to check all the logger hooks.
@@ -108,7 +108,7 @@ log_config = dict(interval=20, hooks=[dict(type='TextLoggerHook'), dict(type='Te
 - `by_epoch=True` does NOT means log by epochs.
 
 
-## [`optimizer`](https://github.com/open-mmlab/mmcv/blob/de0c1039f756ef2b29fd357a2a64968497323a86/mmcv/runner/optimizer/default_constructor.py#L13)
+## [optimizer](https://github.com/open-mmlab/mmcv/blob/de0c1039f756ef2b29fd357a2a64968497323a86/mmcv/runner/optimizer/default_constructor.py#L13)
 > Configure a optimizer that exists in the `pytorch` pacakge.
 
 Example in config:
@@ -132,7 +132,7 @@ optimizer = dict(type='SGD', lr=0.01, momentum=0.9, weight_decay=0.0001)
 - You may be interested in my personal [recommended optimizer setting]().
 - The `paramwise_cfg` can be used to set different learning rate for different model parts. For example, `paramwise_cfg = dict(custom_keys={'backbone': dict(lr_mult=0.1)})` will used `0.1*lr` for the backbone parameters.
 
-## [`optimizer_config`](https://github.com/open-mmlab/mmcv/blob/085e63629bca7eefacbb26b477ebf72b1c40b8b1/mmcv/runner/base_runner.py#L441)
+## [optimizer_config](https://github.com/open-mmlab/mmcv/blob/085e63629bca7eefacbb26b477ebf72b1c40b8b1/mmcv/runner/base_runner.py#L441)
 > Define the optimizer hook
 All available [hooks](https://github.com/open-mmlab/mmcv/blob/22e73d69867b11b6e2c82e53cdd4385929d436f5/mmcv/runner/hooks/optimizer.py#L22).
 
@@ -160,9 +160,10 @@ optimizer_config = dict(grad_clip=dict(max_norm=20, norm_type=2))
             Default: False.
 ```
 
-# About pipelines
+# Meticulous config variables
 
-## [`RandomResizedCrop`](https://github.com/open-mmlab/mmaction2/blob/c87482f6b53e839bc00506d474b38f797db0fd8f/mmaction/datasets/pipelines/augmentations.py#L701)
+## pipelines
+### [RandomResizedCrop](https://github.com/open-mmlab/mmaction2/blob/c87482f6b53e839bc00506d474b38f797db0fd8f/mmaction/datasets/pipelines/augmentations.py#L701)
 > Random crop that specifics the *area* and *height-weight ratio* range of the **cropped shape**.
 
 **Arguments:**
@@ -179,7 +180,7 @@ optimizer_config = dict(grad_clip=dict(max_norm=20, norm_type=2))
 - This data augmentation mimic the `torch.RandomResizedCrop`, which is widly used in image-based tasks, known as the Inception-style random cropping. It first determine the cropping shape, whose aspect ratio and area is randomly selected in the given range. Then with the specific cropping shape, it randomly crop a sub-area from the input.
 - This pipeline is normally followed by a `Resize(scale=(224, 224), keep_ratio=False)`. Besides, it normally follows a `Rescale(scale=(-1, 256))`, i.e., rescale the short-side to 256. I suggest to conduct the short-side rescaling *offline* because it is fixed. Offline rescaling can reduce the data augmentation time and sometimes can significantly reduce the disk size used by the datasets, e.g., kinetics400.
 
-## [`PytorchVideoTrans(type='RandomShortSideScale')`](https://pytorchvideo.readthedocs.io/en/latest/_modules/pytorchvideo/transforms/transforms.html#RandomShortSideScale)
+### [PytorchVideoTrans(type='RandomShortSideScale')](https://pytorchvideo.readthedocs.io/en/latest/_modules/pytorchvideo/transforms/transforms.html#RandomShortSideScale)
 > Scale that specifics the range short-side size.
 
 **Arguments:**
@@ -195,7 +196,7 @@ optimizer_config = dict(grad_clip=dict(max_norm=20, norm_type=2))
 - For these whose datasets are already rescaled to short-side=256, this pipeline is not a good choice.
 - This data augmentation was used by the vgg, non-local, slowfast, x3d. However, the latest paper MViT2, from the same team of x3d and slowfast, now also used the Inception-style cropping, i.e. `RandomResizedCrop`, for data augmention in training.
 
-## [`SampleFrames`](https://github.com/open-mmlab/mmaction2/blob/01c94d365a429e06ff7515eac73d2a091d9cd513/mmaction/datasets/pipelines/loading.py#L83) and [`DenseSampleFrames`](https://github.com/open-mmlab/mmaction2/blob/01c94d365a429e06ff7515eac73d2a091d9cd513/mmaction/datasets/pipelines/loading.py#L333)
+### [SampleFrames](https://github.com/open-mmlab/mmaction2/blob/01c94d365a429e06ff7515eac73d2a091d9cd513/mmaction/datasets/pipelines/loading.py#L83) and [DenseSampleFrames](https://github.com/open-mmlab/mmaction2/blob/01c94d365a429e06ff7515eac73d2a091d9cd513/mmaction/datasets/pipelines/loading.py#L333)
 0. Let's note the `clip_len`, `frame_interval`, and `num_clips` as (clip_len x frame_interval x clip_len), e.g. (16x4x2)
 1. **`SampleFrames(16x4x1)`:** This is the most frequently used, and the most basic sampling strategy. It randomly samples *16* frames with interval *4* from the input video. It can be regarded as first randomly cropping a 64-frame sub-video from the input video, then uniformally sampling 16 frames from the cropped sub-video. The output shaoe is (16, H, W)
 2. `SampleFrames(16x4x8)`: Now the `num_clips=8`, this can be regarded as first dividing the input video into *8* sub-videos, then conducting the same operations as the `SampleFrames(16x4x1)` on each sub-video. This example is just for explanation. I have never seen such a combiantion of arguments. The output shape is (256, H, W)
@@ -231,7 +232,7 @@ optimizer_config = dict(grad_clip=dict(max_norm=20, norm_type=2))
 - `out_of_bound_opt` is used to handle the occasion that the input video is shorter than `clip_len x frame_interval`. Normally it's not important. I mention this just for better understanding.
 - For arg `keep_tail_frames`, its motivation can be found in [here](https://github.com/open-mmlab/mmaction2/issues/1048). Don't need care about it if `num_clips=1` 
 
-## [`ThreeCrop`](https://github.com/makecent/mmaction2/blob/5e853b1029d30e76786ebd92997e4f13e3e2cc03/mmaction/datasets/pipelines/augmentations.py#L1653)
+### [ThreeCrop](https://github.com/makecent/mmaction2/blob/5e853b1029d30e76786ebd92997e4f13e3e2cc03/mmaction/datasets/pipelines/augmentations.py#L1653)
 > Uniformly crops three crops along the longer side. 
 > Normally conducted on short-side rescaled inputs and the crop_size is equal to the short-side, e.g., `Resize(-1, 256)`-`ThreeCrop(crop_size=256)`.
 
@@ -242,7 +243,7 @@ optimizer_config = dict(grad_clip=dict(max_norm=20, norm_type=2))
 **Tips:**
 - The `crop_size` normally is NOT equal to the training crop size. For example, x3d, slowfast, non-local all use the `Resize(-1, 256)`- `RandomResizedCrop`-`Resize(224, 224)` in the training, but the `Resize(-1, 256)`-`ThreeCrop(crop_size=256)` in the testing. It means the spatial size of the model input used in the test is larger (256 vs. 224) than the ones used in the traning. It won't cause dimension error because of the AdaptivePool between the backbone and the head. Its technical reason can be found in the paper -- [Very Deep Convolutional Networks for Large-Scale Image Recognition](https://arxiv.org/abs/1409.1556). A complete config example can be found in [here](https://github.com/makecent/mmaction2/blob/master/configs/recognition/slowonly/slowonly_r50_4x16x1_256e_kinetics400_rgb.py)
 
-##  [`TenCrop`](https://github.com/makecent/mmaction2/blob/5e853b1029d30e76786ebd92997e4f13e3e2cc03/mmaction/datasets/pipelines/augmentations.py#L1726)
+### [TenCrop](https://github.com/makecent/mmaction2/blob/5e853b1029d30e76786ebd92997e4f13e3e2cc03/mmaction/datasets/pipelines/augmentations.py#L1726)
 > Spatially crop the images into 10 crops (8corner + 1center + 1flip).
 > Normally share the same `Rescale` and `Resize` opreations with the training, e.g., `Resize(-1, 256)`-`ThreeCrop(crop_size=224)`.
 
@@ -253,7 +254,7 @@ optimizer_config = dict(grad_clip=dict(max_norm=20, norm_type=2))
 **Tips:**
 - Better performance compared with `ThreeCrop` but higher computational complexity, sometimes even cause the OOM problem.
 
-# About learning rate updater [`lr_config`](https://github.com/open-mmlab/mmcv/blob/969e2af866045417dccbc3980422c80d9736d970/mmcv/runner/hooks/lr_updater.py#L9)
+## [lr_config](https://github.com/open-mmlab/mmcv/blob/969e2af866045417dccbc3980422c80d9736d970/mmcv/runner/hooks/lr_updater.py#L9)
 > Configure how to update the learning rate. Constant lr will be used if no configuration. All available `policy` can be found in [here](https://github.com/open-mmlab/mmcv/blob/969e2af866045417dccbc3980422c80d9736d970/mmcv/runner/hooks/lr_updater.py)
 
 Example in config:
@@ -273,7 +274,7 @@ lr_config = dict(policy='step', step=[4, 8], gamma=0.1)  # lr = lr * 0.1 after e
         means the number of epochs that warmup lasts, otherwise means the
         number of iteration that warmup lasts
 ```
-## [`policy="Step"`](https://github.com/open-mmlab/mmcv/blob/969e2af866045417dccbc3980422c80d9736d970/mmcv/runner/hooks/lr_updater.py#L167)
+### [`policy="Step"`](https://github.com/open-mmlab/mmcv/blob/969e2af866045417dccbc3980422c80d9736d970/mmcv/runner/hooks/lr_updater.py#L167)
 **args:**
 ```python
     step (int | list[int]): Step to decay the LR. If an int value is given,
@@ -285,7 +286,7 @@ lr_config = dict(policy='step', step=[4, 8], gamma=0.1)  # lr = lr * 0.1 after e
         is given, we don't perform lr clipping. Default: None.
 ```
 
-## [`policy="CosineAnnealing"`](https://github.com/open-mmlab/mmcv/blob/969e2af866045417dccbc3980422c80d9736d970/mmcv/runner/hooks/lr_updater.py#L258)
+### [`policy="CosineAnnealing"`](https://github.com/open-mmlab/mmcv/blob/969e2af866045417dccbc3980422c80d9736d970/mmcv/runner/hooks/lr_updater.py#L258)
 Example:
 ```python
 lr_config = dict(policy='CosineAnnealing', min_lr_ratio=0.01)
@@ -301,7 +302,7 @@ lr_config = dict(policy='CosineAnnealing', min_lr_ratio=0.01)
 **tips:**
 Altough the this lr_updater does not contains the restart, it is more frequently used, maybe because it has less parameters.
 
-## [`policy="CosineRestart"`](https://github.com/open-mmlab/mmcv/blob/969e2af866045417dccbc3980422c80d9736d970/mmcv/runner/hooks/lr_updater.py#L344)
+### [`policy="CosineRestart"`](https://github.com/open-mmlab/mmcv/blob/969e2af866045417dccbc3980422c80d9736d970/mmcv/runner/hooks/lr_updater.py#L344)
 Example:
 ```python
 lr_config = dict(policy='CosineRestart', periods=[5, 10, 15], restart_weights=[1, 1, 0.5], min_lr_ratio=0.1)
