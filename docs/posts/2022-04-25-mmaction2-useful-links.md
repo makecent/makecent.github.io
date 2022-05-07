@@ -130,7 +130,7 @@ optimizer = dict(type='SGD', lr=0.01, momentum=0.9, weight_decay=0.0001)
 
 - It points to the optimizers in the `pytorch`. All available optimizer can be found in the [pytorch optimizer page](https://pytorch.org/docs/stable/optim.html#algorithms).
 - You may be interested in my personal [recommended optimizer setting]().
-- The `paramwise_cfg` can be used to set different learning rate for different model parts. For example, `paramwise_cfg = dict(custom_keys={'backbone': dict(lr_mult=0.1)})` will used `0.1*lr` for the backbone parameters. But pls noted that the `paramwise_cfg` is not a varibale of the `optimizer` but an independent config variable. `paramwise_cfg` can do more than setting different `lr` for different model layers, and the details can be found in the [source code page](https://github.com/open-mmlab/mmcv/blob/de0c1039f756ef2b29fd357a2a64968497323a86/mmcv/runner/optimizer/default_constructor.py#L13).
+- The `paramwise_cfg` can be used to set different learning rate for different model parts. For example, `paramwise_cfg = dict(custom_keys={'backbone': dict(lr_mult=0.1)})` will used `0.1*lr` for the backbone parameters.
 
 ## [`optimizer_config`](https://github.com/open-mmlab/mmcv/blob/22e73d69867b11b6e2c82e53cdd4385929d436f5/mmcv/runner/hooks/optimizer.py#L22)
 > Point to the [torch.nn.utils.clip_grad_norm_](https://pytorch.org/docs/stable/generated/torch.nn.utils.clip_grad_norm_.html).
