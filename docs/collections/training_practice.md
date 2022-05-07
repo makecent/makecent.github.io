@@ -46,7 +46,7 @@ However, I don't have much computational resource compared with the FAIR. Theref
 
 ### My current used configs:
 
-**X3D-S, Kinetics400, 200 epochs**
+**200 epochs**
 ```python
 # optimizer
 optimizer = dict(type='AdamW', lr=1e-4, weight_decay=0.05)
@@ -64,17 +64,13 @@ data = dict(
     videos_per_gpu=16, # batch size 16 * 2 = 32, where 2 is the number of gpus 
     ...
 ```
-*Validation curve:* (top-1 accuracy # temporal_sampling = 16 x 4; input_spatial_size = 3 x 112 x 112)
+*Validation curve:*
 
 ![val_top1_acc](https://user-images.githubusercontent.com/42603768/167079508-6c67eace-21f7-405e-a360-c41cb900df71.png)
 
-*Test result*: (10 x 3 views)
-```
-top1_acc: 0.6090
-top5_acc: 0.8353
-```
+(instance: x3d-s on kinetics400, SampleFrames=16x4; inputsize=1x3x16x112x112. test result (10x3 views): top1_acc: 0.6090, top5_acc: 0.8353)
 
-**X3D-S, Kinetics400, 30 epochs:**
+**30 epochs:**
 ```python
 # optimizer
 optimizer = dict(type='AdamW', lr=3e-4, paramwise_cfg=dict(custom_keys={'backbone': dict(lr_mult=0.1)})) # x0.1 if pretrained backbone
@@ -93,7 +89,7 @@ data = dict(
     ...
 ```
 
-Notes:
+Tips:
 - There is a known [linear scaling rule](https://arxiv.org/abs/1706.02677) -- *When the minibatch size is multiplied by k, multiply the learning rate by k.*
 - Warmup seems to be impactful when the backbone network is Transformer ([ActionFormer](https://arxiv.org/abs/2202.07925), [Liyuan Liu 2020](https://arxiv.org/abs/2004.08249)).
 
