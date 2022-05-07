@@ -81,30 +81,6 @@ Tips:
 - There is a known [linear scaling rule](https://arxiv.org/abs/1706.02677) -- *When the minibatch size is multiplied by k, multiply the learning rate by k.*
 - Warmup seems to be impactful when the backbone network is Transformer ([ActionFormer](https://arxiv.org/abs/2202.07925), [Liyuan Liu 2020](https://arxiv.org/abs/2004.08249)).
 
-### Some instances
-```python
-lr = 200 epochs
-
-model = x3d-s
-dataset = kinetics400
-SampleFrames = 16 x 4
-input_size = 3 x 16 x 112 x 112
-test_result (10x3 views) = top1_acc: 0.6090, top5_acc: 0.8353
-```
-![val_top1_acc](https://user-images.githubusercontent.com/42603768/167079508-6c67eace-21f7-405e-a360-c41cb900df71.png)
-
-```python
-lr = 50 epochs
-
-model = x3d-s
-dataset = ucf101
-SampleFrames = 13 x 6
-input_size = 3 x 13 x 160 x 160
-test_result (10x3 views) = top1_acc: 0.6090, top5_acc: 0.8353
-```
-
-
-
 # Params and FLOPs
 > Flop is not a well-defined concept.
 
