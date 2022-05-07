@@ -29,16 +29,24 @@ Assume Label is **1**.
  
 # Optimizer setting
 
-I decide to follow the training setting used by the famous team, specifically the Facebook AI Research. More precisely, the [pytorchvideo](https://github.com/facebookresearch/pytorchvideo/), also known as the [SlowFast](https://github.com/facebookresearch/SlowFast) lead by the [Christoph Feichtenhofer](https://feichtenhofer.github.io/). 
+The optimizer and schedule used by the famous team should be good because their settings must be based on sufficient grid search. For example, I have been keep following the setting used by:
+- [Christoph Feichtenhofer](https://feichtenhofer.github.io/) and his team of the Facebook AI Research (FAIR). Their github repositories [pytorchvideo](https://github.com/facebookresearch/pytorchvideo/) and the [SlowFast](https://github.com/facebookresearch/SlowFast)
+- [Wang liming](https://wanglimin.github.io/) of Multimedia Computing Group, Nanjing University. Their github repositories [MCG-NJU](https://github.com/MCG-NJU)
 
-Accoring to the recently published papers, [**AdamW**](https://pytorch.org/docs/stable/generated/torch.optim.AdamW.html#torch.optim.AdamW) optimizer maybe a good choice. The detailed setting of [MaskFeat](https://arxiv.org/abs/2112.09133) is:
+However, I don't have much computational resource compared with the FAIR. Therefore, I also follows some settings that use fewer training epochs and smaller batch size. 
+
+## Up-to-date collections (2022-05-07):
+
+### [MaskFeat (slowfast)](https://arxiv.org/abs/2112.09133)
 ![Screenshot from 2022-04-26 17-28-41](https://user-images.githubusercontent.com/42603768/165269127-7e93bf07-f7a4-4259-a8f4-780e5a41877f.png)
 
-However, I don't have much computation resource compared with the FAIR. It limits the range of my training setting, e.g., the batch size and epochs. The cost of grid search of hyper-parameter is too high for me. Therefore, I only adopt the settings from FAIR that are relatively more impactful and not depend on heavy engenerring. 
+### [VideoSwin](https://arxiv.org/abs/2106.13230):
+![Screenshot from 2022-05-05 21-20-15](https://user-images.githubusercontent.com/42603768/167239214-1ed8d479-a9d7-4e05-985e-506b9540f229.png)
 
-My current settings:
-##
-Training a X3D-M on Kinetics400 (optimal, 112x112):
+
+### My current used configs:
+
+**X3D-S, Kinetics400, 200 epochs**
 ```python
 # optimizer
 optimizer = dict(type='AdamW', lr=1e-4, weight_decay=0.05)
@@ -56,27 +64,32 @@ data = dict(
     videos_per_gpu=16, # batch size 16 * 2 = 32, where 2 is the number of gpus 
     ...
 ```
-Training (val) top_1 curve:
+*Validation curve:* (top-1 accuracy # temporal_sampling = 16 x 4; input_spatial_size = 3 x 112 x 112)
 
 ![val_top1_acc](https://user-images.githubusercontent.com/42603768/167079508-6c67eace-21f7-405e-a360-c41cb900df71.png)
 
-Test (30 views) results:
+*Test result*: (10 x 3 views)
 ```
 top1_acc: 0.6090
 top5_acc: 0.8353
 ```
-##
-Training a X3D-M on Kinetics400 (fast):
+
+**X3D-S, Kinetics400, 30 epochs:**
 ```python
 # optimizer
-optimizer = dict(type='Adam', lr=1e-4)
+optimizer = dict(type='AdamW', lr=3e-4, paramwise_cfg=dict(custom_keys={'backbone': dict(lr_mult=0.1)})) # x0.1 if pretrained backbone
 optimizer_config = dict(grad_clip=None)
 # learning policy
-lr_config = dict(policy='fixed')
-total_epochs = 20
+lr_config = dict(policy='CosineAnnealing',
+                 min_lr_ratio=0.01,
+                 warmup='linear',
+                 warmup_ratio=0.01,
+                 warmup_iters=2.5,
+                 warmup_by_epoch=True)
+total_epochs = 30
 
 data = dict(
-    videos_per_gpu=16, # batch size 16 * 2 = 32, where 2 is the number of gpus 
+    videos_per_gpu=32, # batch size 32 * 2 = 64, where 2 is the number of gpus 
     ...
 ```
 
