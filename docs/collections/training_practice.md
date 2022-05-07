@@ -48,13 +48,13 @@ data = dict(
 **30 epochs:**
 ```python
 # optimizer
-optimizer = dict(type='AdamW', lr=3e-4, paramwise_cfg=dict(custom_keys={'backbone': dict(lr_mult=0.1)})) # x0.1 if pretrained backbone
+optimizer = dict(type='AdamW', lr=1e-3, paramwise_cfg=dict(custom_keys={'backbone': dict(lr_mult=0.1)})) # x0.1 if pretrained backbone
 optimizer_config = dict(grad_clip=None)
 # learning policy
 lr_config = dict(policy='CosineAnnealing',
-                 min_lr_ratio=0.01,
+                 min_lr=0,
                  warmup='linear',
-                 warmup_ratio=0.01,
+                 warmup_ratio=0.1,
                  warmup_iters=2.5,
                  warmup_by_epoch=True)
 total_epochs = 30
