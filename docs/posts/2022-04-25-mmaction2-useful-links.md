@@ -107,6 +107,14 @@ log_config = dict(interval=20, hooks=[dict(type='TextLoggerHook'), dict(type='Te
 - only `interval` in `log_config` will be passed into every logger hook.
 - `by_epoch=True` does NOT means log by epochs.
 
+## [img_norm_cfg]
+Normalize the magnitude of the image pixles. x = x/255, x = (x-mean) / std
+Example:
+```python
+img_norm_cfg = dict(mean=[128, 128, 128], std=[128, 128, 128], to_bgr=False)
+```
+- [] expain `to_bgr`
+- [] list common used combinations of `mean` and `std`
 
 ## [optimizer](https://github.com/open-mmlab/mmcv/blob/c47c9196d067a0900b7b8987a8e82768edab2fff/mmcv/runner/optimizer/builder.py#L35)
 Define the optimizer. In short, it points to the [pytorch optimizers](https://pytorch.org/docs/stable/optim.html#algorithms).
