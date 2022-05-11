@@ -28,14 +28,13 @@ However, I don't have much computational resource compared with the FAIR. Theref
 ![Screenshot from 2022-05-07 13-35-38](https://user-images.githubusercontent.com/42603768/167240101-669e07d4-c2a0-477e-b438-7fbfaa9d7bd1.png)
 
 
-### My current used configs:
+### My current pratice:
 **30 epochs:**
 ```python
 # optimizer
-optimizer = dict(type='AdamW', lr=3e-4)
+optimizer = dict(type='AdamW', lr=3e-4, weight_decay=0.01)  # decay=0.05 if very large backbone
 # optimizer = dict(type='AdamW', lr=1e-3, paramwise_cfg=dict(custom_keys={'backbone': dict(lr_mult=0.1)})) # if pretrained backbone
-optimizer_config = dict(grad_clip=dict(max_norm=40))
-# optimizer_config = dict(grad_clip=dict(max_norm=1.0))  # if very large backbone
+optimizer_config = dict(grad_clip=dict(max_norm=40)) # max_norm=1.0 if very large backbone
 # learning policy
 lr_config = dict(policy='CosineAnnealing',
                  min_lr_ratio=0.01,
