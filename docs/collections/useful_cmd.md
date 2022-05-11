@@ -47,6 +47,9 @@ cat a_folder.tar.gz.part_* > a_folder.tar.gz
 
 ```shell
 rsync -ahW --no-i-r --info=progress2 source destination
+# push/pull to remote
+rsync -ahW --no-i-r --info=progress2 source foo@158.132.21.81:/home/foo/destination
+rsync -ahW --no-i-r --info=progress2 foo@158.132.21.81:/home/foo/source destination
 ```
 <details>
 
