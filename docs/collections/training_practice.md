@@ -20,16 +20,48 @@ However, I don't have much computational resource compared with the FAIR. Theref
 ### [MaskFeat (slowfast)](https://arxiv.org/abs/2112.09133)
 ![Screenshot from 2022-04-26 17-28-41](https://user-images.githubusercontent.com/42603768/165269127-7e93bf07-f7a4-4259-a8f4-780e5a41877f.png)
 
-- [x] Cosine decay does *NOT* include restart, and it ends with `0.01 x base_lr`
-- [x] Warmup starts from `0.01 x base_lr`
-- [x] It seems that all runs in slowfast use (max_norm=1.0) for clipping the grads, e.g. MViT has [(CLIP_GRAD_L2NORM: 1.0)](https://github.com/facebookresearch/SlowFast/blob/52fb753f8f703b306896afc5613978db0c3c6695/configs/Kinetics/MVIT_B_16x4_CONV.yaml#L63) in its config, which [points](https://github.com/facebookresearch/SlowFast/blob/99a655bd533d7fddd7f79509e3dfaae811767b5c/tools/train_net.py#L169) to [torch.nn.utils.clip_grad_norm_](https://pytorch.org/docs/stable/generated/torch.nn.utils.clip_grad_norm_.html). However, the `max_norm` used by `mmaction2` normally is 40/20.
+- Cosine decay does *NOT* include restart, and it ends with `0.01 x base_lr`
+- Warmup starts from `0.01 x base_lr`
+- It seems that all runs in slowfast use `max_norm=1.0` for clipping the grads, e.g. MViT has [`CLIP_GRAD_L2NORM: 1.0`](https://github.com/facebookresearch/SlowFast/blob/52fb753f8f703b306896afc5613978db0c3c6695/configs/Kinetics/MVIT_B_16x4_CONV.yaml#L63) in its config, which [points](https://github.com/facebookresearch/SlowFast/blob/99a655bd533d7fddd7f79509e3dfaae811767b5c/tools/train_net.py#L169) to [torch.nn.utils.clip_grad_norm_](https://pytorch.org/docs/stable/generated/torch.nn.utils.clip_grad_norm_.html). However, the `max_norm` used by `mmaction2` normally is 40/20.
 
 ### [VideoSwin](https://arxiv.org/abs/2106.13230):
 ![Screenshot from 2022-05-07 13-35-38](https://user-images.githubusercontent.com/42603768/167240101-669e07d4-c2a0-477e-b438-7fbfaa9d7bd1.png)
 
 
 ### My current used configs:
+**30 epochs:**
+```python
+# optimizer
+optimizer = dict(type='AdamW', lr=3e-4)
+# optimizer = dict(type='AdamW', lr=1e-3, paramwise_cfg=dict(custom_keys={'backbone': dict(lr_mult=0.1)})) # if pretrained backbone
+optimizer_config = dict(grad_clip=dict(max_norm=40))
+# optimizer_config = dict(grad_clip=dict(max_norm=1.0))  # if very large backbone
+# learning policy
+lr_config = dict(policy='CosineAnnealing',
+                 min_lr_ratio=0.01,
+                 warmup='linear',
+                 warmup_ratio=0.01,
+                 warmup_iters=2.5,
+                 warmup_by_epoch=True)
+total_epochs = 30
 
+data = dict(
+    videos_per_gpu=32, # batch size=32x2=64, where 2 is the number of gpus 
+    ...
+```
+**50 epochs:**
+```python
+# optimizer
+optimizer = dict(
+    type='SGD',
+    lr=1e-3,
+    momentum=0.9,
+    weight_decay=0.0001)
+optimizer_config = dict(grad_clip=dict(max_norm=40, norm_type=2))
+# learning policy
+lr_config = dict(policy='step', step=[20, 40]) # or [10, 20] for 25 poech 
+total_epochs = 50
+```
 **200 epochs**
 ```python
 # optimizer
@@ -49,38 +81,6 @@ data = dict(
     ...
 ```
 
-**30 epochs:**
-```python
-# optimizer
-optimizer = dict(type='AdamW', lr=1e-3, paramwise_cfg=dict(custom_keys={'backbone': dict(lr_mult=0.1)})) # x0.1 if pretrained backbone
-optimizer_config = dict(grad_clip=None)
-# learning policy
-lr_config = dict(policy='CosineAnnealing',
-                 min_lr=0,
-                 warmup='linear',
-                 warmup_ratio=0.1,
-                 warmup_iters=2.5,
-                 warmup_by_epoch=True)
-total_epochs = 30
-
-data = dict(
-    videos_per_gpu=32, # batch size 32 * 2 = 64, where 2 is the number of gpus 
-    ...
-```
-
-**50 epochs:**
-```python
-# optimizer
-optimizer = dict(
-    type='SGD',
-    lr=1e-3,
-    momentum=0.9,
-    weight_decay=0.0001)
-optimizer_config = dict(grad_clip=dict(max_norm=40, norm_type=2))
-# learning policy
-lr_config = dict(policy='step', step=[20, 40]) # or [10, 20] for 25 poech 
-total_epochs = 50
-```
 Tips:
 - There is a known [linear scaling rule](https://arxiv.org/abs/1706.02677) -- *When the minibatch size is multiplied by k, multiply the learning rate by k.*
 - Warmup seems to be impactful when the backbone network is Transformer ([ActionFormer](https://arxiv.org/abs/2202.07925), [Liyuan Liu 2020](https://arxiv.org/abs/2004.08249)).
