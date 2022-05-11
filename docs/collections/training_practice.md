@@ -22,7 +22,7 @@ However, I don't have much computational resource compared with the FAIR. Theref
 
 - [x] Cosine decay does *NOT* include restart, and it ends with `0.01 x base_lr`
 - [x] Warmup starts from `0.01 x base_lr`
-- [x] It seems that all runs in slowfast use (max_norm=1.0` for clipping the grads, e.g. MViT has [(CLIP_GRAD_L2NORM: 1.0)](https://github.com/facebookresearch/SlowFast/blob/52fb753f8f703b306896afc5613978db0c3c6695/configs/Kinetics/MVIT_B_16x4_CONV.yaml#L63) in its config, which [points](https://github.com/facebookresearch/SlowFast/blob/99a655bd533d7fddd7f79509e3dfaae811767b5c/tools/train_net.py#L169) to [torch.nn.utils.clip_grad_norm_](https://pytorch.org/docs/stable/generated/torch.nn.utils.clip_grad_norm_.html). However, the `max_norm` used by `mmaction2` normally is 40/20.
+- [x] It seems that all runs in slowfast use (max_norm=1.0) for clipping the grads, e.g. MViT has [(CLIP_GRAD_L2NORM: 1.0)](https://github.com/facebookresearch/SlowFast/blob/52fb753f8f703b306896afc5613978db0c3c6695/configs/Kinetics/MVIT_B_16x4_CONV.yaml#L63) in its config, which [points](https://github.com/facebookresearch/SlowFast/blob/99a655bd533d7fddd7f79509e3dfaae811767b5c/tools/train_net.py#L169) to [torch.nn.utils.clip_grad_norm_](https://pytorch.org/docs/stable/generated/torch.nn.utils.clip_grad_norm_.html). However, the `max_norm` used by `mmaction2` normally is 40/20.
 
 ### [VideoSwin](https://arxiv.org/abs/2106.13230):
 ![Screenshot from 2022-05-07 13-35-38](https://user-images.githubusercontent.com/42603768/167240101-669e07d4-c2a0-477e-b438-7fbfaa9d7bd1.png)
