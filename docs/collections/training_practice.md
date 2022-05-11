@@ -33,7 +33,7 @@ However, I don't have much computational resource compared with the FAIR. Theref
 ```python
 # optimizer
 optimizer = dict(type='AdamW', lr=3e-4, weight_decay=0.01)  # decay=0.05 if very large backbone
-# optimizer = dict(type='AdamW', lr=1e-3, paramwise_cfg=dict(custom_keys={'backbone': dict(lr_mult=0.1)})) # if pretrained backbone
+# optimizer = dict(type='AdamW', lr=3e-4, paramwise_cfg=dict(custom_keys={'backbone': dict(lr_mult=0.1)})) # if pretrained backbone
 optimizer_config = dict(grad_clip=dict(max_norm=40)) # max_norm=1.0 if very large backbone
 # learning policy
 lr_config = dict(policy='CosineAnnealing',
