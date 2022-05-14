@@ -311,3 +311,18 @@ I finally find that the formula turns to be the most simple way to understand th
 
 Unlike the pytorch that use the *period of first restart* `T_0` and the *period multiplicative factor* `T_mult` to control the lr, the `mmaction2` requires to specify the periods of all restarts. And it supports restarting with weights. For the above example, it has three consine restarts in its (5+10+15=30) epochs, the first two restarts begin with `base_lr` and end with `0.1*base_lr`, while the last restart begins with `0.5*base_lr` and end with `0.05*base_lr`. The weights is related to last restart.
 
+# Miscellaneous
+
+## `RawframeDecode` with beckend `pyturbo`
+According to a [issue](https://github.com/open-mmlab/mmcv/pull/187) in mmcv, *using TurboJPEG instead of cv2 for RGB image decoding and increase the speed of image decoding about **3** times* (I have not testified it yet).
+
+To install:
+```shell
+pip install PyTurboJPEG
+```
+Example:
+```python
+...
+dict(type='RawFrameDecode', decoding_backend='turbojpeg'),
+...
+```
