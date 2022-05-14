@@ -337,3 +337,7 @@ and I found a [solution](https://github.com/lilohuang/PyTurboJPEG/issues/27) usi
 sudo apt-get update -y
 sudo apt-get install -y libturbojpeg
 ```
+
+## Debug `mmlab` with Pycharm
+For simplicity of debugging, cpu is used and batch_size=1. 
+![Screenshot from 2022-05-14 17-02-49](https://user-images.githubusercontent.com/42603768/168418988-b35a0798-ebe9-43fa-8c97-5f983cf2de8b.png)
