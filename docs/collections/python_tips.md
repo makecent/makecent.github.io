@@ -9,7 +9,7 @@ nav_order: 3
 ## namedtuple
 ```python
 from collections import namedtuple
-BBox = namedtuple('bbox', [start, end, label])
+BBox = namedtuple('bbox', ['start', 'end', 'label'])
 box = BBox(2.0, 56.1, 'Cat')
 
 # Example 1
