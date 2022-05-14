@@ -316,13 +316,24 @@ Unlike the pytorch that use the *period of first restart* `T_0` and the *period 
 ## `RawframeDecode` with beckend `pyturbo`
 According to a [issue](https://github.com/open-mmlab/mmcv/pull/187) in mmcv, *using TurboJPEG instead of cv2 for RGB image decoding and increase the speed of image decoding about **3** times* (I have not testified it yet).
 
-To install:
-```shell
-pip install PyTurboJPEG
-```
 Example:
 ```python
 ...
 dict(type='RawFrameDecode', decoding_backend='turbojpeg'),
 ...
+
+```
+To install:
+```shell
+pip install PyTurboJPEG
+```
+However, my `pip` installation of pyturbo has a problem:
+```shell
+RuntimeError: Unable to locate turbojpeg library automatically. You may specify the turbojpeg library path manually.
+e.g. jpeg = TurboJPEG(lib_path)
+```
+and I found a [solution](https://github.com/lilohuang/PyTurboJPEG/issues/27) using the `sudo` installation:
+```shell
+sudo apt-get update -y
+sudo apt-get install -y libturbojpeg
 ```
