@@ -245,7 +245,7 @@ Output:
 
 # Loss quantization
 ## Binary Cross Entropy
-Assume Label is **1**.
+Assume the learning target (label) is **1**.
 
 | Prediction |  Loss       | Comment                            |
 |:-----------|:------------|:-----------------------------------|
@@ -262,6 +262,16 @@ Assume Label is **1**.
 | 0.9        |   **0.11**  | :relaxed: pretty good              |
 | 0.95       |   0.05      |                                    |
 | 0.99       |   **0.01**  | :triumph: perfect                  |
+
+## IoU vs. GIoU
+Copied from https://giou.stanford.edu/:
+
+![image](https://user-images.githubusercontent.com/42603768/168458537-b95067ce-2b54-4ed3-a7dd-73572ca300a8.png)
+
+- Note that GIoU and IoU do not one-to-one map to each other. 
+- The brown area are pair-samples overlapping with each other. 
+- Normally the GIoU is close to the IoU when the IoU is close to 1 **or** when the overlapping samples have similar x/y postion, otherwise the GIoU is smaller than the IoU.
+- GIoU_loss equals `1 - GIoU` 
 
 # Miscellaneous
 ## backbone memory record
