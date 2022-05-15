@@ -270,7 +270,7 @@ input_size=4x16x4x224x224
 is_training=True
 include cls_head
 ```
-|       | Source| Params (M) | Memory (M) |
+|       | Source | Params (M) | Memory (M) |
 |:-------|:-----|:-----|:-----|
 | X3D-M | pytorchvideo | 3.79  |  5660 |
 | X3D-M | mmaction2 | 3.79  |  6382  |
