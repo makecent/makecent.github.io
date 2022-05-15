@@ -244,10 +244,12 @@ Output:
 ```
 
 # Loss quantization
-## Binary Cross Entropy
-Assume the learning target (label) is **1**.
 
-| Prediction |  Loss       | Comment                            |
+## Cross Entropy
+
+![image](https://user-images.githubusercontent.com/42603768/168471163-3998315d-704e-4518-acf3-c129213a2d3e.png)
+
+| Prob. of GT |  Loss       | Comment                            |
 |:-----------|:------------|:-----------------------------------|
 | 0          |   100       |                                    |
 | 0.01       |   **4.61**  | :disappointed: exploding gradient? |
@@ -263,7 +265,10 @@ Assume the learning target (label) is **1**.
 | 0.95       |   0.05      |                                    |
 | 0.99       |   **0.01**  | :triumph: perfect                  |
 
-## IoU vs. GIoU
+
+
+
+## GIoU
 Copied from https://giou.stanford.edu/:
 
 ![image](https://user-images.githubusercontent.com/42603768/168458537-b95067ce-2b54-4ed3-a7dd-73572ca300a8.png)
@@ -272,6 +277,7 @@ Copied from https://giou.stanford.edu/:
 - The brown area are pair-samples overlapping with each other. 
 - Normally the GIoU is close to the IoU when the IoU is close to 1 **or** when the overlapping samples have similar x/y postion, otherwise the GIoU is smaller than the IoU.
 - GIoU_loss equals `1 - GIoU` 
+
 
 # Miscellaneous
 ## backbone memory record
