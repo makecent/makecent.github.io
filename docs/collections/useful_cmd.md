@@ -104,8 +104,9 @@ tmux command mode (inside tmux)
     
 ## Shortcuts in tmux command mode
     ?:   list shortcuts
-    s:   list sessions and chose one to switch to
+    s:   list sessions and chose one to switch to (recommended)
     d:   detach
     x:   kill current window
     c:   create a window
     w:   list windows
+  new:   create a new session
