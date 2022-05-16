@@ -71,10 +71,10 @@ killall python
 ### Multiple commands
 You can execute multiple commands in line, e.g.:
 ```shell
-python train.py --config1 
+python train1.py; python train2.py; python test.py
 ```
+, which will execute the commands one by one.
 Available delimeters:
-
 - `|`:   pipes (pipelines) the standard output (stdout) of one command into the standard input of another one. Note that stderr still goes into its default destination, whatever that happen to be.
 - `|&`:  pipes both stdout and stderr of one command into the standard input of another one. Very useful, available in bash version 4 and above.
 - `&&`: executes the right-hand command of `&&` only if the previous one **succeeded**.
