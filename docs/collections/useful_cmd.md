@@ -80,6 +80,11 @@ Available delimeters:
 - `&&`: executes the right-hand command of `&&` only if the previous one **succeeded**.
 - `||`:  executes the right-hand command of `||` only it the previous one **failed**.
 - `;`:   executes the right-hand command of `;` always **regardless** whether the previous command succeeded or failed. Unless set -e was previously invoked, which causes bash to fail on an error.
+
+To run program after a exsiting command finished, one can use the short-cut `Ctrl + Z` to first suspend the running command and then run:
+```shell
+fg ; following_command
+```
 # tmux
 start new:
 
