@@ -109,4 +109,6 @@ tmux command mode (inside tmux)
     x:   kill current window
     c:   create a window
     w:   list windows
-  new:   create a new session
+    new: create a new session
+  
+  
