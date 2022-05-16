@@ -32,3 +32,16 @@ nav_order: 5
   2. `alt + PrtScrn` to take a screenshot of a **window**.
   3. `shift + PrtScrn` to take a screenshot of an area you **select**.
 
+## Alias
+You may set alias for frequently used commands. You can send alias to `.bashrc`, e.g.:
+```
+echo "alias server='ssh user@<SERVER_IP>'" >> ~/.bashrc
+echo "alias mmlab='conda activate open-mmlab'" >> ~/.bashrc
+echo "alias project='cd /home/louis/my_project'" >> ~/.bashrc
+source ~/.bashrc
+```
+or directly edit the `.bashrc` file, writting the alias at its end:
+```
+nano ~/.bashrc
+source ~/.bashrc
+```
