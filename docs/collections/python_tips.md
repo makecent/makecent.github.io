@@ -156,6 +156,12 @@ search_space.boxplot(0)
 search_space.topkplot(5)
 print('finished')
 ```
+**Outputs:**
+
+![1](https://user-images.githubusercontent.com/42603768/168994656-f0209cc6-3cd2-4ad3-ad62-83bcdaa7b371.png)
+
+![2](https://user-images.githubusercontent.com/42603768/168994668-e870d456-3915-456c-a135-32598202ef2d.png)
+
 
 # Miscellaneous
 ## Iteration, Iterable and Iterator
