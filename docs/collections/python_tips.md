@@ -5,7 +5,7 @@ parent: Collections
 nav_order: 3
 ---
 
-# Collections
+# Useful Package
 ## namedtuple
 ```python
 from collections import namedtuple
@@ -35,11 +35,7 @@ class BBox(NamedTuple):
     label: str
 ```
 
-# Iteration, Iterable and Iterator
-
-A greate blog explaining this (in Chinese): [Python進階技巧 (6) — 迭代那件小事：深入了解 Iteration / Iterable / Iterator / __iter__ / __getitem__ / __next__ / yield](https://medium.com/citycoddee/python%E9%80%B2%E9%9A%8E%E6%8A%80%E5%B7%A7-6-%E8%BF%AD%E4%BB%A3%E9%82%A3%E4%BB%B6%E5%B0%8F%E4%BA%8B-%E6%B7%B1%E5%85%A5%E4%BA%86%E8%A7%A3-iteration-iterable-iterator-iter-getitem-next-fac5b4542cf4)
-
-# Package `argparse`
+## argparse
 When running `.py` file in command line, `argparse` can be used to warp arguments. For example:
 ```console
 foo@bar:~$ python test.py --batch-size 64 --data-root ./my_data/ImageNet
@@ -71,3 +67,99 @@ Links:
 [Python3 official argpase page](https://docs.python.org/3/library/argparse.html)
 
 [A simple argpase tutorial](https://docs.python.org/3/howto/argparse.html)
+
+# Wheels
+## Hyper-parameter Search
+Below is an python script for searching best hyper-parameters, e.g., IoU_threshold in NMS.
+```python
+import heapq
+from collections import namedtuple
+
+import numpy as np
+from matplotlib import pyplot as plt
+from tqdm import tqdm
+class Param:
+    def __init__(self, name, grid):
+        self.name = name
+        self.grid = grid
+        self.num = len(grid)
+        self.grid_name = [f"{x:.2f}" if isinstance(x, float) else f"{x}" for x in grid]
+
+    def __len__(self):
+        return self.num
+
+    def __getitem__(self, idx):
+        return self.grid[idx]
+
+class SearchSpace:
+
+    def __init__(self, params):
+        self.params = params
+        self.space = [len(p) for p in params]
+        self.total_num = len(self)
+        self.num_params = len(params)
+        self.param_names = [p.name for p in params]
+        self.P = namedtuple('Params', [p.name for p in params])
+        self.result = []
+
+    def __len__(self):
+        return int(np.prod(self.space))
+
+    def __getitem__(self, idx):
+        if idx >= len(self):
+            raise IndexError
+        inds = np.unravel_index(idx, self.space)
+        return self.P(*[p[inds[i]] for i, p in enumerate(self.params)])
+
+    def boxplot(self, param_specify, **kwargs):
+        if isinstance(param_specify, int):
+            param_ind = param_specify
+            param_name = self.param_names[param_ind]
+        elif isinstance(param_specify, str):
+            param_ind = self.param_names.index(param_specify)
+            param_name = param_specify
+        else:
+            raise TypeError
+        result = np.array(self.result).reshape(self.space)
+        data = [d.flatten() for d in np.split(result, self.space[param_ind], axis=param_ind)]
+        plt.boxplot(data, **kwargs)
+        plt.xticks(list(range(1, len(data) + 1)), self.params[param_ind].grid_name)
+        plt.title(param_name)
+        plt.grid()
+        plt.show()
+
+    def topkplot(self, k=10):
+        assert k <= self.total_num
+        x = list(range(self.num_params))
+        yy = []
+        topk = heapq.nlargest(k, enumerate(self.result), key=lambda x: x[1])
+        for n, (idx, value) in enumerate(topk):
+            y = np.unravel_index(idx, self.space)
+            yy.append(y)
+            plt.plot(x, y, label=f'top{n + 1} {value:.2f}')
+        plt.legend()
+        plt.xticks(list(range(self.num_params)), self.param_names)
+        plt.yticks(list(range(np.max(yy) + 2)))
+        plt.grid()
+        plt.show()
+
+param1 = Param('nms_thr', np.arange(0, 1.0, 0.1))
+param2 = Param('score_thr', np.arange(0, 1.0, 0.1))
+param3 = Param('max_per_video', np.arange(0, 200, 40))
+search_space = SearchSpace([param1, param2, param3])
+for params in tqdm(search_space):
+    # score = eval_map(nms(det_bbox,params.score_thr,params.nms_thr, params.max_per_video))
+    score = np.random.rand()
+    search_space.result.append(score)
+
+search_space.boxplot(0)
+search_space.topkplot(5)
+print('finished')
+```
+
+# Miscellaneous
+## Iteration, Iterable and Iterator
+
+A greate blog explaining this (in Chinese): [Python進階技巧 (6) — 迭代那件小事：深入了解 Iteration / Iterable / Iterator / __iter__ / __getitem__ / __next__ / yield](https://medium.com/citycoddee/python%E9%80%B2%E9%9A%8E%E6%8A%80%E5%B7%A7-6-%E8%BF%AD%E4%BB%A3%E9%82%A3%E4%BB%B6%E5%B0%8F%E4%BA%8B-%E6%B7%B1%E5%85%A5%E4%BA%86%E8%A7%A3-iteration-iterable-iterator-iter-getitem-next-fac5b4542cf4)
+
+
