@@ -70,14 +70,42 @@ Links:
 
 # Wheels
 ## Hyper-parameter Search
-Below is an python script for searching best hyper-parameters, e.g., IoU_threshold in NMS.
+Below is an real python script for searching best hyper-parameters, e.g., IoU_threshold in NMS.
 ```python
 import heapq
+import os.path as osp
 from collections import namedtuple
 
+import mmcv
 import numpy as np
+import torch
 from matplotlib import pyplot as plt
+from mmaction.datasets.builder import build_dataset
+from mmcv import Config
 from tqdm import tqdm
+
+from custom_modules.mmdet_utils import bbox2result, eval_map
+from custom_modules.mmdet_utils import multiclass_nms
+
+cfg_file = Config.fromfile("configs/apn_r3dsony_32x4_10e_thumos14_flow.py")
+det_before_nms = mmcv.load(osp.join(cfg_file.work_dir, 'det_before_nms.pkl'))
+ds = build_dataset(cfg_file.data.test)
+annotations = ds.get_ann_info()
+classes = ds.CLASSES
+
+
+def nms(det_bbox, cls_score, loc_score, score_thr, nms_thr, max_per_video):
+    det_bbox, cls_score, loc_score = map(torch.from_numpy, (det_bbox, cls_score, loc_score))
+    det_bbox, det_label = multiclass_nms(
+        det_bbox,
+        cls_score,
+        score_thr,
+        dict(iou_thr=nms_thr),
+        max_per_video,
+        score_factors=loc_score)
+    return det_bbox, det_label
+
+
 class Param:
     def __init__(self, name, grid):
         self.name = name
@@ -90,6 +118,7 @@ class Param:
 
     def __getitem__(self, idx):
         return self.grid[idx]
+
 
 class SearchSpace:
 
@@ -124,6 +153,8 @@ class SearchSpace:
         data = [d.flatten() for d in np.split(result, self.space[param_ind], axis=param_ind)]
         plt.boxplot(data, **kwargs)
         plt.xticks(list(range(1, len(data) + 1)), self.params[param_ind].grid_name)
+        plt.xlabel('Choice')
+        plt.ylabel('Score')
         plt.title(param_name)
         plt.grid()
         plt.show()
@@ -138,29 +169,44 @@ class SearchSpace:
             yy.append(y)
             plt.plot(x, y, label=f'top{n + 1} {value:.2f}')
         plt.legend()
-        plt.xticks(list(range(self.num_params)), self.param_names)
+        plt.xticks(list(range(self.num_params + 2)), self.param_names + ['', ''])
         plt.yticks(list(range(np.max(yy) + 2)))
+        plt.title(f"Top {k} settings")
+        plt.ylabel('Choice')
         plt.grid()
         plt.show()
+
 
 param1 = Param('nms_thr', np.arange(0, 1.0, 0.1))
 param2 = Param('score_thr', np.arange(0, 1.0, 0.1))
 param3 = Param('max_per_video', np.arange(0, 200, 40))
 search_space = SearchSpace([param1, param2, param3])
 for params in tqdm(search_space):
-    # score = eval_map(nms(det_bbox,params.score_thr,params.nms_thr, params.max_per_video))
-    score = np.random.rand()
-    search_space.result.append(score)
+    det_results = []
+    for results_by_video in det_before_nms:
+        det_bbox, cls_score, loc_score = results_by_video
+        det_bbox, det_label = nms(det_bbox, cls_score, loc_score,
+                                  params.score_thr,
+                                  params.nms_thr,
+                                  params.max_per_video)
+        det_results.append((det_bbox, det_label))
+    det_results = [bbox2result(det_bboxes, det_labels, len(classes)) for det_bboxes, det_labels in det_results]
+    iou_thr = 0.5
+    mean_ap, _ = eval_map(det_results, annotations, iou_thr=iou_thr, dataset=classes)
+    mean_ap = round(mean_ap, 3)
+    # mean_ap = np.random.rand()
+    search_space.result.append(mean_ap)
 
 search_space.boxplot(0)
 search_space.topkplot(5)
 print('finished')
+
 ```
 **Outputs:**
 
-![1](https://user-images.githubusercontent.com/42603768/168994656-f0209cc6-3cd2-4ad3-ad62-83bcdaa7b371.png)
+![1](https://user-images.githubusercontent.com/42603768/169227419-b68c6e8a-0b37-4d35-8a0d-1a2f720ceead.png)
 
-![2](https://user-images.githubusercontent.com/42603768/168994668-e870d456-3915-456c-a135-32598202ef2d.png)
+![2](https://user-images.githubusercontent.com/42603768/169227431-01aa2795-6951-4971-840d-de8bb1217c8a.png)
 
 
 # Miscellaneous
