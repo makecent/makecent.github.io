@@ -18,6 +18,10 @@ ls /foo/*.imgs | wc -l
 ```shell
 du -hs ./datasets
 ```
+### Get disk space info
+```she;;
+df -h
+```
 ### Create and delete files
 
 ```shell
