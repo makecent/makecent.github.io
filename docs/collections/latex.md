@@ -45,3 +45,9 @@ Difference between `c` and `>{\centering\arraybackslash}X`: The first do alignme
 ```latex
 *{num_repeated}{alignment} % see above example
 ```
+
+## Custom alignment on specific cell
+```latex
+\multicolumn{1}{|r|}{Item3}
+```
+![Screenshot from 2022-05-22 20-33-43](https://user-images.githubusercontent.com/42603768/169695365-d016b983-283b-429b-beec-66437e45922f.png)
