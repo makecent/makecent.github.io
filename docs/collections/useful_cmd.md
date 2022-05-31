@@ -31,6 +31,30 @@ rm foo.txt
 rm -r a_folder
 ```
 
+### Check SSD status
+check which disk current path `.` is placed.
+```shell
+df . -h 
+```
+output:
+```
+Filesystem      Size  Used Avail Use% Mounted on
+/dev/nvme0n1p2  3.5T  973G  2.4T  30% /
+```
+check name and `rotation` of all disk:
+```shell
+lsblk -o NAME,ROTA  
+```
+output:
+```shell
+NAME        ROTA
+nvme1n1        0
+└─nvme1n1p1    0
+nvme0n1        0
+├─nvme0n1p1    0
+└─nvme0n1p2    0
+```
+`ROTA=0` means the SSD, `1` denotes the HDD.
 ### Compression
 
 Compress and Decompress:
