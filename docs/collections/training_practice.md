@@ -308,7 +308,7 @@ is_training=True
 include cls_head
 ```
 |       | Source | Params (M) | Memory (M) |
-|:-------|:-----|:-----|:-----|
+|:------|:-----|:-----|:-----|
 | X3D-M | pytorchvideo | 3.79  |  5660 |
 | X3D-M | mmaction2 | 3.79  |  6382  |
 | I3D  | mmaction2 | 28.04  |  3601  |
