@@ -8,7 +8,7 @@ permalink: /
 
 ## Welcome to chongkai.site
 
-I am research student at The Hong Kong Polytechnice University. My research interest are in computer vision and deep learning.
+I am a PhD student of The Hong Kong Polytechnice University. My research interest are in computer vision and deep learning.
 
 This is my personal website, covering the [collections](https://chongkai.site/docs/collections/), [posts](https://chongkai.site/docs/posts/) and other interesting things I collected.
 
