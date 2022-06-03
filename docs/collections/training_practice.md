@@ -315,4 +315,4 @@ include cls_head
 | I3D  | mmaction2 | 28.04 | 3601 |
 | I3D  | [original](https://github.com/hassony2/kinetics_i3d_pytorch) | 12.70 |  3815 | 
 | Slowonly | mmaction2 | -  | 3601 |
-
+| MViT-B | pytorchvideo | 36.61 | 10044 |
