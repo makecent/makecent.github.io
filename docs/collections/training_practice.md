@@ -318,16 +318,19 @@ include cls_head
 | MViT-B | pytorchvideo | 36.61 | 10044 |
 
 ## Position of Normalization Layers
-> [On Layer Normalization in the Transformer Architecture](https://arxiv.org/pdf/2002.04745.pdf)
-> [A ConvNet for the 2020s](https://arxiv.org/pdf/2201.03545.pdf)
+> [1][On Layer Normalization in the Transformer Architecture](https://arxiv.org/pdf/2002.04745.pdf)
+> [2][A ConvNet for the 2020s](https://arxiv.org/pdf/2201.03545.pdf)
+> [3][Understanding the Difficulty of Training Transformers](https://arxiv.org/pdf/2004.08249.pdf)
+> [4][RealFormer: Transformer Likes Residual Attention](https://arxiv.org/pdf/2012.11747.pdf)
 
 Let's start with the Transformer. There are two kinds of known choices for the location of normalization: Post-LN and Pre-LN. Pre-LN is proposed newly than the Post-LN.
 ![Screenshot from 2022-06-30 13-34-20](https://user-images.githubusercontent.com/42603768/176600503-613d0672-b584-44cd-bf91-ea3f5fe507b7.png)
 
 Conclusion:
-- Post-LN is relied and sensitive to the Warm-Up， because *"the Post-LN Transformer cannot be trained with a large learning rate from scratch"*.
-- Pre-LN is NOT sensitive to the Warm-Up, and *"Pre-LN Transformer converges faster than the Post-LN Transformer"*.
-- Pre-LN is recommended.
+- Post-LN is relied and sensitive to the Warm-Up[1]， because *"the Post-LN Transformer cannot be trained with a large learning rate from scratch"*[1].
+- Pre-LN is NOT sensitive to the Warm-Up, and *"Pre-LN Transformer converges faster than the Post-LN Transformer"*[1].
+- Post-LN is NOT as stable as Pre-LN, but it *optimal* performance is better[3][4].
+- Pre-LN is recommended for easy training, while Post-LN is recommended when high performance is the target, at the cost of manul engineering, e.g. the Admin initilization [3] and the Warm-up.
 
 What about CNN? Below is the block structure of the latest ConvNext:
 
@@ -335,4 +338,4 @@ What about CNN? Below is the block structure of the latest ConvNext:
 
 Conclusion:
 - The widely used Batch-Normalization layers are now replaced by the Layer-Normalization layers. BTW, the amount is reduced.
-- The Pre-LN is adopted.
+- The Pre-LN is recommended.
