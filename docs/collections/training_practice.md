@@ -317,13 +317,22 @@ include cls_head
 | Slowonly | mmaction2 | -  | 3601 |
 | MViT-B | pytorchvideo | 36.61 | 10044 |
 
-## Normalization in Transformer
-> Mainly based on the paper [On Layer Normalization in the Transformer Architecture](https://arxiv.org/pdf/2002.04745.pdf) 
+## Position of Normalization Layers
+> [On Layer Normalization in the Transformer Architecture](https://arxiv.org/pdf/2002.04745.pdf)
+> [A ConvNet for the 2020s](https://arxiv.org/pdf/2201.03545.pdf)
 
-There are two kinds of location of normalization in transformer: Post-LN and Pre-LN. Pre-LN is proposed newly than the Post-LN.
+Let's start with the Transformer. There are two kinds of known choices for the location of normalization: Post-LN and Pre-LN. Pre-LN is proposed newly than the Post-LN.
 ![Screenshot from 2022-06-30 13-34-20](https://user-images.githubusercontent.com/42603768/176600503-613d0672-b584-44cd-bf91-ea3f5fe507b7.png)
 
 Conclusion:
 - Post-LN is relied and sensitive to the Warm-Up， because *"the Post-LN Transformer cannot be trained with a large learning rate from scratch"*.
 - Pre-LN is NOT sensitive to the Warm-Up, and *"Pre-LN Transformer converges faster than the Post-LN Transformer"*.
 - Pre-LN is recommended.
+
+What about CNN? Below is the block structure of the latest ConvNext:
+
+![Screenshot from 2022-06-30 13-52-23](https://user-images.githubusercontent.com/42603768/176603032-6aeaf99a-0ec0-4b4c-a2c3-64893daae5fa.png)
+
+Conclusion:
+- The widely used Batch-Normalization layers are now replaced by the Layer-Normalization layers. BTW, the amount is reduced.
+- The Pre-LN is adopted.
