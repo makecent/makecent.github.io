@@ -330,7 +330,7 @@ Let's start with the Transformer. There are two kinds of known choices for the l
 Conclusion:
 - Post-LN is relied and sensitive to the Warm-Up[1]， because *"the Post-LN Transformer cannot be trained with a large learning rate from scratch"*[1].
 - Pre-LN is NOT sensitive to the Warm-Up, and *"Pre-LN Transformer converges faster than the Post-LN Transformer"*[1].
-- Post-LN is NOT as stable as Pre-LN, but it *optimal* performance is better[3][4].
+- Post-LN is NOT as stable as Pre-LN, but it *optimal* performance is better[3][4][5].
 - Pre-LN is recommended for easy training, while Post-LN is recommended when high performance is the target, at the cost of manul engineering, e.g. the Admin initilization [3] and the Warm-up.
 
 What about CNN? Below is the block structure of the latest ConvNext:
