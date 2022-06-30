@@ -316,3 +316,14 @@ include cls_head
 | I3D  | [original](https://github.com/hassony2/kinetics_i3d_pytorch) | 12.70 |  3815 | 
 | Slowonly | mmaction2 | -  | 3601 |
 | MViT-B | pytorchvideo | 36.61 | 10044 |
+
+## Normalization in Transformer
+> Mainly based on the paper [On Layer Normalization in the Transformer Architecture](https://arxiv.org/pdf/2002.04745.pdf) 
+
+There are two kinds of location of normalization in transformer: Post-LN and Pre-LN. Pre-LN is proposed newly than the Post-LN.
+![Screenshot from 2022-06-30 13-34-20](https://user-images.githubusercontent.com/42603768/176600503-613d0672-b584-44cd-bf91-ea3f5fe507b7.png)
+
+Conclusion:
+- Post-LN is relied and sensitive to the Warm-Up， because *"the Post-LN Transformer cannot be trained with a large learning rate from scratch"*.
+- Pre-LN is NOT sensitive to the Warm-Up, and *"Pre-LN Transformer converges faster than the Post-LN Transformer"*.
+- Pre-LN is recommended.
