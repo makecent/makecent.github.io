@@ -318,10 +318,11 @@ include cls_head
 | MViT-B | pytorchvideo | 36.61 | 10044 |
 
 ## Position of Normalization Layers
-> [1][On Layer Normalization in the Transformer Architecture](https://arxiv.org/pdf/2002.04745.pdf)
-> [2][A ConvNet for the 2020s](https://arxiv.org/pdf/2201.03545.pdf)
-> [3][Understanding the Difficulty of Training Transformers](https://arxiv.org/pdf/2004.08249.pdf)
-> [4][RealFormer: Transformer Likes Residual Attention](https://arxiv.org/pdf/2012.11747.pdf)
+> [1] [On Layer Normalization in the Transformer Architecture](https://arxiv.org/pdf/2002.04745.pdf)
+> [2] [A ConvNet for the 2020s](https://arxiv.org/pdf/2201.03545.pdf)
+> [3] [Understanding the Difficulty of Training Transformers](https://arxiv.org/pdf/2004.08249.pdf)
+> [4] [RealFormer: Transformer Likes Residual Attention](https://arxiv.org/pdf/2012.11747.pdf)
+> [5] [Blog](https://kexue.fm/archives/9009)
 
 Let's start with the Transformer. There are two kinds of known choices for the location of normalization: Post-LN and Pre-LN. Pre-LN is proposed newly than the Post-LN.
 ![Screenshot from 2022-06-30 13-34-20](https://user-images.githubusercontent.com/42603768/176600503-613d0672-b584-44cd-bf91-ea3f5fe507b7.png)
