@@ -185,13 +185,15 @@ detect_anomalous_params=False
 - This data augmentation mimic the `torch.RandomResizedCrop`, which is widly used in image-based tasks, known as the Inception-style random cropping. It first determine the cropping shape, whose aspect ratio and area is randomly selected in the given range. Then with the specific cropping shape, it randomly crop a sub-area from the input.
 - This pipeline is normally followed by a `Resize(scale=(224, 224), keep_ratio=False)`. Besides, it normally follows a `Rescale(scale=(-1, 256))`, i.e., rescale the short-side to 256. I suggest to conduct the short-side rescaling *offline* because it is fixed. Offline rescaling can reduce the data augmentation time and sometimes can significantly reduce the disk size used by the datasets, e.g., kinetics400.
 
-### [PytorchVideoTrans(type='RandomShortSideScale')](https://pytorchvideo.readthedocs.io/en/latest/_modules/pytorchvideo/transforms/transforms.html#RandomShortSideScale)
+### [RandomShortSideScale](https://github.com/open-mmlab/mmaction2/blob/171e360ae17343b28f014731f7bd4052d37bfbd6/mmaction/datasets/pipelines/augmentations.py#L1170)
 > Scale that specifics the range short-side size.
 
 **Arguments:**
 ```python
-    min_size (int): 256
-    max_size (int): 320
+    scale_range (tuple[int]): The range of short edge length. A closed
+        interval.
+    interpolation (str): Algorithm used for interpolation:
+        "nearest" | "bilinear". Default: "bilinear".
 ```
 
 **Tips:**
@@ -199,7 +201,9 @@ detect_anomalous_params=False
 - Compared to the `RandomResizedCrop`, it scale the input volume's short side to a randomly selected int from the given range.
 - This pipeline is normally followed by a `RandomCrop(size=(224, 224))`.
 - For these whose datasets are already rescaled to short-side=256, this pipeline is not a good choice.
-- This data augmentation was used by the vgg, non-local, slowfast, x3d. However, the latest paper MViT2, from the same team of x3d and slowfast, now also used the Inception-style cropping, i.e. `RandomResizedCrop`, for data augmention in training.
+- This data augmentation was used by the vgg, non-local, slowfast, x3d. However, the latest paper MViT2, from the same team of x3d and slowfast, now also used the Inception-style cropping, i.e. `RandomResizedCrop`, for data augmention in training. 
+- There is another pipeline which adopts the pytorchvideo lib, i.e., [PytorchVideoTrans(type='RandomShortSideScale')]
+, and it should perform the same.
 
 ### [SampleFrames](https://github.com/open-mmlab/mmaction2/blob/01c94d365a429e06ff7515eac73d2a091d9cd513/mmaction/datasets/pipelines/loading.py#L83) and [DenseSampleFrames](https://github.com/open-mmlab/mmaction2/blob/01c94d365a429e06ff7515eac73d2a091d9cd513/mmaction/datasets/pipelines/loading.py#L333)
 0. Let's note the `clip_len`, `frame_interval`, and `num_clips` as (clip_len x frame_interval x clip_len), e.g. (16x4x2)
