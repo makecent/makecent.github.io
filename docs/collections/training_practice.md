@@ -344,7 +344,7 @@ Conclusion:
 ## Video backbone benchmark
 
 |        | Source | top1 | Params (M) | GFLOPs | Memory (M) | Training speed | Testing speed |
-|-------|-----|-----|-----|-----|-----|-----|-----|-----|
+|-------|-----|-----|-----|-----|-----|-----|-----|
 | X3D-M | pytorchvideo | 76.2% | 3.79 | 5.15 |  - | - | - |
 | X3D-M | mmaction2 | 75.6% | 3.79 | 5.15 |  2159  | 23.0 iter/s | 60.0 iter/s |
 | I3D  | mmaction2 | 73.3% | 32x224x224 |27.22 | 16.74 | 2175  | 16.6 iter/s | 89.3 iter/s |
