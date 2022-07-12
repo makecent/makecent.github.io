@@ -165,7 +165,7 @@ detect_anomalous_params=False
 </details>
 
 ## fp16 = dict()
-Add `fp16 = dict()` in config to use Fp16optimizer. To switch on fp16 in model, you need decorate your forward function with `@auto_fp16` and set self.fp16_enable = True. For example:
+Add `fp16 = dict()` in config to use Fp16optimizer. To switch on fp16 in model, you need decorate your forward function with `@auto_fp16` and set `self.fp16_enable = True`. For example:
 
 ```python
 from mmcv.runner import auto_fp16
