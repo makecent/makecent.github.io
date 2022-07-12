@@ -165,7 +165,7 @@ detect_anomalous_params=False
 </details>
 
 ## fp16 = dict()
-Add `fp16 = dict()` in config to use Fp16optimizer. To switch on fp16 in model, you need decorate your forward function with `@auto_fp16` and set `self.fp16_enable = True`. For example:
+Comment/Uncomment`fp16 = dict()` in config to switch between the FP16 training. Before using it, you need decorate your model's forward function with `@auto_fp16` and set a attribute `self.fp16_enable = False`. For example:
 
 ```python
 from mmcv.runner import auto_fp16
@@ -176,7 +176,7 @@ class AnyModel(nn.Module):
 
     def __init__(self, ...):
         ...
-        self.fp16_enabled = True    # False if your want to disable the fp16 training
+        self.fp16_enabled = False    # Default to False. If `fp16=dict()` in config, it will be automatically turn to True.
 
     @auto_fp16()
     def forward(self, x):
