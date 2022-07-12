@@ -340,3 +340,12 @@ What about CNN? Below is the block structure of the latest ConvNext:
 Conclusion:
 - The widely used Batch-Normalization layers are now replaced by the Layer-Normalization layers. BTW, the amount is reduced.
 - The Pre-LN is recommended.
+
+## Video backbone benchmark
+
+|        | Source | Params (M) | GFLOPs | Memory (M) | Training speed | Testing speed |
+|-------|-----|-----|-----|-----|-----|-----|
+| X3D-M | pytorchvideo | 3.79 | 5.15 |  - | - | - |
+| X3D-M | mmaction2 | 3.79  | 5.15 |  2159  | 23.0 iter/s | 60.0 iter/s |
+| I3D  | mmaction2 | 27.22  | 16.74 | 2175  | 16.6 iter/s | 89.3 iter/s |
+| I3D  | [original](https://github.com/hassony2/kinetics_i3d_pytorch) | 12.29 | 27.90 |  1963 | 35.6 iter/s | 86.8 iter/s |
