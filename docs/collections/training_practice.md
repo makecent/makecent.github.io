@@ -355,3 +355,4 @@ Conclusion:
 - Input (N C T H W) is of shape (1, 3, 16, 224, 224).
 - Params and GFLOPs are computed using the fvcore lib.
 - Accuracies are directly coied from the paper/repo.
+- Speed and memory evaluation are conducted on a single 2080ti GPU.
