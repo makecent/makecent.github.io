@@ -315,7 +315,7 @@ include cls_head
 | I3D  | mmaction2 | 28.04 | 3601 |
 | I3D  | [original](https://github.com/hassony2/kinetics_i3d_pytorch) | 12.70 |  3815 | 
 | Slowonly | mmaction2 | -  | 3601 |
-| MViT-B | pytorchvideo | 36.61 | 10044 |
+
 
 ## Position of Normalization Layers
 > [1] [On Layer Normalization in the Transformer Architecture](https://arxiv.org/pdf/2002.04745.pdf)
@@ -344,15 +344,15 @@ Conclusion:
 ## Video backbone benchmark
 
 |        | Source | top1 | Params (M) | GFLOPs | Memory (M) | Training speed | Testing speed |
-|-------|-----|-----|-----|-----|-----|-----|-----|
+|-------|-----|-----|-----|-----|-----|-----|-----|-----|
 | X3D-M | pytorchvideo | 76.2% | 3.79 | 5.15 |  - | - | - |
 | X3D-M | mmaction2 | 75.6% | 3.79 | 5.15 |  2159  | 23.0 iter/s | 60.0 iter/s |
-| I3D  | mmaction2 | 73.3% | 27.22 | 16.74 | 2175  | 16.6 iter/s | 89.3 iter/s |
+| I3D  | mmaction2 | 73.3% | 32x224x224 |27.22 | 16.74 | 2175  | 16.6 iter/s | 89.3 iter/s |
 | I3D  | [original](https://github.com/hassony2/kinetics_i3d_pytorch) | *71.1%* | 12.29 | 27.90 |  1963 | 35.6 iter/s | 86.8 iter/s |
+| MViT-B | pytorchvideo | | 36.30 | 70.8 | 3231 | 16.2 iter/s | 55.5 iter/s |
 
-- top1 is reported on the kinetics400 validation set, with testing augmentation of ten clips and three crops, i.e.(10x3). While the testing augmentation of italic accuracies are not 10x3 or not sure, e.g. original I3D. 
+- top1 is reported on the kinetics400 validation set but are directly **coied** from the paper/repo. The original work use different temporal and spatial resolution and training/testing data augmentation, thereby the top1 here is just for reference but it makes no sence to be compared with the other arguments.
 - Params and GFLOPs only calculate the backbone, while speed and memory involves the head.
 - Input (N C T H W) is of shape (1, 3, 16, 224, 224).
 - Params and GFLOPs are computed using the fvcore lib.
-- Accuracies are directly coied from the paper/repo.
 - Speed and memory evaluation are conducted on a single 2080ti GPU.
