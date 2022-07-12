@@ -164,6 +164,24 @@ detect_anomalous_params=False
 ```
 </details>
 
+## fp16 = dict()
+Add `fp16 = dict()` in config to use Fp16optimizer. To switch on fp16 in model, you need decorate your forward function with `@auto_fp16` and set self.fp16_enable = True. For example:
+
+```python
+from mmcv.runner import auto_fp16
+
+@RECOGNIZERS.register_module()
+class AnyModel(nn.Module):
+    """APN model framework."""
+
+    def __init__(self, ...):
+        ...
+        self.fp16_enabled = True    # False if your want to disable the fp16 training
+
+    @auto_fp16()
+    def forward(self, x):
+        return self.conv(x)
+```
 
 # Meticulous config variables
 
