@@ -188,6 +188,22 @@ detect_anomalous_params=False
 ### [RandomShortSideScale](https://github.com/open-mmlab/mmaction2/blob/171e360ae17343b28f014731f7bd4052d37bfbd6/mmaction/datasets/pipelines/augmentations.py#L1170)
 > Scale that specifics the range short-side size.
 
+**Example**
+```python
+train_pipeline = [
+    dict(type='RandomRescale', scale_range=(256, 320)),
+    dict(type='RandomCrop', size=224),
+]
+val_pipeline = [
+    dict(type='Resize', scale=(-1, 256)),
+    dict(type='CenterCrop', crop_size=224),
+]
+test_pipeline = [
+    dict(type='Resize', scale=(-1, 256)),
+    dict(type='ThreeCrop', crop_size=256),
+]
+```
+
 **Arguments:**
 ```python
     scale_range (tuple[int]): The range of short edge length. A closed
@@ -204,6 +220,7 @@ detect_anomalous_params=False
 - This data augmentation was used by the vgg, non-local, slowfast, x3d. However, the latest paper MViT2, from the same team of x3d and slowfast, now also used the Inception-style cropping, i.e. `RandomResizedCrop`, for data augmention in training. 
 - There is another pipeline which adopts the pytorchvideo lib, i.e., [PytorchVideoTrans(type='RandomShortSideScale')]
 , and it should perform the same.
+- During inference, one can either scale the short side to 256 and take a 224 center crop, or scale the short side to 256 and take three 256 crops along longer side.
 
 ### [SampleFrames](https://github.com/open-mmlab/mmaction2/blob/01c94d365a429e06ff7515eac73d2a091d9cd513/mmaction/datasets/pipelines/loading.py#L83) and [DenseSampleFrames](https://github.com/open-mmlab/mmaction2/blob/01c94d365a429e06ff7515eac73d2a091d9cd513/mmaction/datasets/pipelines/loading.py#L333)
 0. Let's note the `clip_len`, `frame_interval`, and `num_clips` as (clip_len x frame_interval x clip_len), e.g. (16x4x2)
