@@ -351,7 +351,7 @@ Conclusion:
 | I3D  | [original](https://github.com/hassony2/kinetics_i3d_pytorch) | *71.1%* | 12.29 | 27.90 |  1963 | 35.6 iter/s | 86.8 iter/s |
 | MViT-B | pytorchvideo | | 36.30 | 70.8 | 3231 | 16.2 iter/s | 55.5 iter/s |
 
-- top1 is reported on the kinetics400 validation set but are directly **coied** from the paper/repo. The original work use different temporal and spatial resolution and training/testing data augmentation, thereby the top1 here is just for reference but it makes no sence to be compared with the other arguments.
+- top1 is reported on the kinetics400 validation set but are directly **coied** from the paper/repo. The original work use different temporal and spatial resolution and training/testing data augmentation, thereby the top1 here is just for reference. Tt makes NO sense to consider together the top1 and the other arguments.
 - Params and GFLOPs only calculate the backbone, while speed and memory involves the head.
 - Input (N C T H W) is of shape (1, 3, 16, 224, 224).
 - Params and GFLOPs are computed using the fvcore lib.
