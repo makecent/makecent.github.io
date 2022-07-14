@@ -392,3 +392,11 @@ For simplicity of debugging, cpu is used and batch_size=1.
 - in `--cfg-options`, adding `--seed=2 --deterministic --cfg-options data.videos_per_gpu=1`
 - in config file, adding `torch.backends.cudnn.benchmark = True`
 - in config file data setting, adding `train_dataloader=dict(shuffle=False)`
+
+## [load_checkpoint](https://github.com/open-mmlab/mmcv/blob/master/mmcv/runner/checkpoint.py)
+| name | description |
+|:-----|:------------|
+| `_load_checkpoint(filename)`:                     | load the **model weights** (state_dict) from the **filename** to a variable.
+|`_load_checkpoint_with_prefix(prefix, filename)`  | load the **model weights** from the **filename**, remove the **prefix** in the state_dict.
+| `load_checkpoint(model, filename)`| load the **model weights** from the **filename**, and **init the model** with the loaded state_dict.
+| `load_state_dict(module, state_dict)`| init the **model** with the **state_dict**.
