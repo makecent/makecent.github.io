@@ -394,9 +394,11 @@ For simplicity of debugging, cpu is used and batch_size=1.
 - in config file data setting, adding `train_dataloader=dict(shuffle=False)`
 
 ## [load_checkpoint](https://github.com/open-mmlab/mmcv/blob/master/mmcv/runner/checkpoint.py)
+
 | name | description |
 |:-----|:------------|
-| [`_load_checkpoint(filename)`](https://github.com/open-mmlab/mmcv/blob/f4167fe1e3d106cd641708d269ddbff568393437/mmcv/runner/checkpoint.py#L541)                     | load the **model weights** (state_dict) from the **filename** to a variable.
-| [`_load_checkpoint_with_prefix(prefix, filename)`](https://github.com/open-mmlab/mmcv/blob/f4167fe1e3d106cd641708d269ddbff568393437/mmcv/runner/checkpoint.py#L564)  | load the **model weights** from the **filename**, remove the **prefix** in the state_dict.
-| [`load_checkpoint(model, filename)`](https://github.com/open-mmlab/mmcv/blob/f4167fe1e3d106cd641708d269ddbff568393437/mmcv/runner/checkpoint.py#L280) | load the **model weights** from the **filename**, and **init the model** with the loaded state_dict.
-| [`load_state_dict(module, state_dict)`](https://github.com/open-mmlab/mmcv/blob/f4167fe1e3d106cd641708d269ddbff568393437/mmcv/runner/checkpoint.py#L43) | init the **model** with the **state_dict**.
+| [`_load_checkpoint(filename)`](https://github.com/open-mmlab/mmcv/blob/f4167fe1e3d106cd641708d269ddbff568393437/mmcv/runner/checkpoint.py#L541) | load the **model weights** (state_dict) from the **filename** to a variable. |
+| [`_load_checkpoint_with_prefix(prefix, filename)`](https://github.com/open-mmlab/mmcv/blob/f4167fe1e3d106cd641708d269ddbff568393437/mmcv/runner/checkpoint.py#L564) | load the **model weights** from the **filename**, remove the **prefix** in the state_dict. |
+| [`load_checkpoint(model, filename)`](https://github.com/open-mmlab/mmcv/blob/f4167fe1e3d106cd641708d269ddbff568393437/mmcv/runner/checkpoint.py#L280) | load the **model weights** from the **filename**, and **init the model** with the loaded state_dict. |
+| [`load_state_dict(module, state_dict)`](https://github.com/open-mmlab/mmcv/blob/f4167fe1e3d106cd641708d269ddbff568393437/mmcv/runner/checkpoint.py#L43) | init the **model** with the **state_dict**. |
+| [`initialize(module, init_cfg)`](https://github.com/open-mmlab/mmcv/blob/f4167fe1e3d106cd641708d269ddbff568393437/mmcv/cnn/utils/weight_init.py#L573) | initialize the **model** with **init_cfg**. For examples, `init_cfg=dict(type='Pretrained', checkpoint='torchvision://resnet50')`, `init_cfg=dict(type='Constant', val=1, bias=2, layer='Conv2d')`. More init class can be found in the [mmcv.cnn.utils.weight_init.py](https://github.com/open-mmlab/mmcv/blob/f4167fe1e3d106cd641708d269ddbff568393437/mmcv/cnn/utils/weight_init.py#L142)
