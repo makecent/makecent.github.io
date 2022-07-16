@@ -171,7 +171,7 @@ Conclusion:
 | X3D-M | mmaction2 | ~~75.6%~~ | 3.79 | 5.15 |  2159  | 23.0 iter/s | 60.0 iter/s |
 | MViT-B | pytorchvideo | ~~80.2%~~ | 36.30 | 70.8 | 3231 | 16.2 iter/s | 55.5 iter/s |
 
-- top1 is reported on the kinetics400 validation set but are directly **coied** from the paper/repo. These work use different input resolution and training/testing data augmentation, thereby the top1 here is **just for reference**. It makes NO sense to consider together the top1 and the other variables. While generally speaking, the lower models are newer and *should* have higher best accuracy.
+- **top1** is reported on the kinetics400 validation set but are directly **coied** from the paper/repo. These work use different input resolution and training/testing data augmentation, thereby the top1 here is **just for reference**. It makes NO sense to consider together the top1 and the other variables. While generally speaking, the lower models are newer and *should* have higher best accuracy.
 - Params and GFLOPs only calculate the backbone, while speed and memory involves the head.
 - **Input (N C T H W) is of shape (1, 3, 16, 224, 224)**.
 - Params and GFLOPs are computed using the **fvcore** lib.
