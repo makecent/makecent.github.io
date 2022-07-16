@@ -164,12 +164,12 @@ Conclusion:
 
 |        | Source | ~~top1~~ | Params (M) | GFLOPs | Memory (M) | Training speed | Testing speed |
 |-------|-----|-----|-----|-----|-----|-----|-----|
-| I3D  | [original](https://github.com/hassony2/kinetics_i3d_pytorch) | ~~71.1%~~ | 12.29 | 27.90 |  1963 | 35.6 iter/s | 86.8 iter/s |
-| I3D  | mmaction2 | ~~73.3%~~ | 27.22 | 16.74 | 2175  | 16.6 iter/s | 89.3 iter/s |
-| SlowOnly | mmaction2 | ~~75.6%~~ | 31.63 | 84.37 | 3339  | 4.9 iter/s | 34.5 iter/s |
-| X3D-M | pytorchvideo | ~~76.2%~~ | 3.79 | 5.15 |  - | - | - |
-| X3D-M | mmaction2 | ~~75.6%~~ | 3.79 | 5.15 |  2159  | 23.0 iter/s | 60.0 iter/s |
-| MViT-B | pytorchvideo | ~~80.2%~~ | 36.30 | 70.8 | 3231 | 16.2 iter/s | 55.5 iter/s |
+| I3D  | [original](https://github.com/hassony2/kinetics_i3d_pytorch) | ~~71.1%~~ | 12.29 | 27.90 |  1721 | 18.7 iter/s | 80.0 iter/s |
+| I3D  | mmaction2 | ~~73.3%~~ | 27.22 | 16.74 | 1751 | 16.5 iter/s | 87.5 iter/s |
+| SlowOnly | mmaction2 | ~~75.6%~~ | 31.63 | 84.37 | 2987  | 4.9 iter/s | 34.5 iter/s |
+| X3D-M | pytorchvideo | ~~76.2%~~ | - | 5.15 |  - | - | - |
+| X3D-M | mmaction2 | ~~75.6%~~ | 2.09 | 5.15 |  2257  | 9.8 iter/s | 80.0 iter/s |
+| MViT-B | pytorchvideo | ~~80.2%~~ | 36.30 | 70.8 | 3151 | 10.2 iter/s | 35.3 iter/s |
 
 - **top1** is reported on the kinetics400 validation set but are directly **coied** from the paper/repo. These work use different input resolution and training/testing data augmentation, thereby the top1 here is **just for reference**. It makes NO sense to consider together the top1 and the other variables. While generally speaking, the lower models are newer and *should* have higher best accuracy.
 - Params and GFLOPs only calculate the backbone, while speed and memory involves the head.
@@ -188,7 +188,7 @@ There are two widely used training data augmentation on the spatial view of inpu
 - `Resize(-1, 256)` - `RandomResizedCrop(scale=(0.08, 1.0), ratio=(0.75, 1.33)` - `Resize(224, 224)`
 - `RandomRescale(256, 320)` - `RandomCrop(224, 224)`
 
-|              | 1x224x224 | 3x224x224 | 1x256x256 | 3x256x256 |
+|              | Resize(224) | Resize(-1,256)-Center(224) | Resize(-1,256)-Three(224) | Resize(256) | Resize(-1,256)-Center(256) | Resize(-1,256)-Three(256) |
 |--------------|-----------|-----------|-----------|-----------|
-| ResizeCrop   | 12.29 | 27.90 |  1963 | 35.6 iter/s |
+| ResizeCrop   | 12.29 | 74.78 | 1963 | 35.6 iter/s |
 | Rescale      | 27.22 | 16.74 | 2175  | 16.6 iter/s |
