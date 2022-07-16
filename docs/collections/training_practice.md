@@ -188,7 +188,10 @@ There are two widely used training data augmentation on the spatial view of inpu
 - `Resize(-1, 256)` - `RandomResizedCrop(scale=(0.08, 1.0), ratio=(0.75, 1.33)` - `Resize(224, 224)`
 - `RandomRescale(256, 320)` - `RandomCrop(224, 224)`
 
-|              | Resize(224) | Resize(-1,256)-Center(224) | Resize(-1,256)-Three(224) | Resize(256) | Resize(-1,256)-Center(256) | Resize(-1,256)-Three(256) |
-|--------------|-----------|-----------|-----------|-----------|
-| ResizeCrop   | 12.29 | 74.78 | 1963 | 35.6 iter/s |
-| Rescale      | 27.22 | 16.74 | 2175  | 16.6 iter/s |
+
+|            |         | Resize(224) | Resize(-1,224)-Center(224) | Resize(-1,256)-Center(224) | Resize(-1,224)-Three(224) | Resize(-1,256)-Three(224) |
+|------------|---------|-------|-------|-------|-------|-------|
+| ResizeCrop | Cls Acc | 73.58 | 75.21 | 74.78 | 75.30 | 74.81 |
+|            | Reg MAE | 16.54 | 16.27 | 16.28 | 16.08 | 15.98 |
+|            | Speed   | 356.0 | 383.1 | 380.1 | 129.7 | 122.2 |
+|            | mAP@0.5 | 41.2% | 42.5% | 43.2% | 42.2% | 41.5% |
