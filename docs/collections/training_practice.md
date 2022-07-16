@@ -187,7 +187,7 @@ There are two widely used training data augmentation on the spatial view of inpu
 - `Resize(-1, 256)` - `RandomResizedCrop(scale=(0.08, 1.0), ratio=(0.75, 1.33)` - `Resize(224, 224)`
 - `RandomRescale(256, 320)` - `RandomCrop(224, 224)`
 
-| Training Aug | 1x224x224 | 3x224x224 | 1x256x256 | 3x256x256 |
-|--------------|-----------|-----|-----|-----|-----|-----|-----|
+|              | 1x224x224 | 3x224x224 | 1x256x256 | 3x256x256 |
+|--------------|-----------|-----------|-----------|-----------|
 | ResizeCrop   | 12.29 | 27.90 |  1963 | 35.6 iter/s |
 | Rescale      | 27.22 | 16.74 | 2175  | 16.6 iter/s |
