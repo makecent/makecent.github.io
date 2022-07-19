@@ -243,7 +243,7 @@ Output:
 4896248152.0 3794274.0
 ```
 
-## Benchmark python code
+## Benchmarking
 ```python
 # %% fvcore
 import torch
@@ -273,3 +273,8 @@ for i in track_iter_progress(list(range(10000))):
     with torch.no_grad():
         out = model(inputs, return_loss=False)
 ```
+
+# Miscellaneous
+
+## Be careful about `F.dropout`
+Unlike `nn.Dropout` which will be automatically shutdonw after `model.eval()`, `F.dropout` requires an argument `training=True/False` to determine whether it's on or off. In short, using `nn.Dropout` as possible.
