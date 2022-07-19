@@ -17,3 +17,34 @@ In short, it seems that it's OK for model to have some parameters not participat
 
 ### Error caused by the edited mutable Dictionary
 Avoid editing the dictionary because when programming projects deep learning, the dictionary is very likely to be REUSED in next epochs. Editing a deep copy of the original dictionary instead (`dict_ = copy.deepcopy(dict)`).
+
+### First GPU memory higher than the other
+When multiple GPU distributed training, I was once found that the rank0 GPU take too much memory than the others, which limits my batch size choice:
+
+![Screenshot from 2022-07-19 23-18-58](https://user-images.githubusercontent.com/42603768/179787093-64e697a8-4baf-4378-9131-7cfe568ce0eb.png)
+
+I finally found solution from [here](https://discuss.pytorch.org/t/multiple-gpu-use-significant-first-gpu-memory-consumption/48846/7?u=chongkai_lu).
+
+By revising my code from
+```python
+from mmcv.runner import _load_checkpoint, load_state_dict
+
+class MViT2(torch.nn.Module):
+    def __init__(self):
+        super().__init__()
+        state_dict = _load_checkpoint("path_to.pth")
+        load_state_dict(model, state_dict['model_state'])
+```
+to 
+```python
+from mmcv.runner import _load_checkpoint, load_state_dict
+
+class MViT2(torch.nn.Module):
+    def __init__(self):
+        super().__init__()
+        state_dict = _load_checkpoint("path_to.pth", map_location=lambda storage, loc: storage)
+        load_state_dict(model, state_dict['model_state'])
+```
+Problem solved:
+
+![Screenshot from 2022-07-19 23-21-52](https://user-images.githubusercontent.com/42603768/179787709-4e170813-9e42-404a-8c27-afbb777e7ca4.png)
