@@ -277,4 +277,4 @@ for i in track_iter_progress(list(range(10000))):
 # Miscellaneous
 
 ## Be careful about `F.dropout`
-Unlike `nn.Dropout` which will be automatically shutdonw after `model.eval()`, `F.dropout` requires an argument `training=True/False` to determine whether it's on or off. In short, using `nn.Dropout` as possible.
+Unlike `nn.Dropout` which will be automatically shutdown after `model.eval()`, `F.dropout` requires an argument `training=True/False` to determine whether it's on or off. In short, using `nn.Dropout` as possible.
