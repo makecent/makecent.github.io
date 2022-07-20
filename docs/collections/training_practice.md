@@ -201,3 +201,7 @@ There are two widely used training data augmentation on the spatial view of inpu
 |             | mAP@0.5 | 36.4% | 41.9% | 42.7% | 41.6% | 41.3% |
 
 
+# Essay
+
+- Kinetics 400 (trimmed) occupies 10Mb for each video of RGB rawframes. 30Mb for each video of (optical flow+ RGB) rawframes. 
+- ActivityNet200 (untrimmed) occupies 3.3Gb for each video of RGB rawframes. 10Gb for each video of (optical flow+ RGB) rawframes. 
