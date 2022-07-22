@@ -48,3 +48,17 @@ class MViT2(torch.nn.Module):
 Problem solved:
 
 ![Screenshot from 2022-07-19 23-21-52](https://user-images.githubusercontent.com/42603768/179787709-4e170813-9e42-404a-8c27-afbb777e7ca4.png)
+
+### Multiprocessing slow
+My instance is special: my multiprocessing task is at validation stage for computing the evluation metric. **It runs fast during the training, but slow when soly evaluating the results**. 
+
+Specifically, when I run a complete training epoch, the validation is fast. While when I manually load the saved model outputs, and testing them using the same evaluation script, it's very slow (0.3 vs 1.5). 
+
+I found that's because my lib (mmaction2) set some [enviroment variables](https://github.com/open-mmlab/mmaction2/blob/fa3221f23168f8e1d964e3d56b0af7d7861a03d2/mmaction/utils/setup_env.py#L30) which my manual evalution script does NOT. After adding the python code below into my `evaluation.py`, the problem is solved.
+```python
+import os
+if 'OMP_NUM_THREADS' not in os.environ:
+    os.environ['OMP_NUM_THREADS'] = str(1)
+if 'MKL_NUM_THREADS' not in os.environ:
+    os.environ['MKL_NUM_THREADS'] = str(1)
+```
