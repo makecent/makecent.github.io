@@ -54,7 +54,7 @@ My instance is special: my multiprocessing task is at validation stage for compu
 
 Specifically, when I run a complete training epoch, the validation is fast. While when I manually load the saved model outputs, and testing them using the same evaluation script, it's very slow (0.3 vs 1.5). 
 
-I found that's because my lib (mmaction2) set some [enviroment variables](https://github.com/open-mmlab/mmaction2/blob/fa3221f23168f8e1d964e3d56b0af7d7861a03d2/mmaction/utils/setup_env.py#L30) which my manual evalution script does NOT. After adding the python code below into my `evaluation.py`, the problem is solved.
+I found the difference is that my lib (mmaction2) setup [multi-processing environment variables](https://github.com/open-mmlab/mmaction2/blob/fa3221f23168f8e1d964e3d56b0af7d7861a03d2/mmaction/utils/setup_env.py#L30) which my manual evalution script does NOT. After adding the python code below into my `evaluation.py`, the problem is solved.
 ```python
 import os
 if 'OMP_NUM_THREADS' not in os.environ:
