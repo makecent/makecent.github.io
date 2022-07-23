@@ -46,6 +46,9 @@ A & B, A | B, A ^ B
 # Reshape specific dimension(s) with `flatten` and `unflatten`. Alternatives: `nn.Unflatten` and `nn.Flatten`
 A.unflatten(dim, size)  # reshape the specific dimension to size
 A.flatten(start_dim, end_dim) # reshape the specific dimensions to 1.
+
+# Move dimension
+A.move(source, destination)
 ```
 # Useful `Module` function
 ## [`Module.register_forward_hook(hook)`](https://pytorch.org/docs/stable/generated/torch.nn.Module.html?highlight=register_forward_hook#torch.nn.Module.register_forward_hook)
