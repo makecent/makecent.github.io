@@ -43,3 +43,12 @@ cat ~/.ssh/id_ed25519.pub
 - In the "Title" field, add a descriptive label for the new key. For example, if you're using a personal Mac, you might call this key "Personal MacBook Air".
 - Paste your key into the "Key" field.
 ![image](https://user-images.githubusercontent.com/42603768/171117564-082ba037-473b-4983-9214-2a3cb734896e.png)
+
+# (Appndiex)
+## Change a exsiting project authorization from HTTPS to SSH
+```shell
+git remote rm origin
+git remote add origin git@github.com:user/repo.git # change to your ssh .git
+git fetch origin
+git push --set-upstream origin master
+```
