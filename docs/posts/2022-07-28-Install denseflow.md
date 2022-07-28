@@ -38,9 +38,8 @@ cd setup
 ./zzlibx265.sh
 ./zzlibvpx.sh
 ./zzffmpeg.sh
-
-# install opencv 4.3.0
 ./zzopencv.sh
+
 # you may put this line into your .bashrc
 export OpenCV_DIR=$ZZROOT
 
@@ -138,6 +137,6 @@ Otherwise, excuting the `./zzgcc.sh` to install `gcc==7.5.0`:
 ./zzmpfr.sh
 ./zzmpc.sh
 ./zzgcc.sh
-gcc --version
+gcc --version # check installation
 ```
-
+If `gcc` installation failed, you may refer to this [issue](https://github.com/innerlee/setup/issues/44) to see if you can find a solution.
