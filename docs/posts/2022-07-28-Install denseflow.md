@@ -126,7 +126,7 @@ make[1]: *** [CMakeFiles/Makefile2:3724: modules/core/CMakeFiles/opencv_core.dir
 
 I found it's because the imcompability betweent the versions of **CUDA** and **GCC**. Check [CUDA-GCC](https://stackoverflow.com/questions/6622454/cuda-incompatible-with-my-gcc-version/46380601#46380601) and found that my CUDA is 10.2 but GCC is 9.3.0.
 
-Downgrading the GCC version to lower than 8.0 can work with CUDA 10.2, which can be easily solved with **root** access:
+Downgrading the GCC version to lower than 8 can work with CUDA 10.2, which can be easily solved with **root** access:
 - [link1](https://github.com/espressomd/espresso/issues/3654)
 - [link2](https://stackoverflow.com/questions/65605972/cmake-unsupported-gnu-version-gcc-versions-later-than-8-are-not-supported)
 
@@ -139,4 +139,25 @@ Otherwise, excuting the `./zzgcc.sh` to install `gcc==7.5.0`:
 ./zzgcc.sh
 gcc --version # check installation
 ```
-If `gcc` installation failed, you may refer to this [issue](https://github.com/innerlee/setup/issues/44) to see if you can find a solution.
+If `gcc==7.5.0` installation failed, you may refer to this [issue](https://github.com/innerlee/setup/issues/44) to see if you can find a solution. Or you can manually edit the `./zzgcc.sh` changing the gcc to higher version, e.g. `8.5.0`, and see if it helps. My suggestion: install `gcc==8.5.0` if Ubuntu 20.04, otherwise `gcc==7.5.0`.
+
+## Error 4: GLIBCXX_3.4.26 not found
+This error happens when running `./zzlibx265.sh`. Specially, it only happens when I install `gcc` by `./zzgcc.sh`.
+```bash
+cmake: /home/s1141196/app/lib64/libstdc++.so.6: version `GLIBCXX_3.4.26' not found (required by cmake)
+cmake: /home/s1141196/app/lib64/libstdc++.so.6: version `GLIBCXX_3.4.26' not found (required by /usr/lib/x86_64-linux-gnu/libjsoncpp.so.1)
+```
+
+**Solution**
+There should be a correct libstdc++.so.6 in your system:
+```bash
+strings /usr/lib/x86_64-linux-gnu/libstdc++.so.6 | grep GLIBC   #check if 'GLIBCXX_3.4.26' in the list
+```
+So we repalce the `/home/s1141196/app/lib64/libstdc++.so.6` with the `/usr/lib/x86_64-linux-gnu/libstdc++.so.6`:
+```
+cp /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28 /home/s1141196/app/lib64/
+rm libstdc++.so.6
+ln -s libstdc++.so.6.0.28 libstdc++.so.6
+```
+If the system libstdc++.so.6 also not work, then try to download a valid one from internet.
+
