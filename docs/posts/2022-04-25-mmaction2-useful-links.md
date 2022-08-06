@@ -108,14 +108,24 @@ log_config = dict(interval=20, hooks=[dict(type='TextLoggerHook'), dict(type='Te
 - only `interval` in `log_config` will be passed into every logger hook.
 - `by_epoch=True` does NOT means log by epochs.
 
-## [img_norm_cfg]
-Normalize the magnitude of the image pixles. x = x/255, x = (x-mean) / std
+## [img_norm_cfg](https://github.com/open-mmlab/mmaction2/blob/4c48271818aa38b75f80fbf7ca912c506e25c2fa/mmaction/datasets/pipelines/augmentations.py#L1370)
+Normalize the magnitude of the image pixles `x = (x-mean) / std`.
+
+```python
+    mean (Sequence[float]): Mean values of different channels.
+    std (Sequence[float]): Std values of different channels.
+    to_bgr (bool): Whether to convert channels from RGB to BGR.
+        Default: False.
+    adjust_magnitude (bool): Indicate whether to adjust the flow magnitude
+        on 'scale_factor' when modality is 'Flow'. Default: False.
+```
+
 Example:
 ```python
-img_norm_cfg = dict(mean=[128, 128, 128], std=[128, 128, 128], to_bgr=False)
+img_norm_cfg = dict(mean=[127.5, 127.5, 127.5], std=[127.5, 127.5, 127.5], to_bgr=False) # normalize to [-1, 1] without knowing statistics of dataset
 ```
-- [] expain `to_bgr`
-- [] list common used combinations of `mean` and `std`
+- `to_bgr` means whether to change the channel order from RGB to BGR. Normally False. The mmaction2 decoding already [changes](https://github.com/open-mmlab/mmaction2/blob/4c48271818aa38b75f80fbf7ca912c506e25c2fa/mmaction/datasets/pipelines/loading.py#L1303) the BGR to RGB by default.
+- Kinetics400 norm config: `img_norm_cfg = dict(mean=[123.675, 116.28, 103.53], std=[58.395, 57.12, 57.375], to_bgr=False)` ([used by the mmaction2](https://github.com/open-mmlab/mmaction2/blob/4c48271818aa38b75f80fbf7ca912c506e25c2fa/configs/recognition/slowonly/slowonly_imagenet_pretrained_r50_8x8x1_150e_kinetics400_rgb.py#L12))
 
 ## [optimizer](https://github.com/open-mmlab/mmcv/blob/c47c9196d067a0900b7b8987a8e82768edab2fff/mmcv/runner/optimizer/builder.py#L35)
 Define the optimizer. In short, it points to the [pytorch optimizers](https://pytorch.org/docs/stable/optim.html#algorithms).
