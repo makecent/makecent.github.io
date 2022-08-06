@@ -205,3 +205,4 @@ There are two widely used training data augmentation on the spatial view of inpu
 
 - Kinetics 400 (trimmed) occupies 10Mb for each video of RGB rawframes. 30Mb for each video of (optical flow+ RGB) rawframes. 
 - ActivityNet200 (untrimmed) occupies 3.3Gb for each video of RGB rawframes. 10Gb for each video of (optical flow+ RGB) rawframes. 
+- [GMA](https://arxiv.org/pdf/2104.02409.pdf) optical flows of the validation set (19404 videos) of Kinetics 400 occupy 61G disk size, showing that each video occupies about 3.21Mb. So training set of 240618 videos should occupies about 800G.
