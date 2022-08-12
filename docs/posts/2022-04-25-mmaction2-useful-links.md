@@ -85,7 +85,7 @@ checkpoint_config = dict(interval=5)
 ## [log_config](https://github.com/open-mmlab/mmcv/blob/94c071b31088fd29640377ef46ac123d28cb9bfe/mmcv/runner/base_runner.py#L463)
 > Control the printed infomations and saved content in the .log file (`TextLoggerHook`). Other hooks like `TensorboardLoggerHook` can save specific logs.
 
-> [Base logger hook class](https://mmcv.readthedocs.io/en/latest/api.html#mmcv.runner.LoggerHook), search "loggerhook" in this page to check all the logger hooks.
+> [Base LoggerHook](https://github.com/open-mmlab/mmcv/blob/f527e43c1a1e52e5903410255aea1f71f005a161/mmcv/runner/hooks/logger/base.py#L12),  [TextLoggerHook](https://github.com/open-mmlab/mmcv/blob/f527e43c1a1e52e5903410255aea1f71f005a161/mmcv/runner/hooks/logger/text.py#L19)
 
 
 Example:
@@ -106,7 +106,8 @@ log_config = dict(interval=20, hooks=[dict(type='TextLoggerHook'), dict(type='Te
 **Tips:**
 - Enbale `TensorboardLoggerHook` is recommended. You can then use the command `tensorboad --logdir=$path2work_dir` to visualize the training.
 - only `interval` in `log_config` will be passed into every logger hook.
-- `by_epoch=True` does NOT means log by epochs.
+- `by_epoch=True` does NOT means log by epochs but indicting that EpochBasedRunner is used.
+- The logged metrics are the average of the **cumulative** records in the last iters of one interval number [[1]](https://github.com/open-mmlab/mmcv/blob/f527e43c1a1e52e5903410255aea1f71f005a161/mmcv/runner/hooks/logger/base.py#L150) [[2]](https://github.com/open-mmlab/mmcv/blob/f527e43c1a1e52e5903410255aea1f71f005a161/mmcv/runner/log_buffer.py#L33) [[3]](https://github.com/open-mmlab/mmcv/blob/f527e43c1a1e52e5903410255aea1f71f005a161/mmcv/runner/hooks/logger/base.py#L146).
 
 ## [img_norm_cfg](https://github.com/open-mmlab/mmaction2/blob/4c48271818aa38b75f80fbf7ca912c506e25c2fa/mmaction/datasets/pipelines/augmentations.py#L1370)
 Normalize the magnitude of the image pixles `x = (x-mean) / std`.
