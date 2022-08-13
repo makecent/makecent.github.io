@@ -24,7 +24,7 @@ for cls_id in all_classes:
             for gdt in gdt_cls_sample:
                 if gdt.assigned:  # default False
                     continue
-                if compute_iou(det, gdt) >= iou_threshold:
+                if compute_IoU(det, gdt) >= iou_threshold:
                     det.tpfp = True     # default False
                     gdt.assigned = True
                     break
@@ -50,3 +50,5 @@ mAP = mean([precision[cls_id] for cls_id in all_classes])
 - `det.tpfp` tells if this detection is **true positive** or **false positive**, which is set as `False` by default (false positive).
 - `gdt.assigned` tells if this ground truth has already been assigned to one detection, which is set as `False` by default (not assigned).
 - There are two styles for averaging the precisions, named the `area` and the `11-points`. `area` is adopted in most of the current work.
+- **average precision (AP)** represents averaing precisions of different number of top detections. Can be `area` style of `11-potions` style;
+- **mean average precision (mAP)** refers to the averaing AP of different **classes** in most cases; but sometimes refers to the averaging AP of different **IoU thresholds**, in which case the AP in it is already the mAP in the previous case.
