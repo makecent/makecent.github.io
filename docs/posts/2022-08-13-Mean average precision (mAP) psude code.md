@@ -1,5 +1,5 @@
 ---
-title: "Install denseflow for optical flow extraction"
+title: "Psude code of Mean Average Precision (mAP)"
 parent: Posts
 ---
 <details open markdown="block">
