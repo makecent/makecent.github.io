@@ -37,13 +37,13 @@ for cls_id in all_classes:
     # area style 
     precision[cls_id] = sum(precision_cls * tpfp) / len(gdt_cls)
     
-    # 11-potions style
-    recall_cls =  cum_tpfp / len(gdt_cls)
-    for thr in np.arange(0, 1 + 1e-3, 0.1):
-        precs = precision_cls[recall_cls >= thr]
-        prec = precs.max() if precs.size > 0 else 0
-        precision_cls += prec
-    precision[cls_id] = precision_cls / 11
+    ## 11-potions style
+    # recall_cls =  cum_tpfp / len(gdt_cls)
+    # for thr in np.arange(0, 1 + 1e-3, 0.1):
+    #     precs = precision_cls[recall_cls >= thr]
+    #     prec = precs.max() if precs.size > 0 else 0
+    #     precision_cls += prec
+    # precision[cls_id] = precision_cls / 11
     
 mAP = mean([precision[cls_id] for cls_id in all_classes])
 ````
