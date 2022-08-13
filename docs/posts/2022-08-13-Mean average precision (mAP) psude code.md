@@ -1,5 +1,5 @@
 ---
-title: "Psude code of Mean Average Precision (mAP)"
+title: "Explain the Mean Average Precision (mAP) in 20 lines of psude code"
 parent: Posts
 ---
 <details open markdown="block">
