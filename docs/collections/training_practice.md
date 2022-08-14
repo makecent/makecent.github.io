@@ -220,7 +220,9 @@ The pdf of `lambda` under different `alpha` for mixup:
 
 ### Cutmix
 Cutting subregions from two samples and mixup them for data augmentation:
+
 ![image](https://user-images.githubusercontent.com/42603768/184537387-b749c485-4557-4a16-91b0-ef432e6a08d3.png)
+
 Similar to the mixup, because the strongest cutmix is when the `lambda=0.5`, larger `alpha` represetns stronger **cutmix**
 
 > One may argue that the `lambda=1.0` should be the strongest mixup/cutmix. While because the label will also be mixed, so when `lambda=1`, the two samples are just simply exchanged after the mixup/cutmix.
