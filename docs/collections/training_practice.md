@@ -201,18 +201,22 @@ There are two widely used training data augmentation on the spatial view of inpu
 |             | mAP@0.5 | 36.4% | 41.9% | 42.7% | 41.6% | 41.3% |
 
 ### Mixup
-The pdf of different `alpha` for mixup:
-![mixup_alpha_pdf](https://user-images.githubusercontent.com/42603768/184536630-a85e6cfa-7102-41b9-9dc1-d6b53c2513ae.png)
-From the above figure, we can conclude that a **small** `alpha` tends to sample values closing to 0 or 1, which represent a **weak** mixup, because the sampled value will be used like the below 'lam':
+Mixing up two samples for data augmentation:
+![image](https://user-images.githubusercontent.com/42603768/184536898-825363f1-3b55-40f1-94b2-218881a3e4c9.png)
+
+A psudo code:
 ```python
 beta = Beta(alpha, alpha)
-rand_index = torch.randperm(batch_size)
 lam = beta.sample()
+rand_index = torch.randperm(batch_size)
 mixed_images = lam * imgs + (1 - lam) * imgs[rand_index, :]
 ```
-The strongest mixup is when `lam = 0.5`. As the `alpha` increases, the probability intensity abount 0.5 is increasing. 
 
-In short, largger `alpha`, stronger **mixup**.
+The pdf of `lambda` under different `alpha` for mixup:
+![mixup_alpha_pdf](https://user-images.githubusercontent.com/42603768/184536630-a85e6cfa-7102-41b9-9dc1-d6b53c2513ae.png)
+- From the above figure, we can conclude that a **small** `alpha` tends to sample values closing to 0 or 1, which represent a **weak** mixup.
+- The strongest mixup is when `lam = 0.5`. As the `alpha` increases, the probability intensity abound 0.5 is increasing. 
+- In short, largger `alpha`, stronger **mixup**.
 
 # Essay
 
