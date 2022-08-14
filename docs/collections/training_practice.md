@@ -217,13 +217,15 @@ The pdf of `lambda` under different `alpha` for mixup:
 - From the above figure, we can conclude that a **small** `alpha` tends to sample values closing to 0 or 1, which represent a **weak** mixup.
 - The strongest mixup is when `lambda = 0.5`. As the `alpha` increases, the probability intensity of lambda abound 0.5 is increasing. 
 - In short, largger `alpha`, stronger **mixup**.
+- `alpha=1` represents uniform distribution.
+- `alpha=0.8` is adopted in the MViT for training action recognition on Kinetics400.
 
 ### Cutmix
 Cutting subregions from two samples and mixup them for data augmentation:
 
 ![image](https://user-images.githubusercontent.com/42603768/184537387-b749c485-4557-4a16-91b0-ef432e6a08d3.png)
 
-Similar to the mixup, because the strongest cutmix is when the `lambda=0.5`, larger `alpha` represetns stronger **cutmix**
+Similar to the mixup, because the strongest cutmix is when the `lambda=0.5`, larger `alpha` represetns stronger **cutmix**. FYI, `alpha=1.0` is adopted in the MViT for training action recognition on Kinetics400.
 
 > One may argue that the `lambda=1.0` should be the strongest mixup/cutmix. While because the label will also be mixed, so when `lambda=1`, the two samples are just simply exchanged after the mixup/cutmix.
 > 
