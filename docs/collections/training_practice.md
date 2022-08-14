@@ -207,16 +207,23 @@ Mixing up two samples for data augmentation:
 A psudo code:
 ```python
 beta = Beta(alpha, alpha)
-lam = beta.sample()
+lambda = beta.sample()
 rand_index = torch.randperm(batch_size)
-mixed_images = lam * imgs + (1 - lam) * imgs[rand_index, :]
+mixed_images = lambda* imgs + (1 - lambda) * imgs[rand_index, :]
 ```
 
 The pdf of `lambda` under different `alpha` for mixup:
 ![mixup_alpha_pdf](https://user-images.githubusercontent.com/42603768/184536630-a85e6cfa-7102-41b9-9dc1-d6b53c2513ae.png)
 - From the above figure, we can conclude that a **small** `alpha` tends to sample values closing to 0 or 1, which represent a **weak** mixup.
-- The strongest mixup is when `lam = 0.5`. As the `alpha` increases, the probability intensity abound 0.5 is increasing. 
+- The strongest mixup is when `lambda = 0.5`. As the `alpha` increases, the probability intensity of lambda abound 0.5 is increasing. 
 - In short, largger `alpha`, stronger **mixup**.
+
+### Cutmix
+Cutting subregions from two samples and mixup them for data augmentation:
+![image](https://user-images.githubusercontent.com/42603768/184537387-b749c485-4557-4a16-91b0-ef432e6a08d3.png)
+Similar to the mixup, because the strongest cutmix is when the `lambda=0.5`, larger `alpha` represetns stronger **cutmix**
+
+> One may argue that the `lambda=1.0` should be the strongest mixup/cutmix. While because the label will also be mixed, so when `lambda=1`, the two samples are just simply exchanged after the mixup/cutmix.
 
 # Essay
 
