@@ -96,7 +96,7 @@ rsync -ahW --no-i-r --info=progress2 foo@158.132.21.81:/home/foo/source destinat
 ```shell
 killall python
 ```
-### Multiple commands
+### Run Multiple commands
 You can execute multiple commands in line, e.g.:
 ```shell
 python train1.py; python train2.py; python test.py
@@ -113,6 +113,35 @@ To run program after a exsiting command finished, one can use the short-cut `Ctr
 ```shell
 fg ; following_command
 ```
+
+### Save print output
+```shell
+your_command |& tee output.txt
+```
+Other syntax, copied from the [stackoverflow](https://askubuntu.com/a/731237/940404):
+```shell
+          || visible in terminal ||   visible in file   || existing
+  Syntax  ||  StdOut  |  StdErr  ||  StdOut  |  StdErr  ||   file   
+==========++==========+==========++==========+==========++===========
+    >     ||    no    |   yes    ||   yes    |    no    || overwrite
+    >>    ||    no    |   yes    ||   yes    |    no    ||  append
+          ||          |          ||          |          ||
+   2>     ||   yes    |    no    ||    no    |   yes    || overwrite
+   2>>    ||   yes    |    no    ||    no    |   yes    ||  append
+          ||          |          ||          |          ||
+   &>     ||    no    |    no    ||   yes    |   yes    || overwrite
+   &>>    ||    no    |    no    ||   yes    |   yes    ||  append
+          ||          |          ||          |          ||
+ | tee    ||   yes    |   yes    ||   yes    |    no    || overwrite
+ | tee -a ||   yes    |   yes    ||   yes    |    no    ||  append
+          ||          |          ||          |          ||
+ n.e. (*) ||   yes    |   yes    ||    no    |   yes    || overwrite
+ n.e. (*) ||   yes    |   yes    ||    no    |   yes    ||  append
+          ||          |          ||          |          ||
+|& tee    ||   yes    |   yes    ||   yes    |   yes    || overwrite
+|& tee -a ||   yes    |   yes    ||   yes    |   yes    ||  append
+```
+
 # tmux
 start new:
 
