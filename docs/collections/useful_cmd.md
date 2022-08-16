@@ -173,8 +173,24 @@ kill all sessions:
     
 tmux command mode (inside tmux)
 
-    Ctrl + B
+    Ctrl + b
     
+split current window horizontally (top-down)
+
+    ctrl + b + "
+  
+split current window vetically (left-right)
+
+    ctrl + b + %
+
+nevigate among windows
+
+    ctrl + b + left/up/right/down
+
+nevigate among sessions
+
+    ctrl + s + up/down
+  
 ## Shortcuts in tmux command mode
     ?:   list shortcuts
     s:   list sessions and chose one to switch to (recommended)
