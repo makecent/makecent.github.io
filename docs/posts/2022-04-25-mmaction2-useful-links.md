@@ -193,13 +193,14 @@ class AnyModel(nn.Module):
     def forward(self, x):
         return self.conv(x)
 ```
+
 Results
 |       | Model | Memory | Runtime | Accuracy |
 |-------|-------|--------|---------|----------|
 | fp32  | MViT-B| 9036M  |  76s    |  todo    |
 | fp16  |       | 8068M  |  125s   |  todo    |
 
----
+
 # Meticulous config variables
 
 ## pipelines
