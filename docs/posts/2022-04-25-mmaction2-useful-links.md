@@ -414,3 +414,8 @@ For simplicity of debugging, cpu is used and batch_size=1.
 | [`load_checkpoint(model, filename)`](https://github.com/open-mmlab/mmcv/blob/f4167fe1e3d106cd641708d269ddbff568393437/mmcv/runner/checkpoint.py#L280) | load the **model weights** from the **filename**, and **init the model** with the loaded state_dict. |
 | [`load_state_dict(module, state_dict)`](https://github.com/open-mmlab/mmcv/blob/f4167fe1e3d106cd641708d269ddbff568393437/mmcv/runner/checkpoint.py#L43) | init the **model** with the **state_dict**. |
 | [`initialize(module, init_cfg)`](https://github.com/open-mmlab/mmcv/blob/f4167fe1e3d106cd641708d269ddbff568393437/mmcv/cnn/utils/weight_init.py#L573) | initialize the **model** with **init_cfg**. For examples, `init_cfg=dict(type='Pretrained', checkpoint='torchvision://resnet50')`, `init_cfg=dict(type='Constant', val=1, bias=2, layer='Conv2d')`. More init class can be found in the [mmcv.cnn.utils.weight_init.py](https://github.com/open-mmlab/mmcv/blob/f4167fe1e3d106cd641708d269ddbff568393437/mmcv/cnn/utils/weight_init.py#L142)
+
+## Debug a run
+```shell
+--cfg-options work_dir=work_dirs/test log_config.interval=1 evaluation.by_epoch=False evaluation.interval=5
+```
