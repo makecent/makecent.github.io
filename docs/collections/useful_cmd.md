@@ -215,3 +215,8 @@ ssh -N -L 7777:localhost:7777 luchongkai@158.132.21.81
 sudo lsof -i:7777
 kill $PID
 ```
+
+# Print the public IP
+```shell
+curl ifconfig.me
+```
