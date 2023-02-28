@@ -221,9 +221,9 @@ kill $PID
 curl ifconfig.me
 ```
 
-# Mount on remote
-Using the `sshfs`. 
-Here is an example that I want the training results produced from remote server to be saved on local machine (so I don't have to manually copy it), referring to an [external solution]https://superuser.com/questions/616182/how-to-mount-local-directory-to-remote-like-sshfs
+# Mount on remote directory
+Using the `sshfs` (require `root`). 
+Here is an example that I want the training results produced from remote server to be saved on local machine (so I don't have to manually copy it), referring to an [external solution](https://superuser.com/questions/616182/how-to-mount-local-directory-to-remote-like-sshfs)
 ```
 localusername@localmachine: ssh username@server -R 10000:localmachine:22
 username@server: cd path2remote_project/
