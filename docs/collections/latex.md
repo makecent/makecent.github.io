@@ -37,7 +37,16 @@ Which package to use? Below is some package you must know:
 ```
 ### Align cell in `tabularx`
 One important feature of the `tabularx` to the `tabular` is the column type `X`, which automatically expands in order to make the table as wide as specified, e.g., `\textwidth`.
-Below is an example
+Below are the examples:
+```latex
+\begin{tabularx}{0.5\textwidth}{|l|l|l|}
+```
+![1677658472924](https://user-images.githubusercontent.com/42603768/222082043-950b6dd3-e0dd-403d-b8a6-14c3b0e05b37.jpg)
+```latex
+\begin{tabularx}{0.5\textwidth}{|X|X|X|}
+```
+![image](https://user-images.githubusercontent.com/42603768/222082195-5a9d09c7-6364-4e48-86b9-519b2a4c1e7b.png)
+
 ```latex
 {>{\raggedright\arraybackslash}X} % align left
 {>{\centering\arraybackslash}X}   % align center
