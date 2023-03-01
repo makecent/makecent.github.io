@@ -10,9 +10,9 @@ Which package to use? Below is some package you must know:
 
 - `tabular`: The basic one [not recommended].
 - [`array`](https://ctan.org/pkg/array): A extension of `tabular`. Depended by most of the other table packages.
-- [`tabularx`](https://ctan.org/pkg/tabularx): I believe it is the most widely used one. [recommended]
+- [`tabularx`](https://ctan.org/pkg/tabularx): I believe it is the most widely used one. **Recommended**.
 - [`booktabs`](https://ctan.org/pkg/booktabs): Professional looking. Specifically designed for tables without vertical lines.
-- [`tabularray`](https://ctan.org/pkg/tabularray): A new LaTeX3 package using a new writting logic. Well maintained and powerful. [recommended].
+- [`tabularray`](https://ctan.org/pkg/tabularray): A new LaTeX3 package using a new writting logic. Well maintained and powerful. **Recommended**.
 
 ## Miscellaneous
 
@@ -41,11 +41,11 @@ Below are the examples:
 ```latex
 \begin{tabularx}{0.5\textwidth}{|l|l|l|}
 ```
-![1677658472924](https://user-images.githubusercontent.com/42603768/222082043-950b6dd3-e0dd-403d-b8a6-14c3b0e05b37.jpg)
+![1677680391194](https://user-images.githubusercontent.com/42603768/222167268-5956338a-8bdc-4c0e-9122-08faa6e587e8.jpg)
 ```latex
 \begin{tabularx}{0.5\textwidth}{|X|X|X|}
 ```
-![image](https://user-images.githubusercontent.com/42603768/222082195-5a9d09c7-6364-4e48-86b9-519b2a4c1e7b.png)
+![1677680452440](https://user-images.githubusercontent.com/42603768/222167284-b4ae1b7e-258e-4e24-aa0e-6293bc0af135.jpg)
 
 However, it's quite tricky to do alignment in `X` columns:
 ```latex
