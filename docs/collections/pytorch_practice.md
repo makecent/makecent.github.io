@@ -285,5 +285,5 @@ Unlike `nn.Dropout` which will be automatically shutdown after `model.eval()`, `
 ## Be careful about `torch.squeeze()`
 Avoid using `Tensor.squeezez()` not specifying the dimension index. This is because it sometimes will remove the `batch_size` dimension if `batch_size=1` and causes errors. Note that this may happen even if your training batch size is greater than 1 because the dataset size may cannot be divided by the batch size, e.g, dataset_size=13 and batch_size=4 produces batch_size=1 in its last batch.
 
-## Be careful about the `[N] - [N, 1]`
-It will results a data of shape [N, N] rather than [N], which may cause memory problem when `N` is large. This happens to me when I want to calculate the L1 loss and the regression head of model output tensors of shape [N, 1] and the label is of shape [N].
+## Be careful about the `tensor[N] - tensor[N, 1]`
+It will results a tensor of shape [N, N] (not [N]), which may cause memory problem when `N` is large. This happens to me when calculating the L1 loss and the regression head of model output tensors of shape [N, 1] but the label tensors are of shape [N].
