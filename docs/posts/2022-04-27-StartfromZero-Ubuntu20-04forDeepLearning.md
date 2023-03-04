@@ -87,6 +87,21 @@ sudo rm Miniconda3-latest-Linux-x86_64.sh
 conda update -n base -c defaults conda  # restart the terminal before run this line
 ```
 
+# Install CUDA (optional)
+Nowadays, you don NOT have to install cuda-toolkit or cuDNN because they will come with the installation of pytorch/tensorflow using conda. Therefore, you only need to install a NVIDIA driver. Skip this section if you don't need cuda.
+
+If you do have to install CUDA, since the software is being updated frequently, here I provide some websites for reference:
+Compatibility check:
+- [GPU-Driver](https://www.nvidia.com/Download/index.aspx)
+- [Driver-CUDA](https://docs.nvidia.com/deploy/cuda-compatibility/index.html#overview)
+- [Pytorch-CUDA](https://pytorch.org/get-started/previous-versions/)
+- [Tensorflow-CUDA](https://www.tensorflow.org/install/source#linux)
+
+After the confirmation of the CUDA version to install, go to the [CUDA archive](https://developer.nvidia.com/cuda-toolkit-archive) website and follow the instruction to install the CUDA. Below is an example:
+![image](https://user-images.githubusercontent.com/42603768/222905639-5acf2f32-8268-4783-a0b7-7dbfa2bfadef.png)
+
+Note the last step in the *network* installation, i.e., the command `sudo apt-get -y install cuda`, it **auto** choose a CUDA version to install. To specify the version of CUDA, run `sudo apt-get install cuda-12.1` instead (for example). And you can find the available versions by running `sudo apt list cuda*`
+
 # Install GPU-driver
 Nowadays, you don NOT have to install cuda-toolkit or cuDNN because they will come with the installation of pytorch/tensorflow using conda. Therefore, you only need to install a NVIDIA driver. Check the compatibility of [GPU-Driver](https://www.nvidia.com/Download/index.aspx) (optional).
 ## Remove the installed driver (if needed)
