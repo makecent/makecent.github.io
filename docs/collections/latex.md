@@ -105,6 +105,7 @@ After:
 - [Manual (2022A)](https://ctan.math.illinois.edu/macros/latex/contrib/tabularray/tabularray.pdf)
 - The one in the Overleaf may not be the latest version.
 
+### An example
 ```latex
 \documentclass[10pt,journal,compsoc]{IEEEtran}
 \usepackage{tabularray}
@@ -130,3 +131,14 @@ space-time & sth3 & 90.3
 ```
 ![Screenshot from 2022-05-28 16-46-01](https://user-images.githubusercontent.com/42603768/170818166-1bde1476-01ce-4bae-8899-b648d0c1ca1f.png)
 
+### Multiple rows and columns
+`\SetCell[r=$NUM_ROWS,c=$NUM_COLUMNS]{$ALIGNMENT} Text`
+
+![image](https://user-images.githubusercontent.com/42603768/222944592-816619ab-694a-43ab-811e-3cb249418d32.png)
+
+### Column `X`
+`X[$WIDTH, $ALIGNMENT]`
+
+![image](https://user-images.githubusercontent.com/42603768/222944575-ae19f292-dd42-488b-b62d-2760d1e920b4.png)
+```
+`$WIDTH=-1` means the width depends on the text length.
