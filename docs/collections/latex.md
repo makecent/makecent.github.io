@@ -140,5 +140,35 @@ space-time & sth3 & 90.3
 `X[$WIDTH, $ALIGNMENT]`
 
 ![image](https://user-images.githubusercontent.com/42603768/222944575-ae19f292-dd42-488b-b62d-2760d1e920b4.png)
-```
+
 `$WIDTH=-1` means the width depends on the text length.
+
+### Rows and Columns
+`rows = {$KWARGS}, colmuns = {$KWARGS}`
+
+![image](https://user-images.githubusercontent.com/42603768/222944839-9933d1fc-3511-41b5-8acf-d05549829bea.png)
+
+The `columns = {15mm, c}` is equal to `columns = {15mm, halign=c}`
+
+All **Keys** of rows and columns:
+
+![image](https://user-images.githubusercontent.com/42603768/222945017-df9ecb46-e67d-4104-9f47-9fc584420660.png)
+![image](https://user-images.githubusercontent.com/42603768/222945033-03769634-b680-44ca-b47b-bee5d77cefb7.png)
+
+Some examples demonstrating the **Keys**:
+
+![image](https://user-images.githubusercontent.com/42603768/222945283-4ee858f0-e521-414b-808d-b33cd241d17a.png)
+![image](https://user-images.githubusercontent.com/42603768/222945291-ad0434c7-ef3d-42ca-801e-e44db7cc0786.png)
+
+
+### Specific Row and Column
+`rows{$ROW_INDEX} = {$KWARGS}, columns{$COLUMN_INDEX} = {$KWARGS}`
+
+![image](https://user-images.githubusercontent.com/42603768/222945209-1670ac55-ef9f-4cc8-8fd8-8bc913e39151.png)
+
+### Colspec and Rowspec
+`colspec={$LIST_OF_COLUMN_TYPES}, rowspec={$LIST_OF_ROW_TYPES}`
+
+![image](https://user-images.githubusercontent.com/42603768/222945543-e0eaacb5-db4a-4757-8b97-49845c528475.png)
+
+The `\begin{tblr}{|X|X|X|}` is equal to `\begin{tblr}{colspec={|X|X|X|}}`. The `colspec=` can be omitted if it is the only key inside the mandatory argument.
