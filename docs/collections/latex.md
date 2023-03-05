@@ -131,6 +131,13 @@ space-time & sth3 & 90.3
 ```
 ![Screenshot from 2022-05-28 16-46-01](https://user-images.githubusercontent.com/42603768/170818166-1bde1476-01ce-4bae-8899-b648d0c1ca1f.png)
 
+### Mandatory arguments
+**Optional argumenst** of tblr environment are hardly used and details please refer to the manul.
+Below table list the **basic** inner specifications (new interfaces):
+
+![image](https://user-images.githubusercontent.com/42603768/222946721-926ff5fb-95c1-488b-9c3d-6e8757f03779.png)
+
+
 ### Multiple rows and columns
 `\SetCell[r=$NUM_ROWS,c=$NUM_COLUMNS]{$ALIGNMENT} Text`
 
@@ -174,3 +181,14 @@ You may select multiple rows/column indexes at once, e.g., `column{1,3,4}={c}` s
 ![image](https://user-images.githubusercontent.com/42603768/222945543-e0eaacb5-db4a-4757-8b97-49845c528475.png)
 
 The `\begin{tblr}{|X|X|X|}` is equal to `\begin{tblr}{colspec={|X|X|X|}}`. The `colspec=` can be omitted if it is the only key inside the mandatory argument.
+
+### The Old and New interfaces
+The Old interfaces and New interfaces are two styles for the same function.
+
+The Old interfaces (command-style):
+
+![image](https://user-images.githubusercontent.com/42603768/222946481-825fd26b-b630-4ad4-afd3-aa3107341528.png)
+
+The New interfaces (Innter specifications-sytle, **recommended**):
+
+![image](https://user-images.githubusercontent.com/42603768/222946601-6e07be91-d0d4-4a77-978f-0b4123194290.png)
