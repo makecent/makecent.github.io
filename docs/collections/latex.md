@@ -162,9 +162,11 @@ Some examples demonstrating the **Keys**:
 
 
 ### Specific Row and Column
-`rows{$ROW_INDEX} = {$KWARGS}, columns{$COLUMN_INDEX} = {$KWARGS}`
+`row{$ROW_INDEX} = {$KWARGS}, column{$COLUMN_INDEX} = {$KWARGS}`
 
 ![image](https://user-images.githubusercontent.com/42603768/222945209-1670ac55-ef9f-4cc8-8fd8-8bc913e39151.png)
+
+You may select multiple rows/column indexes at once, e.g., `column{1,3,4}={c}` set the alignment to "centering" for column 1,3, and 4.
 
 ### Colspec and Rowspec
 `colspec={$LIST_OF_COLUMN_TYPES}, rowspec={$LIST_OF_ROW_TYPES}`
