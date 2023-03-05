@@ -66,6 +66,19 @@ In the above example, only the width of the rightest five columns are auto-ajust
 *{num_repeated}{alignment} % see the above example
 ```
 
+### Unbreackable text `\mbox`
+Before:
+
+![image](https://user-images.githubusercontent.com/42603768/222937183-d20b3975-3ed4-494f-8c73-91edc0799b7c.png)
+
+After:
+
+```latex
+\mbox{Input volume $I_{\tau}$} & Loc. &  Cls. & Detection\\ 
+```
+![image](https://user-images.githubusercontent.com/42603768/222937146-d63458a2-35d9-4ae8-a5f6-745bf4f96acd.png)
+
+
 ### Custom alignment on specific cell
 ```latex
 \multicolumn{1}{|r|}{Item3}
