@@ -43,35 +43,46 @@ space-time & sth3 & 90.3
 ```
 ![Screenshot from 2022-05-28 16-46-01](https://user-images.githubusercontent.com/42603768/170818166-1bde1476-01ce-4bae-8899-b648d0c1ca1f.png)
 
-# Keys in Mandatory argument
-> **Optional argument** of `tblr` environment are hardly used and details please refer to the manul.
+# Mandatory argument
+![image](https://user-images.githubusercontent.com/42603768/223297269-d980182d-62f6-4a2d-8112-3a9b50c4611a.png)
 
-The table below list the **basic** keys in mandatory argument (the column of new interfaces):
+***BASIC Inner Specifications*** in mandatory argument (the column of new interfaces):
 
 ![image](https://user-images.githubusercontent.com/42603768/222946721-926ff5fb-95c1-488b-9c3d-6e8757f03779.png)
 
-We categorize them into three classes: **Cells**, **Lines**, and **Rows and columns** 
+We categorize the basic keys into three classes: **Cells**, **Lines**, and **Rows and columns**, which are discussed in the next three sections, and then the last section we introduce the extra keys.
+
+## The Old and New interfaces
+The Old interfaces and New interfaces are two styles for the same function.
+
+The Old interfaces (command-style):
+
+![image](https://user-images.githubusercontent.com/42603768/222946481-825fd26b-b630-4ad4-afd3-aa3107341528.png)
+
+The New interfaces (Innter specifications-sytle, **recommended**):
+
+![image](https://user-images.githubusercontent.com/42603768/222946601-6e07be91-d0d4-4a77-978f-0b4123194290.png)
 
 # About Rows and Columns
 ## `rows` and `columns`. 
-`rows = {$KWARGS}, colmuns = {$KWARGS}`
+`rows = {$KWARGS_OF_ROW}, colmuns = {$KWARGS_COLUMN}`
 
 ![image](https://user-images.githubusercontent.com/42603768/222944839-9933d1fc-3511-41b5-8acf-d05549829bea.png)
 
 The `columns = {15mm, c}` is equal to `columns = {15mm, halign=c}`
 
 ## `row` and `column`
-`row{$ROW_INDEX} = {$KWARGS}, column{$COLUMN_INDEX} = {$KWARGS}`
+`row{$ROW_INDEX} = {$KWARGS_OF_ROW}, column{$COLUMN_INDEX} = {$KWARGS_OF_COLUMN}`
 
 ![image](https://user-images.githubusercontent.com/42603768/222945209-1670ac55-ef9f-4cc8-8fd8-8bc913e39151.png)
 
 You may select multiple rows/column indexes at once, e.g., `column{1,3,4}={c}` set the alignment to "centering" for column 1,3, and 4.
 
-## All **keys** of row and column:
+## List of **keys** for `row` and `column`:
 
 ![image](https://user-images.githubusercontent.com/42603768/222945017-df9ecb46-e67d-4104-9f47-9fc584420660.png)![image](https://user-images.githubusercontent.com/42603768/222945033-03769634-b680-44ca-b47b-bee5d77cefb7.png)
 
-There are many examples demonstrating the keys in the manul.
+You can find many examples demonstrating the usage of these keys in the manul.
 
 
 ## `colspec` and `rowspec`
@@ -90,20 +101,21 @@ Here I only introduce the `X` column type. Please refer to the manul for more co
 `$WIDTH=-1` means the width depends on the text length.
 
 # About Cells
-## Multiple rows and columns
-I prefer using the **OLD** interface for define multiple rows and columns
-`\SetCell[r=$NUM_ROWS,c=$NUM_COLUMNS]{$ALIGNMENT} Text`
+## `cells`
+`cells = {$KWARGS_OF_CELL}`
+
+![image](https://user-images.githubusercontent.com/42603768/223299304-27ed5383-587d-4acb-be43-d1ce6033a91b.png)
+
+## `cell{i}{j}`
+`cell{i}{j} = {$KWARGS_OF_MULTISPAN}{$KWARGS_OF_CELL}`, the `$KWARGS_OF_MULTISPAN` controls the multiple rows and columns and can be ommited.
+
+![image](https://user-images.githubusercontent.com/42603768/223299749-83c75690-550e-408f-a59f-c115130539b4.png)
+
+You may use the **OLD** interface `\SetCell` for building cells, e.g., cells of multiple rows and columns:
+`\SetCell[$KWARGS_OF_MULTISPAN]{$KWARGS_OF_CELL} Cell content`
 
 ![image](https://user-images.githubusercontent.com/42603768/222944592-816619ab-694a-43ab-811e-3cb249418d32.png)
 
+## List of **keys** for `cell`:
 
-### The Old and New interfaces
-The Old interfaces and New interfaces are two styles for the same function.
-
-The Old interfaces (command-style):
-
-![image](https://user-images.githubusercontent.com/42603768/222946481-825fd26b-b630-4ad4-afd3-aa3107341528.png)
-
-The New interfaces (Innter specifications-sytle, **recommended**):
-
-![image](https://user-images.githubusercontent.com/42603768/222946601-6e07be91-d0d4-4a77-978f-0b4123194290.png)
+![image](https://user-images.githubusercontent.com/42603768/223301653-7013f193-1d7b-4888-be63-ead60731ca1c.png)
