@@ -69,8 +69,6 @@ The New interfaces (Innter specifications-sytle, **recommended**):
 
 ![image](https://user-images.githubusercontent.com/42603768/222944839-9933d1fc-3511-41b5-8acf-d05549829bea.png)
 
-The `columns = {15mm, c}` is equal to `columns = {15mm, halign=c}`
-
 ## `row` and `column`
 `row{$ROW_INDEX} = {$KWARGS_OF_ROW}, column{$COLUMN_INDEX} = {$KWARGS_OF_COLUMN}`
 
