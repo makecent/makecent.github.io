@@ -74,7 +74,7 @@ The New interfaces (Innter specifications-sytle, **recommended**):
 
 ![image](https://user-images.githubusercontent.com/42603768/222945209-1670ac55-ef9f-4cc8-8fd8-8bc913e39151.png)
 
-You may select multiple rows/column indexes at once, e.g., `column{1,3,4}={c}` set the alignment to "centering" for column 1,3, and 4.
+You may select multiple rows/column indexes at once, e.g., `row{1,3,9}`, `row{3-6}`, `row{even}`, row{odd}.
 
 ## List of **keys** for `row` and `column`:
 
