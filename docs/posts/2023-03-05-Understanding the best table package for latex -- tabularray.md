@@ -14,8 +14,8 @@ parent: Posts
 > Typeset Tabulars and Arrays with LATEX3.
 
 - [Github repo](https://github.com/lvjr/tabularray)
-- [Manual (2022A)](https://ctan.math.illinois.edu/macros/latex/contrib/tabularray/tabularray.pdf)
-- The one in the Overleaf may not be the latest version.
+- [Manual (2022A)](https://mirror.aarnet.edu.au/pub/CTAN/macros/latex/contrib/tabularray/tabularray.pdf)
+- The one called in the Overleaf may not be the latest version, depending on the `texlive` version used.
 
 # An example
 ```latex
@@ -109,7 +109,7 @@ Here I only introduce the `X` column type. Please refer to the manul for more co
 
 ![image](https://user-images.githubusercontent.com/42603768/223299749-83c75690-550e-408f-a59f-c115130539b4.png)
 
-You may use the **OLD** interface `\SetCell` for building cells, e.g., cells of multiple rows and columns:
+You may use the **OLD** interface `\SetCell` for building cells:
 `\SetCell[$KWARGS_OF_MULTISPAN]{$KWARGS_OF_CELL} Cell content`
 
 ![image](https://user-images.githubusercontent.com/42603768/222944592-816619ab-694a-43ab-811e-3cb249418d32.png)
