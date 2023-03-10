@@ -99,4 +99,19 @@ After:
 ![Screenshot from 2022-05-22 20-33-43](https://user-images.githubusercontent.com/42603768/169695365-d016b983-283b-429b-beec-66437e45922f.png)
 
 ## Superscript in table
-Either using `Test$^\dag$` and expalining the superscript in the Table title, or using the `\TblrNote{$\dag$}` in the `tabularray` package and describing the superscripts in notes `note{$\dag$} = {text}` under the table.
+Either using `Test$^\dag$` and expalining the superscript in the Table title, or using the `\TblrNote{$\dag$}` in the `tabularray` package (longtblr) and describing the superscripts in notes `note{$\dag$} = {text}` under the table.
+```latex
+\renewcommand\TblrOverlap[1]{#1} % change the overlap style, you may comment this line to check the difference.
+\begin{longtblr}[
+caption = {Some introduction. $\dag$: the model with focal loss},
+note{$\dag$} = {the model with focal loss},
+]{
+colspec = {c X},
+hlines,
+vlines,
+}
+G-TAD$^\dag$ [1] & Foo \\
+BMN\TblrNote{$\dag$} [2] & Bar\\
+\end{longtblr}
+```
+![image](https://user-images.githubusercontent.com/42603768/224274171-78845841-1a7f-4765-ac0b-c50ff9209b65.png)
