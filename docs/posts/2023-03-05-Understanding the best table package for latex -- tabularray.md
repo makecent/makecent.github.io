@@ -120,7 +120,7 @@ You may use the **OLD** interface `\SetCell` for building cells:
 
 # Mistanuously
 ## Using `longtblr` in the `table` environment
-`longtblr` is designed to contain `caption`, therefore directly putting `longtblr` inside the `table` environment will cause two captions:
+`talltblr` is designed to contain `caption`, therefore directly putting `talltblr` inside the `table` environment will cause two captions:
 ```latex
 \renewcommand\TblrOverlap[1]{#1}
 
@@ -129,7 +129,7 @@ You may use the **OLD** interface `\SetCell` for building cells:
 \caption{Comparison with State-of-the-Art Methods on THUMOS14.}
 \label{T14_compare}
 \centering
-\begin{longtblr}[
+\begin{talltblr}[
 caption = {Some introduction. $\dag$: the model with focal loss},
 note{$\dag$} = {the model with focal loss},
 ]{
@@ -139,30 +139,29 @@ vlines,
 }
 G-TAD$^\dag$ [1] & Foo \\
 BMN\TblrNote{$\dag$} [2] & Bar\\
-\end{longtblr}
+\end{talltblr}
 \end{table*}
 ```
 ![image](https://user-images.githubusercontent.com/42603768/224278647-e04fce6c-bbfe-4368-82b9-0f872adc9c07.png)
 
-One simple solution is that we do NOT use the `table` but a solely `longtblr`. While this may cause inconsistency if your other tables are of `table`. For example, the distance between the caption and the table are different for the `table` and `longtblr`.
+One simple solution is that we do NOT use it inside the `table` but a solely `talltblr`. While this may cause inconsistency if your other tables are of type `table`. For example, the distance between the caption and the table (headsep) and the size of caption maybe different for the `table` and `talltblr`.
 
-Another tricky solution is to keep the `longtblr` inside the `table` but delete the caption of `table`:
+Another tricky solution is to keep the `talltblr` inside the `table` but delete the caption of `talltable`:
 ```latex
 \renewcommand\TblrOverlap[1]{#1}
 
+\begin{document}
+\begin{table*}[!tb]
+\caption{Comparison with State-of-the-Art Methods on THUMOS14.}
+\label{T14_compare}
+\centering
 %%%%%% ADDED %%%%%%%
 \SetTblrTemplate{head}{empty}       %remove the header
 %\SetTblrTemplate{head,foot}{empty} % remove both the header and the footer
 %\SetTblrOuter[longtblr]{headsep=0pt,footsep=0pt}  % change distance between the header and table
 %\SetTblrInner[longtblr]{rowsep=0pt}              % change the row distance.
 %%%%%%%%%%%%%%%%%%%%
-
-\begin{document}
-\begin{table*}[!tb]
-\caption{Comparison with State-of-the-Art Methods on THUMOS14.}
-\label{T14_compare}
-\centering
-\begin{longtblr}[
+\begin{talltblr}[
 caption = {Some introduction. $\dag$: the model with focal loss},
 note{$\dag$} = {the model with focal loss},
 ]{
@@ -172,7 +171,7 @@ vlines,
 }
 G-TAD$^\dag$ [1] & Foo \\
 BMN\TblrNote{$\dag$} [2] & Bar\\
-\end{longtblr}
+\end{talltblr}
 \end{table*}
 
 \begin{table*}[!tb]
@@ -190,3 +189,4 @@ BMN\TblrNote{$\dag$} [2] & Bar\\
 ![image](https://user-images.githubusercontent.com/42603768/224282094-ad7df008-5558-4254-8927-015845369e1b.png)
 ![image](https://user-images.githubusercontent.com/42603768/224282161-a9d30a32-a2fd-4d75-b926-f2f1aa8ae678.png)
 
+Notes: Not applied to `longtblr` but only `talltblr`. If applying on the `longtblr`, the white space after detele the header still remain.
