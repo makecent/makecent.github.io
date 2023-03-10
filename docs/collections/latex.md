@@ -97,3 +97,6 @@ After:
 \multicolumn{1}{|r|}{Item3}
 ```
 ![Screenshot from 2022-05-22 20-33-43](https://user-images.githubusercontent.com/42603768/169695365-d016b983-283b-429b-beec-66437e45922f.png)
+
+## Superscript in table
+Either using `Test$^\dag$` and expalining the superscript in the Table title, or using the `\TblrNote{$\dag$}` in the `tabularray` package and describing the superscripts in notes `note{$\dag$} = {text}` under the table.
