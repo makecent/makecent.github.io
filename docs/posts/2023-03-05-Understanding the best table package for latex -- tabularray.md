@@ -157,9 +157,6 @@ Another tricky solution is to keep the `talltblr` inside the `table` but delete 
 \centering
 %%%%%% ADDED %%%%%%%
 \SetTblrTemplate{head}{empty}       %remove the header
-%\SetTblrTemplate{head,foot}{empty} % remove both the header and the footer
-%\SetTblrOuter[longtblr]{headsep=0pt,footsep=0pt}  % change distance between the header and table
-%\SetTblrInner[longtblr]{rowsep=0pt}              % change the row distance.
 %%%%%%%%%%%%%%%%%%%%
 \begin{talltblr}[
 caption = {Some introduction. $\dag$: the model with focal loss},
