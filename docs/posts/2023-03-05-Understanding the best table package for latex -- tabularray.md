@@ -138,6 +138,11 @@ Similar to the `cell`, you may use the **OLD** interfaces `\SetHline`,`\hline`, 
 
 The usage of `SetVline`, `\vline`, and `\rline` is similar to the above ones.
 
+## List of **keys** for `hline` and `vline`:
+![image](https://user-images.githubusercontent.com/42603768/224307452-8bdaf378-3729-4c6d-994c-5e6a345d53fd.png)
+
+
+
 # Miscellaneous
 ## Using `talltblr` in the `table` environment
 `talltblr` is designed to contain `caption`, therefore directly putting `talltblr` inside the `table` environment will cause two captions:
