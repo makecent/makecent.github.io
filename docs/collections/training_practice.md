@@ -178,6 +178,15 @@ Conclusion:
 - Speed and memory evaluation are conducted on a **single 2080ti GPU**.
 - **Memory** refers to the ocupied memory recorded by nvidia-smi during the **training**.
 
+## Mitigate negative transfer in sibling head
+I encountered a problem that the classification head and the localization head in my model cannot come to their optima (val) at the same training phase. Specifically, the classification metric started to decline (overfitting) while the localization metric is still rising (underfitting).
+
+I tried the below two methods for motigating this problem [ref](https://ieeexplore.ieee.org/abstract/document/9042296).
+- Classication-aware regression loss [(CARL)](https://openaccess.thecvf.com/content_CVPR_2020/papers/Cao_Prime_Sample_Attention_in_Object_Detection_CVPR_2020_paper.pdf)
+- [Guided loss](https://arxiv.org/pdf/1909.04868.pdf)
+
+
+
 # Video Data augmentation
 
 ## Training augmentation
