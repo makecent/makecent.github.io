@@ -118,8 +118,8 @@ You may use the **OLD** interface `\SetCell` for building cells:
 
 ![image](https://user-images.githubusercontent.com/42603768/223303204-80b1d82a-9837-400b-b243-1ea1a9cbb409.png)
 
-# Mistanuously
-## Using `longtblr` in the `table` environment
+# Miscellaneous
+## Using `talltblr` in the `table` environment
 `talltblr` is designed to contain `caption`, therefore directly putting `talltblr` inside the `table` environment will cause two captions:
 ```latex
 \renewcommand\TblrOverlap[1]{#1}
@@ -189,4 +189,4 @@ BMN\TblrNote{$\dag$} [2] & Bar\\
 ![image](https://user-images.githubusercontent.com/42603768/224282094-ad7df008-5558-4254-8927-015845369e1b.png)
 ![image](https://user-images.githubusercontent.com/42603768/224282161-a9d30a32-a2fd-4d75-b926-f2f1aa8ae678.png)
 
-Notes: Not applied to `longtblr` but only `talltblr`. If applying on the `longtblr`, the white space after detele the header still remain.
+Notes: Not applied to `longtblr` but only `talltblr`. If applying on the `longtblr`, the white space after detelting the header still remain.
