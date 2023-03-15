@@ -55,7 +55,7 @@ Create a `development` configuration (`Tools --> Development --> Configuration`)
 
 ![image](https://user-images.githubusercontent.com/42603768/225193508-60870ea0-7440-4ea9-9c5c-bdd97d23162b.png)
 
-You may need set a `SSH` configuration first:
+You may need set a new `SSH` configuration:
 
 ![image](https://user-images.githubusercontent.com/42603768/225187544-3b9c3f8c-a9a6-448c-b23a-04acffc175b8.png)
 
@@ -63,11 +63,11 @@ Configure `Mapping` to map the project path:
 
 ![image](https://user-images.githubusercontent.com/42603768/225193987-4bc39838-c90d-4262-8d9f-f7ddc3fead5e.png)
 
-Configure `Excluded Path` to specify paths on local/server that will NOT be synchronized, e.g., directories of datasets and saved results on the server.
+Configure `Excluded Path` to specify paths on client/server that will NOT be synchronized, e.g., directories of datasets and saved results on the server.
 
 ![image](https://user-images.githubusercontent.com/42603768/225194054-e6768f54-9b87-49af-bdda-3c90780e5f9d.png)
 
-After the configuration, you can now synchronize the codes by uploading/downloading files between the local machine and the server. (You may configure an auto-sync as needed).
+After the configuration, you can now synchronize the codes by uploading/downloading files between the client and the server. (You may configure an auto-sync as needed).
 
 ![image](https://user-images.githubusercontent.com/42603768/225197863-7e1e4705-e885-4baf-b48e-2e387aa6e294.png)
 
@@ -82,12 +82,14 @@ After the configuration, you can now synchronize the codes by uploading/download
 ![image](https://user-images.githubusercontent.com/42603768/225199760-0f9b681e-3461-4cab-9340-cb2cda50d84e.png)
 
 - You may use the command `which python` (after `conda activate target-env`) to get the python interpreter path of an exsiting `conda` environment.
-- You may custom the `sync folder` of local and server. For example, by default, PyCharm will **upload** all files in current project on local to the server with path `/tmp/pycharm_project_xxx`.
+- You may custom the `sync folder` of client and server. For example, by default, PyCharm will **upload** all files in current project on client to the server with path `/tmp/pycharm_project_xxx`.
 
 
 ## A new solution (Remote development)
 
-This solution is close to the TeamViewer. The major advantage of it is that **there is no files hosted in local machine** and meanwhile you can **edit and run** Python in a PyCharm windows with **remote backend**. However, it's currently (2023-03) a *beta* function and may suffer from the network latency.
+The major advantage of it is that **there is no files hosted in local machine** and meanwhile you can **edit and run** Python in a PyCharm windows with **remote backend**. However, it's currently (2023-03) a *beta* function and may suffer from the network latency.
+
+This solution is close to the TeamViewer, but it does NOT transfer **Graphic Information** between the client and the server. Instead, it transfers the **operations of PyCharm**. Therefore, it will download an extra Pycharm software in local machine (unseen) that has the same version with the server. For more details please refer to the [doc](https://www.jetbrains.com/help/pycharm/remote-development-overview.html#workflow)
 
 ![image](https://user-images.githubusercontent.com/42603768/225208059-a97bca93-dd06-4fe3-adbc-73a5fb94f4e3.png)
 
@@ -95,7 +97,15 @@ This solution is close to the TeamViewer. The major advantage of it is that **th
 
 ![image](https://user-images.githubusercontent.com/42603768/225208173-5a5571af-b1ea-4381-ad0f-22e993e48ed0.png)
 
+You may need set a new `SSH` configuration:
 
+![image](https://user-images.githubusercontent.com/42603768/225187544-3b9c3f8c-a9a6-448c-b23a-04acffc175b8.png)
 
+![image](https://user-images.githubusercontent.com/42603768/225210100-c7eebd96-c07c-4882-92da-55ff63d4cb58.png)
 
+*Do not click any bottom multiple times but instead click once and wait ...*
+
+Finally, you can edit and run codes in the pop-up PyCharm window, which can be regarded as the Pycharm opened on the server.
+
+![image](https://user-images.githubusercontent.com/42603768/225212399-c70fa157-2d8c-40e5-856f-313f44779e88.png)
 
