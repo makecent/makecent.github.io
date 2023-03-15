@@ -37,7 +37,18 @@ If still not help, try adding the regex-file-name (e.g., *.jpg) or folder-name (
 
 # Remote development
 
-## The older solution:
+## The older solutions:
+
+- **File synchronization**: Useful when you are in favor of 
+    1. Editing codes in PyCharm.
+    2. Manualy/automatically synchronize the changes to the remote project directory.
+    3. Running the codes in a remote terminal (SSH connection).
+- **Remote interpreter**: Useful when you are in favor of
+    1. Editing codes in PyCharm.
+    2. Automatically upload the local project directory to the server at customized-location/tmp (Unseen).
+    3. Running the codes in PyCharm with remote backend.
+
+The two solutions are quite similar. I prefer the first one because it's more safe and the codes on the server are better organized.
 
 ### File synchronization
 Create a `development` configuration (`Tools --> Development --> Configuration`).
@@ -66,7 +77,25 @@ After the configuration, you can now synchronize the codes by uploading/download
 
 ![image](https://user-images.githubusercontent.com/42603768/225199053-3a86584e-4874-4cba-b60e-7a9aff006525.png)
 
+![image](https://user-images.githubusercontent.com/42603768/225200580-02644a8c-cb4f-433a-b9df-e94b228ee06b.png)
+
 ![image](https://user-images.githubusercontent.com/42603768/225199760-0f9b681e-3461-4cab-9340-cb2cda50d84e.png)
 
+- You may use the command `which python` (after `conda activate target-env`) to get the python interpreter path of an exsiting `conda` environment.
+- You may custom the `sync folder` of local and server. For example, by default, PyCharm will **upload** all files in current project on local to the server with path `/tmp/pycharm_project_xxx`.
 
-You may use the command `which python` (after `conda activate target-env`) to get the python interpreter path of an exsiting `conda` environment.
+
+## A new solution (Remote development)
+
+This solution is close to the TeamViewer. The major advantage of it is that **there is no files hosted in local machine** and meanwhile you can **edit and run** Python in a PyCharm windows with **remote backend**. However, it's currently (2023-03) a *beta* function and may suffer from the network latency.
+
+![image](https://user-images.githubusercontent.com/42603768/225208059-a97bca93-dd06-4fe3-adbc-73a5fb94f4e3.png)
+
+![image](https://user-images.githubusercontent.com/42603768/225208099-083574ca-e4f8-4839-8ee4-ead1182109a2.png)
+
+![image](https://user-images.githubusercontent.com/42603768/225208173-5a5571af-b1ea-4381-ad0f-22e993e48ed0.png)
+
+
+
+
+
