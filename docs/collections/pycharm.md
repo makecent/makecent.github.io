@@ -35,9 +35,12 @@ Commonly it's because you put datasets under the content root of your project. P
 Right-clik the datasets folder and `Mark Directory as Excluded` will help. 
 If still not help, try adding the regex-file-name (e.g., *.jpg) or folder-name (e.g. data) into the `Settings -- Editor -- File Types-- Ignored Files and Folders -- + -- <subdirectory/filetype-that-you-want-to-ignore>`
 
-### Remote development
+# Remote development
 
-The older solution (`Tools --> Development --> Configuration`):
+## The older solution:
+
+### File synchronization
+Create a `development` configuration (`Tools --> Development --> Configuration`).
 
 ![image](https://user-images.githubusercontent.com/42603768/225193508-60870ea0-7440-4ea9-9c5c-bdd97d23162b.png)
 
@@ -52,3 +55,18 @@ Configure `Mapping` to map the project path:
 Configure `Excluded Path` to specify paths on local/server that will NOT be synchronized, e.g., directories of datasets and saved results on the server.
 
 ![image](https://user-images.githubusercontent.com/42603768/225194054-e6768f54-9b87-49af-bdda-3c90780e5f9d.png)
+
+After the configuration, you can now synchronize the codes by uploading/downloading files between the local machine and the server. (You may configure an auto-sync as needed).
+
+![image](https://user-images.githubusercontent.com/42603768/225197863-7e1e4705-e885-4baf-b48e-2e387aa6e294.png)
+
+### Remote interpreter:
+
+![image](https://user-images.githubusercontent.com/42603768/225198586-e442e546-b25d-4d5f-a1c2-d698e8c27968.png)
+
+![image](https://user-images.githubusercontent.com/42603768/225199053-3a86584e-4874-4cba-b60e-7a9aff006525.png)
+
+![image](https://user-images.githubusercontent.com/42603768/225199760-0f9b681e-3461-4cab-9340-cb2cda50d84e.png)
+
+
+You may use the command `which python` (after `conda activate target-env`) to get the python interpreter path of an exsiting `conda` environment.
