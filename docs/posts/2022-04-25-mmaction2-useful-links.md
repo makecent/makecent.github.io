@@ -125,7 +125,7 @@ Example:
 ```python
 img_norm_cfg = dict(mean=[127.5, 127.5, 127.5], std=[127.5, 127.5, 127.5], to_bgr=False) # normalize to [-1, 1] without knowing statistics of dataset
 ```
-- `to_bgr` means whether to change the channel order from RGB to BGR. Normally False. The mmaction2 decoding already [changes](https://github.com/open-mmlab/mmaction2/blob/4c48271818aa38b75f80fbf7ca912c506e25c2fa/mmaction/datasets/pipelines/loading.py#L1303) the BGR to RGB by default.
+- `to_bgr` means whether to change the channel order from RGB to BGR. Normally False. Note that the mmaction2 [decodes](https://github.com/open-mmlab/mmaction2/blob/4c48271818aa38b75f80fbf7ca912c506e25c2fa/mmaction/datasets/pipelines/loading.py#L1303) videos with `RGB` format by default.
 - Kinetics400 norm config: `img_norm_cfg = dict(mean=[123.675, 116.28, 103.53], std=[58.395, 57.12, 57.375], to_bgr=False)` ([used by the mmaction2](https://github.com/open-mmlab/mmaction2/blob/4c48271818aa38b75f80fbf7ca912c506e25c2fa/configs/recognition/slowonly/slowonly_imagenet_pretrained_r50_8x8x1_150e_kinetics400_rgb.py#L12))
 
 ## [optimizer](https://github.com/open-mmlab/mmcv/blob/c47c9196d067a0900b7b8987a8e82768edab2fff/mmcv/runner/optimizer/builder.py#L35)
