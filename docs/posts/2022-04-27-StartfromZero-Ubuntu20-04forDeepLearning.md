@@ -107,6 +107,8 @@ After the confirmation of the CUDA version to install, go to the [CUDA archive](
 # Install GPU-driver
 Nowadays, you don NOT have to install cuda-toolkit or cuDNN because they will come with the installation of pytorch/tensorflow using conda. Therefore, you only need to install a NVIDIA driver. Check the compatibility of [GPU-Driver](https://www.nvidia.com/Download/index.aspx) (optional).
 ## Remove the installed driver (if needed)
+{: .warning }
+> The below commands are dangerous
 ```shell
 ### remove all cuda/nvidia related softwares, be very careful.
 # sudo rm /etc/apt/sources.list.d/cuda*
