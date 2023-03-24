@@ -100,7 +100,9 @@ Compatibility check:
 After the confirmation of the CUDA version to install, go to the [CUDA archive](https://developer.nvidia.com/cuda-toolkit-archive) website and follow the instruction to install the CUDA. Below is an example:
 ![image](https://user-images.githubusercontent.com/42603768/222905639-5acf2f32-8268-4783-a0b7-7dbfa2bfadef.png)
 
-Note the last step in the *network* installation, i.e., the command `sudo apt-get -y install cuda`, it **auto** choose a CUDA version to install. To specify the version of CUDA, run `sudo apt-get install cuda-12.1` instead (for example). And you can find the available versions by running `sudo apt list cuda* -a`
+- I suggest using the *network* installation because it always follows the latest guidance from the NVIDIA.
+- Instead of running `sudo apt-get -y install cuda`, it's suggested to first running `sudo apt-cache search cuda` to get list of available version of CUDA, and then run `sudo apt-get install cuda-12.1` (for example) to install the specific version.
+- It happens that the command `sudo apt-cache search cuda` does NOT show the wantted version if you are looking for a older version of CUDA, e.g., CUDA-10.2. In this case, you are suggested to install CUDA in via `runfile (local)` in the above figure, to download a CUDA-10.2 installer on you computer and then excute it.
 
 # Install GPU-driver
 Nowadays, you don NOT have to install cuda-toolkit or cuDNN because they will come with the installation of pytorch/tensorflow using conda. Therefore, you only need to install a NVIDIA driver. Check the compatibility of [GPU-Driver](https://www.nvidia.com/Download/index.aspx) (optional).
