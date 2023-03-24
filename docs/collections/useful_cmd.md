@@ -229,3 +229,39 @@ localusername@localmachine: ssh username@server -R 10000:localmachine:22
 username@server: cd path2remote_project/
 username@server: sshfs -p 10000 -o idmap=user,nonempty localusername@127.0.0.1:path2local_project/results results
 ```
+
+# TeamViewer to a headless server
+```shell
+sudo apt-get install xserver-xorg-video-dummy
+sudo nano /usr/share/X11/xorg.conf.d/xorg.conf
+```
+Paste the below content into the `xorg.conf`
+```
+Section "Device"
+    Identifier "DummyDevice"
+    Driver "dummy"
+    VideoRam 256000
+EndSection
+
+Section "Screen"
+    Identifier "DummyScreen"
+    Device "DummyDevice"
+    Monitor "DummyMonitor"
+    DefaultDepth 24
+    SubSection "Display"
+        Depth 24
+        Modes "1920x1080_60.0"
+    EndSubSection
+EndSection
+
+Section "Monitor"
+    Identifier "DummyMonitor"
+    HorizSync 30-70
+    VertRefresh 50-75
+    ModeLine "1920x1080" 148.50 1920 2448 2492 2640 1080 1084 1089 1125 +Hsync +Vsync
+EndSection
+```
+Someone mentioned that instead of `/usr/share/X11/xorg.conf.d/xorg.conf`, create `.conf` at `/etc/X11/xorg.conf` worked for them. You may have a try.
+
+# Using SSH tunneling for SOCKS5 proxy
+Refer to this answer: [Can I use the SSH tunnel under a VPN as a VPN server?](https://serverfault.com/questions/1126894/can-i-use-the-ssh-tunnel-under-a-vpn-as-a-vpn-server?noredirect=1#comment1469814_1126894) 
