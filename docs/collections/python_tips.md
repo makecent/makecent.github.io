@@ -7,7 +7,7 @@ nav_order: 3
 
 # Useful Package
 ## namedtuple
-```python{% raw %}
+```python
 from collections import namedtuple
 BBox = namedtuple('bbox', ['start', 'end', 'label'])
 box = BBox(2.0, 56.1, 'Cat')
@@ -33,7 +33,7 @@ class BBox(NamedTuple):
     start: int
     end: int
     label: str
-{% endraw %}```
+```
 
 ## argparse
 When running `.py` file in command line, `argparse` can be used to warp arguments. For example:
