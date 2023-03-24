@@ -264,4 +264,4 @@ EndSection
 Someone mentioned that instead of `/usr/share/X11/xorg.conf.d/xorg.conf`, create `.conf` at `/etc/X11/xorg.conf` worked for them. You may have a try.
 
 # Using SSH tunneling for SOCKS5 proxy
-Refer to this answer: [Can I use the SSH tunnel under a VPN as a VPN server?](https://serverfault.com/questions/1126894/can-i-use-the-ssh-tunnel-under-a-vpn-as-a-vpn-server?noredirect=1#comment1469814_1126894) 
+Refer to this answer: [Can I use the SSH tunnel under a VPN as a VPN server?]([https://serverfault.com/questions/1126894/can-i-use-the-ssh-tunnel-under-a-vpn-as-a-vpn-server?noredirect=1#comment1469814_1126894](https://serverfault.com/a/1126935/1011988)) 
