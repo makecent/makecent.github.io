@@ -66,7 +66,8 @@ print(features[0])
 handle.remove()
 ```
 
-# Params and FLOPs
+
+# Count Params and FLOPs
 > Flop is not a well-defined concept.
 
 Results comparison:
@@ -287,3 +288,16 @@ Avoid using `Tensor.squeeze()` not specifying the dimension index. This is becau
 
 ## Be careful about the `tensor[N] - tensor[N, 1]`
 It will results a tensor of shape [N, N] (not [N]), which may cause memory problem when `N` is large. This happens to me when calculating the L1 loss and the regression head of model output tensors of shape [N, 1] but the label tensors are of shape [N].
+
+## Fixing the paramter gradient using the [`register_hook`](https://pytorch.org/docs/stable/generated/torch.Tensor.register_hook.html) function
+You can use the the `Tensor.register_hook()` to custom operation on gradient. Taking one of my usage as an example, I used the below codes to **fix** the `gamma` and `beta` in BatchNormalization layer by setting their gradients to constant zero.
+```python
+... get the BN layer instances as variable `m`
+if isinstance(m, nn.BatchNorm3d):
+    m.eval()
+    if freeze_bn_affine:
+        m.weight.register_hook(lambda grad: torch.zeros_like(grad))  # fix the gradient of gamma to zero, thus lock its value
+        m.bias.register_hook(lambda grad: torch.zeros_like(grad))   # fix the gradient of beta to zero, thus lock its value
+```
+- Note that the `weight` and `bias` are `Parameter`, which is a subclasss of `Tensor`.
+- This motivation of the code is to fix the BN layer throughly and meanwhile avoid the setting of `find_unused_parameter=True` (which is needed when `weight.requires_grad_(False)` is used to fix the parameters)
