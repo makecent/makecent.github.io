@@ -120,22 +120,6 @@ Copied from https://giou.stanford.edu/:
 
 
 # Miscellaneous
-## Video backbone benchmark
-```
-input_size=4x3x16x224x224
-is_training=True
-include cls_head
-```
-
-|       | Source | Params (M) | FLOPs (G) |
-|:------|:-----|:-----|:-----|
-| X3D-M | torchhub | 2.01  | 5.07 |
-| X3D-M | mmaction2 | 2.09 | 5.15|
-| I3D  | mmaction2 | 16.74 | 27.22 |
-| I3D  | [github](https://github.com/hassony2/kinetics_i3d_pytorch) | 12.29  | 27.90 |
-| Slowonly | torchhub | 31.63 | 84.36 |
-| Slowonly | mmaction2 | 31.63 |  84.36 |
-
 
 ## Position of Normalization Layers
 > [1] [On Layer Normalization in the Transformer Architecture](https://arxiv.org/pdf/2002.04745.pdf)
@@ -165,10 +149,11 @@ Conclusion:
 
 |        | Source | ~~top1~~ | Params (M) | GFLOPs | Memory (M) | Training speed | Testing speed |
 |-------|-----|-----|-----|-----|-----|-----|-----|
-| I3D  | [original](https://github.com/hassony2/kinetics_i3d_pytorch) | ~~71.1%~~ | 12.29 | 27.90 |  1721 | 18.7 iter/s | 80.0 iter/s |
+| I3D  | [github](https://github.com/hassony2/kinetics_i3d_pytorch) | ~~71.1%~~ | 27.90 | 12.29 |  1721 | 18.7 iter/s | 80.0 iter/s |
 | I3D  | mmaction2 | ~~73.3%~~ | 27.22 | 16.74 | 1751 | 16.5 iter/s | 87.5 iter/s |
-| SlowOnly | mmaction2 | ~~75.6%~~ | 31.63 | 84.37 | 2987  | 4.9 iter/s | 34.5 iter/s |
-| X3D-M | pytorchvideo | ~~76.2%~~ | - | 5.15 |  - | - | - |
+| SlowOnly | torchhub | ~~75.6%~~ | 31.63 | 84.36 | -  | - | - |
+| SlowOnly | mmaction2 | ~~75.6%~~ | 31.63 | 84.36 | 2987  | 4.9 iter/s | 34.5 iter/s |
+| X3D-M | torchhub | ~~76.2%~~ | 2.01 | 5.07 |  - | - | - |
 | X3D-M | mmaction2 | ~~75.6%~~ | 2.09 | 5.15 |  2257  | 9.8 iter/s | 80.0 iter/s |
 | MViT-B | pytorchvideo | ~~80.2%~~ | 36.30 | 70.8 | 3151 | 10.2 iter/s | 35.3 iter/s |
 
