@@ -120,20 +120,21 @@ Copied from https://giou.stanford.edu/:
 
 
 # Miscellaneous
-## backbone memory record
+## Video backbone benchmark
 ```
-input_size=4x16x4x224x224
+input_size=4x3x16x224x224
 is_training=True
 include cls_head
 ```
 
-|       | Source | Params (M) | Memory (M) |
+|       | Source | Params (M) | FLOPs (G) |
 |:------|:-----|:-----|:-----|
-| X3D-M | pytorchvideo | 3.79  | 5660 |
-| X3D-M | mmaction2 | 3.79 | 6382 |
-| I3D  | mmaction2 | 28.04 | 3601 |
-| I3D  | [original](https://github.com/hassony2/kinetics_i3d_pytorch) | 12.70 |  3815 | 
-| Slowonly | mmaction2 | -  | 3601 |
+| X3D-M | torchhub | 2.01  | 5.07 |
+| X3D-M | mmaction2 | 2.09 | 5.15|
+| ResNet3D  | mmaction2 | 32.19 | 60.27 |
+| I3D  | [github](https://github.com/hassony2/kinetics_i3d_pytorch) | 12.29  | 27.90 |
+| Slowonly | pytorchvideo | 31.63 | 84.36 |
+| Slowonly | mmaction2 | 31.63 |  84.36 |
 
 
 ## Position of Normalization Layers
