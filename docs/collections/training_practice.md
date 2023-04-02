@@ -131,7 +131,7 @@ include cls_head
 |:------|:-----|:-----|:-----|
 | X3D-M | torchhub | 2.01  | 5.07 |
 | X3D-M | mmaction2 | 2.09 | 5.15|
-| ResNet3D  | mmaction2 | 32.19 | 60.27 |
+| I3D  | mmaction2 | 16.74 | 27.22 |
 | I3D  | [github](https://github.com/hassony2/kinetics_i3d_pytorch) | 12.29  | 27.90 |
 | Slowonly | pytorchvideo | 31.63 | 84.36 |
 | Slowonly | mmaction2 | 31.63 |  84.36 |
