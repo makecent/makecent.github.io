@@ -155,7 +155,7 @@ Conclusion:
 | SlowOnly | mmaction2 | ~~75.6%~~ | 31.63 | 84.36 | 2987  | 4.9 iter/s | 34.5 iter/s |
 | X3D-M | torchhub | ~~76.2%~~ | 2.01 | 5.07 |  - | - | - |
 | X3D-M | mmaction2 | ~~75.6%~~ | 2.09 | 5.15 |  2257  | 9.8 iter/s | 80.0 iter/s |
-| MViT-B | pytorchvideo | ~~80.2%~~ | 36.30 | 70.8 | 3151 | 10.2 iter/s | 35.3 iter/s |
+| MViT-B | torchhub | ~~80.2%~~ | 36.30 | 70.8 | 3151 | 10.2 iter/s | 35.3 iter/s |
 
 - **top1** is reported on the kinetics400 validation set but are directly **coied** from the paper/repo. These work use different input resolution and training/testing data augmentation, thereby the top1 here is **just for reference**. It makes NO sense to consider together the top1 and the other variables. While generally speaking, the lower models are newer and *should* have higher best accuracy.
 - Params and GFLOPs only calculate the backbone, while speed and memory involves the head.
