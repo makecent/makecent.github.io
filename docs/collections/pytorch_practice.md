@@ -51,7 +51,7 @@ A.flatten(start_dim, end_dim) # reshape the specific dimensions to 1.
 A.move(source, destination)
 ```
 # Useful `Module` function
-## [`Module.register_forward_hook(hook)`](https://pytorch.org/docs/stable/generated/torch.nn.Module.html?highlight=register_forward_hook#torch.nn.Module.register_forward_hook)
+## [`register_forward_hook(hook)`](https://pytorch.org/docs/stable/generated/torch.nn.Module.html?highlight=register_forward_hook#torch.nn.Module.register_forward_hook)
 Retrieve the weigths in a model is easy, but what about retrieve an output, e.g. activation after layer1.ReLU, in model with a given input? We can use the `Module.register_module_forward_hook(hook)` to do this. For example
 ```python
 features = []
@@ -65,7 +65,8 @@ y = net(x)
 print(features[0])
 handle.remove()
 ```
-
+## [`register_buffer(name, tensor)`](https://pytorch.org/docs/stable/generated/torch.nn.Module.html#torch.nn.Module.register_buffer)
+Register the tensor on the module with specific name, it can be accessed by Module.name in latter use. The registered Tensor will always follow the Module when you moving the module to among devices. Note that an unregisterd tensor will stay on the device where it was created.
 
 # Count Params and FLOPs
 > Flop is not a well-defined concept.
