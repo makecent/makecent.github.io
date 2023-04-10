@@ -34,3 +34,5 @@ Ablation study show that SGP improve the perforamance no matter compared with SA
 ![image](https://user-images.githubusercontent.com/42603768/230891481-1af3e59a-4fdc-4124-b427-6f6dc2f19a6d.png)
 ![image](https://user-images.githubusercontent.com/42603768/230892364-30a176c0-c061-4111-82b9-29f43704c0ce.png)
 
+# Conclusion
+The **SGP (Scalable-Granularity Perception)** layers could be a alternative for the Transformer Layer used in ActionFormer, while the Trident head not only brings more computation but also new hyper-parameter to tune (size of bin), the improvement is minor thereby not recommended.
