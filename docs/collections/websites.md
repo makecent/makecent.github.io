@@ -16,3 +16,8 @@ Download a github repository or its **subfolder**.
 Explain flags of common used shell command.
 
 ![Screenshot from 2022-07-24 13-25-17](https://user-images.githubusercontent.com/42603768/180633533-1495705c-c459-46f6-9b93-fe02c25e2c3d.png)
+
+# [LatexDiff](https://3142.nl/latex-diff/)
+Show the different of two versions of `tex` in PDF format. Better than any PDF-compare software due to the comparison on the raw level.
+
+![image](https://user-images.githubusercontent.com/42603768/231727141-a18783af-3a02-4e34-95b4-1eadf53809e8.png)
