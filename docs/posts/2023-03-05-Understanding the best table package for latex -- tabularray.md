@@ -141,6 +141,12 @@ The usage of `SetVline`, `\vline`, and `\rline` is similar to the above ones.
 ## List of **keys** for `hline` and `vline`:
 ![image](https://user-images.githubusercontent.com/42603768/224307452-8bdaf378-3729-4c6d-994c-5e6a345d53fd.png)
 
+# Others
+Other arguments that can be used in the inner specification in the `tblr`:
+
+![image](https://user-images.githubusercontent.com/42603768/232193740-8be68aef-cb9c-4931-bf88-0c9d0903e571.png)
+
+There is another argument call `width` seems was missed in the table. You can use it like `width=0.8\textwidth`.
 
 
 # Miscellaneous
