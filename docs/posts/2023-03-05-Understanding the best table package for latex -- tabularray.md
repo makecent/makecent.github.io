@@ -218,3 +218,16 @@ BMN\TblrNote{$\dag$} [2] & Bar\\
 ![image](https://user-images.githubusercontent.com/42603768/224282161-a9d30a32-a2fd-4d75-b926-f2f1aa8ae678.png)
 
 Notes: Not applied to `longtblr` but only `talltblr`. If applying on the `longtblr`, the white space after detelting the header still remain.
+
+## `rowsep` and `stretch`
+Default (`rowsep=2pt, stretch=1`):
+
+![image](https://user-images.githubusercontent.com/42603768/232196149-0ac98bbf-1e9f-47bc-9f2d-2012303384b6.png)
+
+`rowsep=1pt`:
+
+![image](https://user-images.githubusercontent.com/42603768/232196329-12a064dc-7c2a-469a-9b3a-4105d4fa5a95.png)
+
+`stretch=0.7`:
+
+![image](https://user-images.githubusercontent.com/42603768/232196273-fbd36400-9540-4836-9b13-4713ed9be689.png)
