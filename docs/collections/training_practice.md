@@ -127,8 +127,9 @@ Copied from https://giou.stanford.edu/:
 > [3] [Understanding the Difficulty of Training Transformers](https://arxiv.org/pdf/2004.08249.pdf)
 > [4] [RealFormer: Transformer Likes Residual Attention](https://arxiv.org/pdf/2012.11747.pdf)
 > [5] [Blog](https://kexue.fm/archives/9009)
+> [6] [CogView: Mastering Text-to-Image Generation via Transformers](https://arxiv.org/pdf/2105.13290.pdf)
 
-Let's start with the Transformer. There are two kinds of known choices for the location of normalization: Post-LN and Pre-LN. Pre-LN is proposed newly than the Post-LN.
+Let's start with the Transformer. There are two kinds of known choices for the location of normalization: **Post-LN** and **Pre-LN**. Pre-LN is proposed newly than the Post-LN.
 ![Screenshot from 2022-06-30 13-34-20](https://user-images.githubusercontent.com/42603768/176600503-613d0672-b584-44cd-bf91-ea3f5fe507b7.png)
 
 Conclusion:
@@ -137,13 +138,19 @@ Conclusion:
 - Post-LN is NOT as stable as Pre-LN, but it *optimal* performance is better[3][4][5].
 - Pre-LN is recommended for easy training, while Post-LN is recommended when high performance is the target, at the cost of manul engineering, e.g. the Admin initilization [3] and the Warm-up.
 
-What about CNN? Below is the block structure of the latest ConvNext:
+**What about CNN? Below is the block structure of the latest ConvNext:**
 
 ![Screenshot from 2022-06-30 13-52-23](https://user-images.githubusercontent.com/42603768/176603032-6aeaf99a-0ec0-4b4c-a2c3-64893daae5fa.png)
 
-Conclusion:
+**Conclusion:**
 - The widely used Batch-Normalization layers are now replaced by the Layer-Normalization layers. BTW, the amount is reduced.
 - The Pre-LN is recommended.
+
+**Extra:**
+There is a technique called *Sandwich-LN* in transformer [6] to alleviate the *value explosion* problem:
+
+![image](https://user-images.githubusercontent.com/42603768/235562244-4f8aa39c-a4a4-48c9-944b-c12f2ae2efa8.png)
+
 
 ## Video backbone benchmark
 
