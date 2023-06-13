@@ -261,6 +261,8 @@ Section "Monitor"
     ModeLine "1920x1080" 148.50 1920 2448 2492 2640 1080 1084 1089 1125 +Hsync +Vsync
 EndSection
 ```
+Reboot to bingo.
+
 Someone mentioned that instead of `/usr/share/X11/xorg.conf.d/xorg.conf`, create `.conf` at `/etc/X11/xorg.conf` worked for them. You may have a try.
 
 # Using SSH tunneling for SOCKS5 proxy
