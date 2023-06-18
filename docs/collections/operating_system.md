@@ -45,3 +45,13 @@ or directly edit the `.bashrc` file, writting the alias at its end:
 nano ~/.bashrc
 source ~/.bashrc
 ```
+
+## Miscellaneous
+
+### Cannot open Applications
+My problem is that I cannot open Pycharm and Ubuntu Software (snap) by clicking the icon. Below helps:
+```teminal
+#sudo apt install snapd  if `snap command not found`
+sudo snap remove snap-store
+sudo snap install snap-store
+```
