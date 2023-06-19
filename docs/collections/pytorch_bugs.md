@@ -99,3 +99,4 @@ which python
 pip list
 # empty
 ```
+*It may be related to the operation `conda config --set auto_activate_base false`. I reinstall conda and set auto_activate_base to false, then encounter this problem.
