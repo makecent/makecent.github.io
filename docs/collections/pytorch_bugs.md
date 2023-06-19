@@ -62,3 +62,14 @@ if 'OMP_NUM_THREADS' not in os.environ:
 if 'MKL_NUM_THREADS' not in os.environ:
     os.environ['MKL_NUM_THREADS'] = str(1)
 ```
+
+### G++ version probelm
+```terminal
+RuntimeError: The current installed version of g++ (8.4.0) is greater than the maximum required version by CUDA 10.2 (8.0.0). Please make sure to use an adequate version of g++ (>=5.0.0, <=8.0.0).
+```
+Soution:
+```terminal
+# sudo apt install g++-7
+CXX=/usr/bin/g++-7 yourcommand
+```
+Of course you have to install g++-7 first if there is no g++-7 in the path.
