@@ -73,3 +73,29 @@ Soution:
 CXX=/usr/bin/g++-7 yourcommand
 ```
 Of course you have to install g++-7 first if there is no g++-7 in the path.
+
+### Pytorch version is different with the installed
+My case is that the version showed by `torch.__version__` is different with the torch version shown in `conda list`. No matter how many times I reinstall the pytorch and even re-create the environment, the `torch.__version__` is always `2.0`, while every time I am sure that I just have run `conda install pytorch==1.5.1`.
+
+The problem is that the new environment will use the system Pyhhon if no python version was specified when it was created:
+```terminal
+conda create -n test
+conda activate test
+which python
+# /use/bin/python
+pip list
+# ...
+# torch 2.0.1
+# ...
+```
+So it will always use the torch installed in the system rather than the environment.
+
+**Solution: create env with specific Python version**:
+```terminal
+conda create -n test python=3.7
+conda activate test
+which python
+# /home/louis/miniconda3/envs/test/bin/python
+pip list
+# empty
+```
