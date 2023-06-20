@@ -21,3 +21,9 @@ Explain flags of common used shell command.
 Show the different of two versions of `tex` in PDF format. Better than any PDF-compare software due to the comparison on the raw level.
 
 ![image](https://user-images.githubusercontent.com/42603768/231727141-a18783af-3a02-4e34-95b4-1eadf53809e8.png)
+
+# Snipaste
+The best screenshot software. The **Paste as Image window** function is now an indispensable part of my workflow.
+
+![snipaste-work-example](https://github.com/makecent/makecent.github.io/assets/42603768/7e5f4589-66c1-4acf-9fc6-3745518309a7)
+
