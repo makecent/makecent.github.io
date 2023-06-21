@@ -95,7 +95,7 @@ print("Model Flops:{}".format(analysis_results['flops_str']))
 print("Model Parameters:{}".format(analysis_results['params_str']))
 ```
 
-## [fvcore](https://github.com/facebookresearch/fvcore)
+## [fvcore](https://github.com/facebookresearch/fvcore)[Recommended]
 > FAIR is responsible for maintaining this library.
 
 Installation:
