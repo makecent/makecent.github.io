@@ -401,9 +401,12 @@ For simplicity of debugging, cpu is used and batch_size=1.
 ![Screenshot from 2022-05-14 17-02-49](https://user-images.githubusercontent.com/42603768/168418988-b35a0798-ebe9-43fa-8c97-5f983cf2de8b.png)
 
 ## Fix random seed
+### For mmlab repository without mmengine (old versions)
 - in `--cfg-options`, adding `--seed=2 --deterministic --cfg-options data.videos_per_gpu=1`
 - in config file, adding `torch.backends.cudnn.benchmark = True`
 - in config file data setting, adding `train_dataloader=dict(shuffle=False)`
+### For mmengine based mmlab repository
+todo
 
 ## [load_checkpoint](https://github.com/open-mmlab/mmcv/blob/master/mmcv/runner/checkpoint.py)
 
