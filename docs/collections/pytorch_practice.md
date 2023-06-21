@@ -150,7 +150,7 @@ model = build_backbone(Config.fromfile("configs/mvit/mvit_16x4_kinetics400_video
 flops = FlopCountAnalysis(model, inputs)
 print(flop_count_table(flops))
 params = parameter_count(model)
-parameter_count_table(model)
+print(parameter_count_table(model))
 
 print(f"FLOPS:\t{flops.total()}")
 print(f"Params:\t{params['']}")
