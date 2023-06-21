@@ -137,7 +137,7 @@ Unsupported operator aten::adaptive_avg_pool3d encountered 1 time(s)
 Example 2 (mmlab-style):
 ```python
 import torch
-from fvcore.nn import FlopCountAnalysis, parameter_count, flop_count_table
+from fvcore.nn import FlopCountAnalysis, parameter_count, flop_count_table, parameter_count_table
 from mmcv import Config
 from mmaction.models.builder import build_model, build_backbone
 
@@ -150,6 +150,7 @@ model = build_backbone(Config.fromfile("configs/mvit/mvit_16x4_kinetics400_video
 flops = FlopCountAnalysis(model, inputs)
 print(flop_count_table(flops))
 params = parameter_count(model)
+parameter_count_table(model)
 
 print(f"FLOPS:\t{flops.total()}")
 print(f"Params:\t{params['']}")
