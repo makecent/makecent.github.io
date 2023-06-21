@@ -83,7 +83,7 @@ Results comparison:
 | params (M) | 25.56 | 25.56 | 25.56 | 25.6 |
 | FLOPs (G)  | 4.14 | 4.09 | 4.11 | 3.8 |
 
-## [MMEngine](https://mmengine.readthedocs.io/en/latest/advanced_tutorials/model_analysis.html)
+## [mmengine](https://mmengine.readthedocs.io/en/latest/advanced_tutorials/model_analysis.html)
 Example
 ```python
 from mmengine.analysis import get_model_complexity_info
