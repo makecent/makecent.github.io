@@ -158,7 +158,7 @@ print(f"Params:\t{params['']}")
 More details can be found in this [docs](https://github.com/facebookresearch/fvcore/blob/main/docs/flop_count.md), API of [FlopCountAnalysis](https://detectron2.readthedocs.io/en/latest/modules/fvcore.html#fvcore.nn.FlopCountAnalysis), API of [parameter_count](https://detectron2.readthedocs.io/en/latest/modules/fvcore.html#fvcore.nn.parameter_count)
 
 ## [torchinfo](https://github.com/TylerYep/torchinfo)
-> mimc the tensorflow summary 
+> mimc the tensorflow summary.
 
 Installation:
 ```shell
@@ -170,7 +170,7 @@ Example:
 import torch
 from torchinfo import summary
 model = torch.hub.load("facebookresearch/pytorchvideo", model="x3d_m", pretrained=False)
-summary(model, input_size=(1, 3, 16, 224, 224))
+summary(model, input_size=(1, 3, 16, 224, 224))     # You can ommit the input_size to only analyze the parameters.
 ```
 
 Output:
