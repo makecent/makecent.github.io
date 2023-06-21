@@ -83,6 +83,18 @@ Results comparison:
 | params (M) | 25.56 | 25.56 | 25.56 | 25.6 |
 | FLOPs (G)  | 4.14 | 4.09 | 4.11 | 3.8 |
 
+## [MMEngine](https://mmengine.readthedocs.io/en/latest/advanced_tutorials/model_analysis.html)
+Example
+```python
+from mmengine.analysis import get_model_complexity_info
+input_shape = (3, 224, 224)
+analysis_results = get_model_complexity_info(model, input_shape)
+print(analysis_results['out_table'])
+print(analysis_results['out_arch'])
+print("Model Flops:{}".format(analysis_results['flops_str']))
+print("Model Parameters:{}".format(analysis_results['params_str']))
+```
+
 ## [fvcore](https://github.com/facebookresearch/fvcore)
 > FAIR is responsible for maintaining this library.
 
