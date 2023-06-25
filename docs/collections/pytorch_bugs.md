@@ -100,3 +100,16 @@ pip list
 # empty
 ```
 *It may be related to the operation `conda config --set auto_activate_base false`. I reinstall conda and set auto_activate_base to false, then encounter this problem.
+
+### Conda error on windows system
+Each time I open a terminal there will pop up below error:
+```terminal
+WindowsPowerShell\profile.ps1 cannot be loaded because running scripts is disabled on this system. For more infor
+```
+The reulst is that I cannot switch and install packages in environments correctly.
+
+Solution:
+```terminal
+conda init
+Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
+```
