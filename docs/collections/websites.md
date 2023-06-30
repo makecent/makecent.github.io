@@ -27,3 +27,7 @@ The best screenshot software. The **Paste as Image window** function is now an i
 
 ![snipaste-work-example](https://github.com/makecent/makecent.github.io/assets/42603768/7e5f4589-66c1-4acf-9fc6-3745518309a7)
 
+# [Mathway](https://www.mathway.com/Algebra)
+It can solve the equation in chat style.
+
+![image](https://github.com/makecent/makecent.github.io/assets/42603768/161155d5-daca-4842-8fb6-384c08cbd061)
