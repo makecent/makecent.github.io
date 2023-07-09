@@ -5,20 +5,23 @@ parent: Collections
 nav_order: 2
 ---
 
+# Python Debugging
+## Error caused by the edited mutable Dictionary
+Avoid editing the dictionary because when programming projects deep learning, the dictionary is very likely to be REUSED in next epochs. Editing a deep copy of the original dictionary instead (`dict_ = copy.deepcopy(dict)`).
 
-### RuntimeError: CUDA error: device-side assert triggered
+# Pytorch Debugging
+## RuntimeError: CUDA error: device-side assert triggered
 Normally because index out of tensor dimension, frenquently happens to wrong label values.
 Add `CUDA_LAUNCH_BLOCKING=1 python ...` to get better tracing about the position where bug happens. Somtimes together with move the tensor to cpu can give you more details
 
-### NCCL communicator was aborted on rank 1
+## NCCL communicator was aborted on rank 1
 This error could be caused by many reasons but is NOT common. My case is quite special: it starts from that my model has some parameters that only contribute to the loss when input statisfying some condition, leading to the `error of not contributing to the loss`. So I tried forcing the loss to zero when parameters not contributing to the loss, and I also tried seeking help from setting `find_unused_parameters=True`. Both can make me get rid of the `error of not contriting to the loss`, but resulting the `error of broken NCCL conmunication`. Finally, I solved this error by making all parameters always contribute to the loss.
 
 In short, it seems that it's OK for model to have some parameters not participating the computation of the training loss (we can solve it by setting `find_unused_parameters=True`). But if these parameters are sometimes used while sometimes not in the iterations, it will cause the NCCL communication failed.
 
-### Error caused by the edited mutable Dictionary
-Avoid editing the dictionary because when programming projects deep learning, the dictionary is very likely to be REUSED in next epochs. Editing a deep copy of the original dictionary instead (`dict_ = copy.deepcopy(dict)`).
 
-### First GPU memory higher than the other
+
+## First GPU memory higher than the other
 When multiple GPU distributed training, I was once found that the rank0 GPU take too much memory than the others, which limits my batch size choice:
 
 ![Screenshot from 2022-07-19 23-18-58](https://user-images.githubusercontent.com/42603768/179787093-64e697a8-4baf-4378-9131-7cfe568ce0eb.png)
@@ -63,7 +66,7 @@ if 'MKL_NUM_THREADS' not in os.environ:
     os.environ['MKL_NUM_THREADS'] = str(1)
 ```
 
-### G++ version probelm
+## G++ version probelm
 ```terminal
 RuntimeError: The current installed version of g++ (8.4.0) is greater than the maximum required version by CUDA 10.2 (8.0.0). Please make sure to use an adequate version of g++ (>=5.0.0, <=8.0.0).
 ```
@@ -74,7 +77,7 @@ CXX=/usr/bin/g++-7 yourcommand
 ```
 Of course you have to install g++-7 first if there is no g++-7 in the path.
 
-### Pytorch version is different with the installed
+## Pytorch version is different with the installed
 My case is that the version showed by `torch.__version__` is different with the torch version shown in `conda list`. No matter how many times I reinstall the pytorch and even re-create the environment, the `torch.__version__` is always `2.0`, while every time I am sure that I just have run `conda install pytorch==1.5.1`.
 
 The problem is that the new environment will use the system Pyhhon if no python version was specified when it was created:
@@ -101,7 +104,7 @@ pip list
 ```
 *It may be related to the operation `conda config --set auto_activate_base false`. I reinstall conda and set auto_activate_base to false, then encounter this problem.
 
-### Conda error on windows system
+## Conda error on windows system
 Each time I open a terminal there will pop up below error:
 ```terminal
 WindowsPowerShell\profile.ps1 cannot be loaded because running scripts is disabled on this system. For more infor
@@ -112,4 +115,14 @@ Solution:
 ```terminal
 conda init
 Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
+```
+## Parameter not participating loss computation error
+This happens on distributed training:
+```terminal
+RuntimeError: Expected to have finished reduction in the prior iteration before starting a new one. This error indicates that your module has parameters that were not used in producing loss ...
+```
+Like the message says, there are parameters in your module that don't contribute to the loss and this is not allowed in distribute training.
+To find which specific parameters that don't contribute to the loss, set `TORCH_DISTRIBUTED_DEBUG=DETAIL`, e.g.:
+```terminal
+TORCH_DISTRIBUTED_DEBUG=DETAIL python train.py
 ```
