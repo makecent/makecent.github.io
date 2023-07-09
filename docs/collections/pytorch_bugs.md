@@ -4,7 +4,8 @@ title: Debug
 parent: Collections
 nav_order: 2
 ---
-
+1. TOC
+{:toc}
 # Python Debugging
 ## Error caused by the edited mutable Dictionary
 Avoid editing the dictionary because when programming projects deep learning, the dictionary is very likely to be REUSED in next epochs. Editing a deep copy of the original dictionary instead (`dict_ = copy.deepcopy(dict)`).
