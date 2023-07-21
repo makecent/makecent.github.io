@@ -126,7 +126,7 @@ You may use the **OLD** interface `\SetCell` for building cells:
 ![image](https://user-images.githubusercontent.com/42603768/224301712-00b7805a-e2d8-46cf-a941-9a835804ac83.png)
 
 ## `hline` and `vlines`
-`hline{<index_of_row>} = <index_of_line>}{<index_of_column>}{<kwargs_of_line>}`, share the same arguments with `hlines` but can specify which row by `<index_of_row>` to draw horizontal lines, vice versa for the `vline`.
+`hline{<index_of_row>} = {<index_of_column>}{<kwargs_of_line>}`, share the same arguments with `hlines` but can specify which row by `<index_of_row>` to draw horizontal lines, vice versa for the `vline`.
 ![image](https://user-images.githubusercontent.com/42603768/224303439-935d098a-f53f-41b2-af1d-8e02fef80fdc.png)
 
 Similar to the `cell`, you may use the **OLD** interfaces `\SetHline`,`\hline`, and `\cline` for building horizontal lines:
