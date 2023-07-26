@@ -31,3 +31,8 @@ The best screenshot software. The **Paste as Image window** function is now an i
 It can solve the equation in chat style.
 
 ![image](https://github.com/makecent/makecent.github.io/assets/42603768/161155d5-daca-4842-8fb6-384c08cbd061)
+
+# [Detexify](https://detexify.kirelabs.org/classify.html)
+It can recognize the symbol your draw and return the latex code for creating it.
+
+![image](https://github.com/makecent/makecent.github.io/assets/42603768/5f3bd0ef-2d48-4865-807d-0f915f693773)
