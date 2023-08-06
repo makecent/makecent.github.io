@@ -141,6 +141,13 @@ Other syntax, copied from the [stackoverflow](https://askubuntu.com/a/731237/940
 |& tee    ||   yes    |   yes    ||   yes    |   yes    || overwrite
 |& tee -a ||   yes    |   yes    ||   yes    |   yes    ||  append
 ```
+### Add the current directory to PythonPath
+```terminal
+# Windows
+$env:PYTHONPATH += ";$pwd"
+# Linux
+PYTHONPATH=$PWD:$PYTHONPATH
+```
 
 # tmux
 start new:
