@@ -127,3 +127,35 @@ To find which specific parameters that don't contribute to the loss, set `TORCH_
 ```terminal
 TORCH_DISTRIBUTED_DEBUG=DETAIL python train.py
 ```
+
+# Latex Debugging
+
+## `subcaption` conflict with `subfigure`
+```terminal
+Missing number, treated as zero.
+
+ 
+‪./ChapFive.tex, 216‬
+<to be read again> 
+                   }
+l.216     \begin{subtable}[t]{0.335\linewidth}
+                                              
+A number should have been here; I inserted `0'.
+(If you can't figure out why I needed to see a number,
+look up `weird error' in the index to The TeXbook.)
+Illegal unit of measure (pt inserted).
+
+ 
+‪./ChapFive.tex, 216‬
+<to be read again> 
+                   }
+l.216     \begin{subtable}[t]{0.335\linewidth}
+                                              
+Dimensions can be in units of em, ex, in, pt, pc,
+cm, mm, dd, cc, nd, nc, bp, or sp; but yours is a new one!
+I'll assume that you meant to say pt, for printer's points.
+To recover gracefully from this error, it's best to
+delete the erroneous units; e.g., type `2' to delete
+two letters. (See Chapter 27 of The TeXbook.)
+```
+To use `subtable` you need `\usepackage{subcaption}` which is conflict with `\usepackage{subfigure}`. Comment the `subfigure` to use `subtable` correctly.
