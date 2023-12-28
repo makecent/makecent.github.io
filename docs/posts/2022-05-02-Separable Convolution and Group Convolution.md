@@ -14,3 +14,8 @@ parent: Posts
 
 ![image](https://user-images.githubusercontent.com/42603768/166188714-ed4ee442-eac7-4f18-9a02-a3050fad6808.png)
 ![image](https://user-images.githubusercontent.com/42603768/166188723-55e732d3-76f0-4183-9f09-23762bfab2c0.png)
+
+# Animation and videos
+[(Youtube video) Groups, Depthwise, and Depthwise-Separable Convolution (Neural Networks)](https://www.youtube.com/watch?v=vVaRhZXovbw)
+
+[Animation page](https://animatedai.github.io/)
