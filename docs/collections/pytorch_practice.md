@@ -4,7 +4,8 @@ title: Pytorch Practices
 parent: Collections
 nav_order: 1
 ---
-
+1. TOC
+{:toc}
 # Useful `Tensor` functions
 ```python
 # batch-wise matrice multiplication
@@ -106,16 +107,18 @@ pip install -U fvcore
 Example 1:
 ```python
 import torch
-from fvcore.nn import FlopCountAnalysis, parameter_count
+from fvcore.nn import FlopCountAnalysis, parameter_count, flop_count_table, 
 
 imgs = torch.randn(1, 3, 16, 224, 224)
 model = torch.hub.load("facebookresearch/pytorchvideo", model="x3d_m", pretrained=False)
 
 flops = FlopCountAnalysis(model, imgs)
 print(flops.total())
+# print(flop_count_table(flops))
 
 params = parameter_count(model)
 print(params[''])
+parameter_count_table(model, max_depth=3)
 ```
 
 FLOPs Output:
