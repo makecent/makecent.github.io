@@ -421,4 +421,5 @@ todo
 ## Debug a run
 ```shell
 --cfg-options work_dir=work_dirs/test log_config.interval=1 evaluation.by_epoch=False evaluation.interval=5
+--cfg-options work_dir=work_dirs/test log_config.interval=1 train_dataloader.dataset.indices=100 val_dataloader.dataset.indices=100
 ```
