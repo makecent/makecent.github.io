@@ -420,9 +420,6 @@ todo
 
 ## Debug a run
 ```shell
-# Debugging whoe loop with small dataset size
 --cfg-options work_dir=work_dirs/test log_config.interval=1 train_dataloader.dataset.indices=100 val_dataloader.dataset.indices=100
-# Debugging the validation stage
---cfg-options work_dir=work_dirs/test log_config.interval=1 train_cfg.by_epoch=False train_cfg.val_interval=1
 
 ```
