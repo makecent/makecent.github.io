@@ -72,7 +72,7 @@ Register the tensor on the module with specific name, it can be accessed by Modu
 # Count Params and FLOPs
 > Flop is not a well-defined concept.
 
-Results comparison:
+Demo results:
 
 | X3D-M | fvcore | torchinfo | thop | official |
 |:-------|:------|:------|:------|:-----|
@@ -292,6 +292,56 @@ for i in track_iter_progress(list(range(10000))):
 
     with torch.no_grad():
         out = model(inputs, return_loss=False)
+```
+
+## Ultra Benchmarking
+```python
+from urllib.request import urlopen
+
+import timm
+import torchvision.models as models
+from PIL import Image
+from torch.profiler import profile, record_function, ProfilerActivity
+from fvcore.nn import FlopCountAnalysis, flop_count_table
+
+# Initialize the pseudo input
+img = Image.open(urlopen(
+    'https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/beignets-task-guide.png'
+))
+data_config = {'input_size': (3, 224, 224),
+               'interpolation': 'bicubic',
+               'mean': (0.485, 0.456, 0.406),
+               'std': (0.229, 0.224, 0.225),
+               'crop_pct': 0.875,
+               'crop_mode': 'center'}
+transforms = timm.data.create_transform(**data_config, is_training=False)
+pre_input = transforms(img).unsqueeze(0).cuda()
+
+# Initialize the models
+effnet_s = models.efficientnet_v2_s(weights=models.EfficientNet_V2_S_Weights.IMAGENET1K_V1).cuda()
+convnext = models.convnext_base(weights=models.ConvNeXt_Base_Weights.IMAGENET1K_V1).cuda()
+
+# Compare the flop count
+
+flops1 = FlopCountAnalysis(effnet_s, pre_input)
+flops2 = FlopCountAnalysis(convnext, pre_input)
+
+print(flop_count_table(flops1, max_depth=3))
+print(flop_count_table(flops2, max_depth=3))
+
+# Compare the inference time
+
+with profile(activities=[ProfilerActivity.CPU, ProfilerActivity.CUDA], profile_memory=True, record_shapes=True) as prof1:
+    with record_function("effnet_inference"):
+        effnet_s(pre_input)
+
+with profile(activities=[ProfilerActivity.CPU, ProfilerActivity.CUDA], profile_memory=True, record_shapes=True) as prof2:
+    with record_function("convnext_inference"):
+        convnext(pre_input)
+
+
+print(prof1.key_averages().table(sort_by="cuda_time_total", row_limit=10))
+print(prof2.key_averages().table(sort_by="cuda_time_total", row_limit=10))
 ```
 
 # Miscellaneous
