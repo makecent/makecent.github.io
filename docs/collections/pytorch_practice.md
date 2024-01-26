@@ -356,7 +356,7 @@ Avoid using `Tensor.squeeze()` not specifying the dimension index. This is becau
 It will results a tensor of shape [N, N] (not [N]), which may cause memory problem when `N` is large. This happens to me when calculating the L1 loss and the regression head of model output tensors of shape [N, 1] but the label tensors are of shape [N].
 
 ## Fixing the paramter gradient using the [`register_hook`](https://pytorch.org/docs/stable/generated/torch.Tensor.register_hook.html) function
-You can use the the `Tensor.register_hook()` to custom operation on gradient. Taking one of my usage as an example, I used the below codes to **fix** the `gamma` and `beta` in BatchNormalization layer by setting their gradients to constant zero.
+You can use the the `Tensor.register_hook()` to custom operation on gradient. Taking one of my usage as an example, I used the below codes to **freeze** the `gamma` and `beta` in BatchNormalization layers during **training** by setting their gradients to constant zero.
 ```python
 ... get the BN layer instances as variable `m`
 if isinstance(m, nn.BatchNorm3d):
@@ -366,4 +366,4 @@ if isinstance(m, nn.BatchNorm3d):
         m.bias.register_hook(lambda grad: torch.zeros_like(grad))   # fix the gradient of beta to zero, thus lock its value
 ```
 - Note that the `weight` and `bias` are `Parameter`, which is a subclasss of `Tensor`.
-- This motivation of the code is to fix the BN layer throughly and meanwhile avoid the setting of `find_unused_parameter=True` (which is needed when `weight.requires_grad_(False)` is used to fix the parameters)
+- The motivation of above code is that if we freeze the normalization layers during **training** via `m.eval()`, which does freeze the layers but will encounter error when perform **distributed training**, known as the error `there are paramters do NOT contribute to the loss computation`. Altought this problem can be solved via setting `find_unused_parameter=True`, it's tricky and increases the training time. The `register_hook` serves as a hack solution to retain the gradients of normalization layers but set them to zeros, thus will not be updated during the backpropagation.
