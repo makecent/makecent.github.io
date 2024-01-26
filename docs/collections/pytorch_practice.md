@@ -304,6 +304,21 @@ from PIL import Image
 from torch.profiler import profile, record_function, ProfilerActivity
 from fvcore.nn import FlopCountAnalysis, flop_count_table
 
+
+def count_and_print(model, inputs):
+    flops = FlopCountAnalysis(model, inputs)
+    print(flop_count_table(flops, max_depth=3))
+
+
+def benchmark_run_time(model, inputs, gpu=False):
+    activities = [ProfilerActivity.CPU, ProfilerActivity.CUDA] if gpu else [ProfilerActivity.CPU]
+    with profile(activities=activities, profile_memory=True,
+                 record_shapes=True) as prof:
+        with record_function(f"{model.__class__}_inference"):
+            model(inputs)
+    print(prof.key_averages().table(sort_by=f"{'cuda' if gpu else 'cpu'}_time_total", row_limit=10))
+
+
 # Initialize the pseudo input
 img = Image.open(urlopen(
     'https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/beignets-task-guide.png'
@@ -321,27 +336,13 @@ pre_input = transforms(img).unsqueeze(0).cuda()
 effnet_s = models.efficientnet_v2_s(weights=models.EfficientNet_V2_S_Weights.IMAGENET1K_V1).cuda()
 convnext = models.convnext_base(weights=models.ConvNeXt_Base_Weights.IMAGENET1K_V1).cuda()
 
-# Compare the flop count
-
-flops1 = FlopCountAnalysis(effnet_s, pre_input)
-flops2 = FlopCountAnalysis(convnext, pre_input)
-
-print(flop_count_table(flops1, max_depth=3))
-print(flop_count_table(flops2, max_depth=3))
-
 # Compare the inference time
+count_and_print(effnet_s, pre_input)
+count_and_print(convnext, pre_input)
 
-with profile(activities=[ProfilerActivity.CPU, ProfilerActivity.CUDA], profile_memory=True, record_shapes=True) as prof1:
-    with record_function("effnet_inference"):
-        effnet_s(pre_input)
-
-with profile(activities=[ProfilerActivity.CPU, ProfilerActivity.CUDA], profile_memory=True, record_shapes=True) as prof2:
-    with record_function("convnext_inference"):
-        convnext(pre_input)
-
-
-print(prof1.key_averages().table(sort_by="cuda_time_total", row_limit=10))
-print(prof2.key_averages().table(sort_by="cuda_time_total", row_limit=10))
+# Compare the flop count
+benchmark_run_time(effnet_s, pre_input, gpu=True)
+benchmark_run_time(convnext, pre_input, gpu=True)
 ```
 
 # Miscellaneous
