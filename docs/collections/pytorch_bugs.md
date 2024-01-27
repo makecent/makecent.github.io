@@ -127,10 +127,12 @@ To find which specific parameters that don't contribute to the loss, set `TORCH_
 ```terminal
 TORCH_DISTRIBUTED_DEBUG=DETAIL python train.py
 ```
-There are serveral solutions:
+After finding `parameters` that do not contribute to the loss via `TORCH_DISTRIBUTED_DEBUG=DETAIL`.There are serveral solutions:
 
-- Delete the parameters, as printed after set `TORCH_DISTRIBUTED_DEBUG=DETAIL`, that do not contribute to the loss.
-- Pass`find_unused_parameters=True` into `torch.nn.parallel.DistributedDataParallel()` when wrap the model. But it could significantly increase the training time.
+- If you do not need them, just delete them
+- If you need use them, you may convert them to non-parameter tensors and register them to the module.
+- You may also set `require_grad=False` to these parameters **BEFORE** you wrap the model to distribtued.
+- Pass`find_unused_parameters=True` into `torch.nn.parallel.DistributedDataParallel()` when wrap the model. But it could significantly increase the training time. **Not recommended**
 - Keep gradients of these parameters to be zeros via register a customized hook, you may refer to codes from [here](https://chongkai.site/docs/collections/pytorch_practice/#fixing-the-paramter-gradient-using-the-register_hook-function).
 
 # Latex Debugging
