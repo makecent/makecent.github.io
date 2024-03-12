@@ -5,8 +5,42 @@ parent: Collections
 1. TOC
 {:toc}
 
+# Cusmotimized commands
+
+## \eg, \it, ...
+With below commands, you can quickly draw a nice *e*. *g*.,  with \eg and other commonly used abbreviations.
+```latex
+% copied from cvpr for \eg, \ie, etc.
+\usepackage{xspace}  % used below
+\makeatletter
+\DeclareRobustCommand\onedot{\futurelet\@let@token\@onedot}
+\def\@onedot{\ifx\@let@token.\else.\null\fi\xspace}
+\def\eg{\emph{e.g}\onedot} \def\Eg{\emph{E.g}\onedot}
+\def\ie{\emph{i.e}\onedot} \def\Ie{\emph{I.e}\onedot}
+\def\cf{\emph{cf}\onedot} \def\Cf{\emph{Cf}\onedot}
+\def\etc{\emph{etc}\onedot} \def\vs{\emph{vs}\onedot}
+\def\wrt{w.r.t\onedot} \def\dof{d.o.f\onedot}
+\def\iid{i.i.d\onedot} \def\wolog{w.l.o.g\onedot}
+\def\etal{\emph{et al}\onedot}
+\makeatother
+```
+## \Cref and \cref
+You can use `\cref{to_label}` to quickly refer a figure, table, or section, without handling the prefix like `Fig.~\ref{fig_label}`. `\Cref` is only used when the reference is at the starting of a sentence, in which case the full name will be displayed, i.e., Figure. 5 instead of Fig. 5.
+```latex
+% copied from cvpr for \cref
+\usepackage{etoolbox} % for \AtEndPreamble
+\AtEndPreamble{
+    \usepackage[capitalize]{cleveref}
+    \crefname{section}{Sec.}{Secs.}
+    \Crefname{section}{Section}{Sections}
+    \Crefname{table}{Table}{Tables}
+    \crefname{table}{Tab.}{Tabs.}
+}
+```
+
 # About Table
-Which package to use? Below is some package you must know:
+## Which package to draw table? 
+Below are some packages you must know:
 
 - `tabular`: The basic one [not recommended].
 - [`array`](https://ctan.org/pkg/array): A extension of `tabular`. Depended by most of the other table packages.
@@ -14,8 +48,8 @@ Which package to use? Below is some package you must know:
 - [`booktabs`](https://ctan.org/pkg/booktabs): Professional looking. Specifically designed for tables without vertical lines.
 - [`tabularray`](https://ctan.org/pkg/tabularray): A new LaTeX3 package using a new writting logic. Well maintained and powerful. **Recommended**. You may read my [post](https://chongkai.site/docs/posts/2023-03-05-Understanding%20the%20best%20table%20package%20for%20latex%20--%20tabularray/) about it.
 
-## Miscellaneous
-### `X` column in the `tabularx`
+I highly recommend using the [`tabularray`](https://ctan.org/pkg/tabularray) package due to its modular design, robust maintenance, and extensive support for customization. I have some [notes](https://chongkai.site/docs/posts/2023-03-05-Understanding%20the%20best%20table%20package%20for%20latex%20--%20tabularray/) for this package.
+## `X` column in the `tabularx`
 One important feature of the `tabularx` is the column type `X`, which automatically expands in order to make the table as wide as specified, e.g., `\textwidth`.
 Below are the examples:
 ```latex
@@ -54,7 +88,7 @@ As we can see that all `X` column share the same width. A better width arrangeme
 
 
 
-### Bold `\hline`
+## Bold `\hline`
 ```latex
 \usepackage{makecell}
 
@@ -63,7 +97,7 @@ As we can see that all `X` column share the same width. A better width arrangeme
 \Xhline{2\arrayrulewidth}
 ```
 
-### Multiple rows and columns
+## Multiple rows and columns
 ```latex
 %multi-column
 \multicolumn{number cols}{align}{text} % align: l,c,r
@@ -74,12 +108,12 @@ As we can see that all `X` column share the same width. A better width arrangeme
 % Using * as width, the text argument’s natural width is used.
 ```
 
-### Repeated columns
+## Repeated columns
 ```latex
 *{num_repeated}{alignment} % see the above example
 ```
 
-### Unbreackable text `\mbox`
+## Unbreackable text `\mbox`
 Before:
 
 ![image](https://user-images.githubusercontent.com/42603768/222937183-d20b3975-3ed4-494f-8c73-91edc0799b7c.png)
@@ -92,7 +126,7 @@ After:
 ![image](https://user-images.githubusercontent.com/42603768/222937146-d63458a2-35d9-4ae8-a5f6-745bf4f96acd.png)
 
 
-### Custom alignment on specific cell
+## Custom alignment on specific cell
 ```latex
 \multicolumn{1}{|r|}{Item3}
 ```
