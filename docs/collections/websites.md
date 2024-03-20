@@ -32,6 +32,12 @@ It can solve the equation in chat style.
 
 ![image](https://github.com/makecent/makecent.github.io/assets/42603768/161155d5-daca-4842-8fb6-384c08cbd061)
 
+# [CheckLatexIEEE](https://latexqc.ieee.org/)
+It is an official IEEE website to validate your LaTeX tar file.
+
+![image](https://github.com/makecent/makecent.github.io/assets/42603768/d982272d-18f2-4f87-a1b0-4ebb274a173d)
+
+
 # [Detexify](https://detexify.kirelabs.org/classify.html)
 It can recognize the symbol your draw and return the latex code for creating it.
 
