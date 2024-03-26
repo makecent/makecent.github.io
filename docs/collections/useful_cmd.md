@@ -96,6 +96,16 @@ rsync -ahW --no-i-r --info=progress2 foo@158.132.21.81:/home/foo/source destinat
 ```shell
 killall python
 ```
+### Release GPU memory
+Sometimes the GPU memory was not released after the training or a crash, which can be checked via the GPU memory assumption shown by the `nvidia-smi`. If you are sure that's a python script, you may directly run `killall python`, which could be danguours as it will kill all python process. Or
+1. You can kill the process with the PID if it was shown in `nvidia-smi`:
+```shell
+kill -9 $PID
+```
+2. If the PID is not shown via `nvidia-smi`, you may check the GPU memory via:
+```shell
+sudo fuser -v /dev/nvidia*
+```
 ### Run Multiple commands
 You can execute multiple commands in line, e.g.:
 ```shell
