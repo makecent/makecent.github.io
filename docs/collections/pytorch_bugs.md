@@ -6,6 +6,14 @@ nav_order: 2
 ---
 1. TOC
 {:toc}
+# Deep learning Debugging
+Implementing deep neural networks (DNNs) can inadvertently introduce bugs that are difficult to detect. **DNNs often fail silently**, meaning they may continue to operate without throwing any errors even in the presence of significant bugs. For instance, the model might not signal any issues even if there's a mistake such as failing to adjust bounding boxes after image flips, or inadvertently mixing up dimensions. The only indications of these issues might be poor performance or model unable to converge. A more insidious consequence is when the model performs *slightly worse* than normal, might making us miss these bugs entirely. Belows are BUGs that happens to me:
+
+# Unable to converge
+In this case, there are bugs making the traning not coverge, which often be manifested as a large training loss that does not decrease as iteration increases as expected.
+
+## To add
+
 # Python Debugging
 ## Error caused by the edited mutable Dictionary
 Avoid editing the dictionary because when programming projects deep learning, the dictionary is very likely to be REUSED in next epochs. Editing a deep copy of the original dictionary instead (`dict_ = copy.deepcopy(dict)`).
