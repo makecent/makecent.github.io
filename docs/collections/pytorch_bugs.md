@@ -17,7 +17,7 @@ In this case, there are bugs making the traning not coverge, which often be mani
 
 **Reason:** In detection models, there are often a assigning/matching operation to assign/match the ground truth to reference points (*anchors* of anchor-based, *points* of anchor-free, and *queries* of DETR-like). For a DETR-like model, the matching is especially difficult because the initial predicitons are random (a set of random initialized learnable queires input to the decoder). Moreover, the training of problem-free DETR-like models is already known to be unstable and hard. Thus, when the batch size is too small, it's very likely that there is not a single one good matching inside a batch, e.g. the IoUs between all predictions and GT are zeros, which could cause the training has a terrible beggining that is too information-less to optimize the model towards a good direction.
 
-**Solution:** Increase the batch size (from 1 to 8) making the training from not converge at all to converge. BTW, I noticed that removing the encoder entirely could benifit the training loss and validation metric, which however may only applied to my specific case.
+**Solution:** Increase the batch size (from 1 to 8) making the training from not converge at all to converge. BTW, I noticed that removing the encoder entirely could benifit the training loss and validation metric, and allow me to use a very large batch-size, which however may only applied to my specific case.
 
 # Python Debugging
 ## Error caused by the edited mutable Dictionary
