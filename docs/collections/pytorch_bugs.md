@@ -9,10 +9,15 @@ nav_order: 2
 # Deep learning Debugging
 Implementing deep neural networks (DNNs) can inadvertently introduce bugs that are difficult to detect. **DNNs often fail silently**, meaning they may continue to operate without throwing any errors even in the presence of significant bugs. For instance, the model might not signal any issues even if there's a mistake such as failing to adjust bounding boxes after image flips, or inadvertently mixing up dimensions. The only indications of these issues might be poor performance or model unable to converge. A more insidious consequence is when the model performs *slightly worse* than normal, might making us miss these bugs entirely. Belows are BUGs that happens to me:
 
-# Unable to converge
+## Unable to converge
 In this case, there are bugs making the traning not coverge, which often be manifested as a large training loss that does not decrease as iteration increases as expected.
 
-## To add
+### Batch size too small cause too less positive
+**Background:** In this case, I am training a DETR for temporal action detection but the training loss, especially the classification loss, retain large and does not coverge.
+
+**Reason:** In detection models, there are often a assigning/matching operation to assign/match the ground truth to reference points (*anchors* of anchor-based, *points* of anchor-free, and *queries* of DETR-like). For a DETR-like model, the matching is especially difficult because the initial predicitons are random (a set of random initialized learnable queires input to the decoder). Moreover, the training of problem-free DETR-like models is already known to be unstable and hard. Thus, when the batch size is too small, it's very likely that there is not a single one good matching inside a batch, e.g. the IoUs between all predictions and GT are zeros, which could cause the training has a terrible beggining that is too information-less to optimize the model towards a good direction.
+
+**Solution:** Increase the batch size (from 1 to 8) making the training from not converge at all to converge. BTW, I noticed that removing the encoder entirely could benifit the training loss and validation metric, which however may only applied to my specific case.
 
 # Python Debugging
 ## Error caused by the edited mutable Dictionary
