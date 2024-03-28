@@ -158,6 +158,16 @@ $env:PYTHONPATH += ";$pwd"
 # Linux
 PYTHONPATH=$PWD:$PYTHONPATH
 ```
+### Kill port 
+```shell
+sudo lsof -i:7777
+kill $PID
+```
+
+### Print the public IP
+```shell
+curl ifconfig.me
+```
 
 # tmux
 start new:
@@ -227,17 +237,6 @@ on local host:
 ssh -N -L 7777:localhost:7777 luchongkai@158.132.21.81
 ```
 
-# Kill port 
-```shell
-sudo lsof -i:7777
-kill $PID
-```
-
-# Print the public IP
-```shell
-curl ifconfig.me
-```
-
 # Mount on remote directory
 Using the `sshfs` (require `root`). 
 Here is an example that I want the training results produced from remote server to be saved on local machine (so I don't have to manually copy it), referring to an [external solution](https://superuser.com/questions/616182/how-to-mount-local-directory-to-remote-like-sshfs)
@@ -284,3 +283,17 @@ Someone mentioned that instead of `/usr/share/X11/xorg.conf.d/xorg.conf`, create
 
 # Using SSH tunneling for SOCKS5 proxy
 Refer to this answer: [Can I use the SSH tunnel under a VPN as a VPN server?]([https://serverfault.com/questions/1126894/can-i-use-the-ssh-tunnel-under-a-vpn-as-a-vpn-server?noredirect=1#comment1469814_1126894](https://serverfault.com/a/1126935/1011988)) 
+
+# Use conda-wise CUDA to complie package
+We often have a cudatoolkit installed in each conda environment and a CUDA installed in the system. Their version could be different. When we complie a packages that requires CUDA, it uses the system-wise CUDA by default. Which could have version compatability problem.
+As change the version of system-wise CUDA is tricky and danguous. We often want to **compile with the conda-wise CUDA**.
+
+You can use the below commands to add the libraries inside a conda environment to the PATH (note this works temporally and you need re-run them if you re-open another terminal):
+```shell
+export CUDA_HOME=/home/louis/miniconda3/envs/env_name   # replace this path to your env
+export PATH=$CUDA_HOME/bin:$PATH
+export LD_LIBRARY_PATH=$CUDA_HOME/lib:$LD_LIBRARY_PATH
+```
+Then, run `ncvv -V` to check if the version is equal to the one in your environment or the system-wise one. 
+
+You may sometimes do not have a (complete) cudatoolkit inside your environment. In this case, you could manually install one by `conda install -n test -c conda-forge cudatoolkit-dev`.
