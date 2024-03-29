@@ -19,6 +19,8 @@ In this case, there are bugs making the traning not coverge, which often be mani
 
 **Solution:** Increase the batch size (from 1 to 8) making the training from not converge at all to converge. BTW, I noticed that removing the encoder entirely could benifit the training loss and validation metric, and allow me to use a very large batch-size, which however may only applied to my specific case.
 
+**Conclude:** The **batch size** is important for some tasks and models, at least for the DETR models.
+
 # Python Debugging
 ## Error caused by the edited mutable Dictionary
 Avoid editing the dictionary because when programming projects deep learning, the dictionary is very likely to be REUSED in next epochs. Editing a deep copy of the original dictionary instead (`dict_ = copy.deepcopy(dict)`).
