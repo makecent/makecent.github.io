@@ -366,5 +366,8 @@ if isinstance(m, nn.BatchNorm3d):
         m.weight.register_hook(lambda grad: torch.zeros_like(grad))  # fix the gradient of gamma to zero, thus lock its value
         m.bias.register_hook(lambda grad: torch.zeros_like(grad))   # fix the gradient of beta to zero, thus lock its value
 ```
+
+## Use Tensor.requires_grad_(False) instead of Tensor.requires_grad = False
+If you mistakenly type the `requires_grad` as `require_grad`, there will be no warnings or error raised.
 - Note that the `weight` and `bias` are `Parameter`, which is a subclasss of `Tensor`.
 - The motivation of above code is that if we freeze the normalization layers during **training** via `m.eval()`, which does freeze the layers but will encounter error when perform **distributed training**, known as the error `there are paramters do NOT contribute to the loss computation`. Altought this problem can be solved via setting `find_unused_parameter=True`, it's tricky and increases the training time. The `register_hook` serves as a hack solution to retain the gradients of normalization layers but set them to zeros, thus will not be updated during the backpropagation.
