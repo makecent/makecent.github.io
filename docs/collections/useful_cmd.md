@@ -296,4 +296,4 @@ export LD_LIBRARY_PATH=$CUDA_HOME/lib:$LD_LIBRARY_PATH
 ```
 Then, run `ncvv -V` to check if the version is equal to the one in your environment or the system-wise one. 
 
-You may sometimes do not have a (complete) cudatoolkit inside your environment. In this case, you could manually install one by `conda install -c conda-forge cudatoolkit-dev`.
+You may sometimes do not have a (complete) cudatoolkit inside your environment as a pytorch-installation only include neccessary cuda depencencies. In this case, you could manually install one by `conda install nvidia::cuda-toolkit`, refer to this [site](https://anaconda.org/nvidia/cuda-toolkit), or `nvcc` via `conda install nvidia::cuda-nvcc`, refer to this [site](https://anaconda.org/nvidia/cuda-nvcc).
