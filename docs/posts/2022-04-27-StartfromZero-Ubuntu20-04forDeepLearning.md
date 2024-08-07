@@ -76,9 +76,8 @@ sudo dpkg -i google-chrome-stable_current_amd64.deb
 ```
 
 # Install PyCharm
-Search Pycharm in `Software` and install the one you like:
+Search Pycharm in `Software`/`App Center` and install the one you like:
 ![Screenshot from 2022-04-27 12-17-48](https://user-images.githubusercontent.com/42603768/165439907-01ce19cb-1975-4e92-8850-2de5792a764d.png)
-
 > I installed pro because I have free license of student.
 
 > External reading: [Ubuntu Software vs Software](https://askubuntu.com/questions/866755/differences-between-ubuntu-software-center-and-ubuntu-software-their-pros-and)
