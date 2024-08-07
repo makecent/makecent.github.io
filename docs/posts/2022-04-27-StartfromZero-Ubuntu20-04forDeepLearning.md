@@ -17,20 +17,20 @@ This post documents how I configure a brand new computer into a work station tha
 
 Lastest Update: 27 April 2022.
 
-# Install Ubuntu 20.04
+# Install Ubuntu
 ## Create a bootable USB stick.
-> Requirement: A 4GB or larger USB stick/flash drive
+> Requirement: A 8GB or larger USB stick/flash drive
 
 Follow the the offical tutorials for creating a bootable USB stick on [Windows](https://ubuntu.com/tutorials/create-a-usb-stick-on-windows#1-overview), [masOS](https://ubuntu.com/tutorials/create-a-usb-stick-on-macos#1-overview), or [Ubuntu](https://ubuntu.com/tutorials/create-a-usb-stick-on-ubuntu#1-overview).
 
-## Install Ubuntu 20.04 desktop
+## Install Ubuntu desktop
 Follow the [offical tutorial](https://ubuntu.com/tutorials/install-ubuntu-desktop#1-overview). We can start from its [step-4](https://ubuntu.com/tutorials/install-ubuntu-desktop#4-boot-from-usb-flash-drive) since we have already created a bootable USB stack.
 
 **Configuration adivces:**
 - Don't use dual boot, i.e., install two operating systems (e.g., Ubuntu and Windows) in your computer.
 - Install system on SSD drive if possible.
 - *"Erase disk and install Ubuntu"* is good unless you are famialr with disk partition. Make sure that important data in the disk have been backed up.
-- Make `your name` and `computer's name` short to have a nice prefix in the terminal:
+- Use short `<user name>` and `<computer's name>` to have a nice prefix in the terminal:
 ![image](https://user-images.githubusercontent.com/42603768/165436583-226ce206-26ac-43e8-92e6-3f76831e1650.png)
 - If you accidently configured some wrong/unwanted settings, reinstallation could be one of the simplest solution.
 - Do not waste time on trying to install Windows apps on Ubuntu.
@@ -47,6 +47,9 @@ Follow the [offical tutorial](https://ubuntu.com/tutorials/install-ubuntu-deskto
   **Cannot boot from USB in BIOS?**
   Different motherboards have BIOS of different styles. Find and get into the setting of `Boot Menu`, and there should be the name of your USB flash in the list. Select your USB and continue the booting.
 </details>
+
+# Set a good app source server
+`Software & Updates -->  --> Ubuntu Software --> Download from --> Other... --> Select Best Server` 
 
 # Configure Input Method 
 Take the configuration of input source of Chinese as an example.
