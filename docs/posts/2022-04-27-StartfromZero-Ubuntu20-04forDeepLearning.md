@@ -53,7 +53,7 @@ Follow the [offical tutorial](https://ubuntu.com/tutorials/install-ubuntu-deskto
 
 # Configure Input Method 
 Take the configuration of input source of Chinese as an example.
-1. `Settings --> Region&Language --> Manage Installed Language --> Install/Remove Language --> check "Chinese" --> Apply` 
+1. `Settings --> Region&Language --> Manage Installed Language --> Install/Remove Language --> check "Chinese (simplified)" and "Chinese (traditional)" --> Apply` 
 ![Screenshot from 2022-04-27 14-39-44](https://user-images.githubusercontent.com/42603768/165456822-b5f59cd0-4294-489a-b03e-fc61b74240f0.png)
 2. Re-login or Open a terminal and run `ibus restart`:
 ![Screenshot from 2022-04-27 14-40-57](https://user-images.githubusercontent.com/42603768/165457048-e912f80d-4070-4f27-809e-214ab9804c90.png)
