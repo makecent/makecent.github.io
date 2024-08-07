@@ -55,9 +55,9 @@ Follow the [offical tutorial](https://ubuntu.com/tutorials/install-ubuntu-deskto
 Take the configuration of input source of Chinese as an example.
 1. `Settings --> Region&Language --> Manage Installed Language --> Install/Remove Language --> check "Chinese" --> Apply` 
 ![Screenshot from 2022-04-27 14-39-44](https://user-images.githubusercontent.com/42603768/165456822-b5f59cd0-4294-489a-b03e-fc61b74240f0.png)
-2. Open a terminal and run `ibus restart`:
+2. Re-login or Open a terminal and run `ibus restart`:
 ![Screenshot from 2022-04-27 14-40-57](https://user-images.githubusercontent.com/42603768/165457048-e912f80d-4070-4f27-809e-214ab9804c90.png)
-3. `Settings --> Region&Language --> "+" Input Sources --> Chinese (Intelligent Pinyin) --> Add`:
+3. `Settings --> Keyboard --> Input Sources --> Add Input Source... --> Chinese (Pinyin) --> Add`:
 ![Screenshot from 2022-04-27 14-42-04](https://user-images.githubusercontent.com/42603768/165457209-3fe0ea69-96ee-4f04-8995-5945b8d0c89f.png)
 4. Configuration completed. Now you can use the shortcut `Super + Space` to switch between the input sources. The status is shown in the right-up corner：
 ![Screenshot from 2022-04-27 14-42-41](https://user-images.githubusercontent.com/42603768/165457310-e3f623f2-e0e1-4b55-8a46-db229e8195bb.png)
