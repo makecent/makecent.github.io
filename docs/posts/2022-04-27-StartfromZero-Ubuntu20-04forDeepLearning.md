@@ -49,7 +49,14 @@ Follow the [offical tutorial](https://ubuntu.com/tutorials/install-ubuntu-deskto
 </details>
 
 # Set a good app source server
-`Software & Updates -->  --> Ubuntu Software --> Download from --> Other... --> Select Best Server` 
+Choose a good proxy/mirror server could make your `apt` and `snap` run much faster if you are outsite United States, like China mainland:
+1. Speed up `apt`:
+`Software & Updates -->  --> Ubuntu Software --> Download from --> Other... --> Select Best Server`
+2. Speed up `snap` (optional):
+```terminal
+sudo snap install snap-store-proxy
+sudo snap install snap-store-proxy-client
+```
 
 # Configure Input Method 
 Take the configuration of input source of Chinese as an example.
