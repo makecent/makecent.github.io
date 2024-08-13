@@ -12,6 +12,8 @@ Download a github repository or its **subfolder**.
 
 ![Screenshot from 2022-07-24 13-24-18](https://user-images.githubusercontent.com/42603768/180633504-15b3323a-6165-4688-8882-5cfeea515829.png)
 
+You may try [this](https://github.moeyy.xyz) if you are in China mainland.
+
 # [Explainshell](https://explainshell.com/)
 Explain flags of common used shell command.
 
