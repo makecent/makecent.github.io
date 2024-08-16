@@ -1,5 +1,5 @@
 ---
-title: "Start From Zero: Deep Learning on Ubuntu 20.04"
+title: "Using Proxy in command line"
 parent: Posts
 ---
 <details open markdown="block">
