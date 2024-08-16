@@ -169,6 +169,11 @@ kill $PID
 curl ifconfig.me
 ```
 
+### Preserve users' environment variables for `sudo`
+```terminal
+sudo -E ...
+```
+
 # tmux
 start new:
 
