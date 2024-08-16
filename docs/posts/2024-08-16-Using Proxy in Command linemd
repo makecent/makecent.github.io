@@ -1,0 +1,40 @@
+# Introduction
+Sometimes, we found that after using VPN, the browser can access a specific website but the software run in command line may not. In this case, we may need to configure proxies for these software.
+
+# Chec proxy
+Normally, the VPN will set the environment variables about proxies for you when you open a terminal:
+```terminal
+echo $http_proxy
+echo &https_proxy
+```
+Check if these two variable are empty. If yes, then set them to you `http://127.0.0.1:port-num` (replace the `port-num` with your VPN port).
+
+# Check proxy
+Check if you could fetch data from the website:
+```terminal
+curl -I google.com
+```
+**Note that you may find that `curl` works but `ping` did not. That's because your VPN prevent ICMP traffic (which is used by ping)**
+
+# Set `sudo` proxies
+While `sudo` does not use the environment variables defined above by default as they are of the user, to run a sudo command using the VPN proxies:
+```terminal
+sudo -E ...
+```
+
+# Set `docker` proxies
+The docker proxies could be set by modifying the `/etc/docker/daemon.json` to manually set the proxies:
+```yaml
+{
+    ...
+    "proxies": {
+      "http-proxy": "http:/127.0.0.1:prot-num",
+      "https-proxy": "http:/127.0.0.1:prot-num",
+      "no-proxy": "..."
+    }
+}
+```
+Then, restart the docker service to enable the modification in the configuration file:
+```terminal
+sudo systemctl restart docker
+```
