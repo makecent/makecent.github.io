@@ -1,3 +1,11 @@
+---
+layout: default
+title: Using proxies in command line
+parent: Posts
+nav_order: 1
+---
+
+
 # Introduction
 Sometimes, we found that after using VPN, the browser can access a specific website but the software run in command line may not. In this case, we may need to configure proxies for these software.
 
