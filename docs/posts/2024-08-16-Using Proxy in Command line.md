@@ -1,10 +1,15 @@
 ---
-layout: default
-title: Using proxies in command line
+title: "Start From Zero: Deep Learning on Ubuntu 20.04"
 parent: Posts
-nav_order: 1
 ---
-
+<details open markdown="block">
+  <summary>
+    Table of contents
+  </summary>
+  {: .text-delta }
+1. TOC
+{:toc}
+</details>
 
 # Introduction
 Sometimes, we found that after using VPN, the browser can access a specific website but the software run in command line may not. In this case, we may need to configure proxies for these software.
