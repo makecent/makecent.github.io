@@ -46,3 +46,17 @@ Then, restart the docker service to enable the modification in the configuration
 ```terminal
 sudo systemctl restart docker
 ```
+
+# Set `docker` containers proxies
+The above section could only help you pull images using proxies from the dockerhub. But the container created by the docker does not use proxies. To make the container use proxies:
+1. If does not have an image.
+```terminal
+docker build --build-arg http_proxy=$http_proxy --build-arg https_proxy=$https_proxy --build-arg all_proxy=$all_proxy -t your_image_name .
+```
+2. If an image was created.
+```terminal
+docker run -e http_proxy=$http_proxy -e https_proxy=$https_proxy -e all_proxy=$all_proxy -it your_image_name
+```
+**Note that according to [a disccussion](https://stackoverflow.com/a/64213074/10755569), you have to make sure that the VPN opens before the docker to make it works**
+3. **BTW**
+You could modify the dockerfile to change the ubuntu's apt source, e.g., using China mainland mirror source to make commands `apt update` and `apt install` run faster.
