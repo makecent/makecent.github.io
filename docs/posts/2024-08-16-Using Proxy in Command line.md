@@ -18,7 +18,7 @@ Sometimes, we found that after using VPN, the browser can access a specific webs
 Normally, the VPN will set the environment variables about proxies for you when you open a terminal:
 ```terminal
 echo $http_proxy
-echo &https_proxy
+echo $https_proxy
 ```
 Check if these two variable are empty. If yes, then set them to you `http://127.0.0.1:port-num` (replace the `port-num` with your VPN port).
 
