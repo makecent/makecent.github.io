@@ -92,6 +92,11 @@ rsync -ahW --no-i-r --info=progress2 foo@158.132.21.81:/home/foo/source destinat
 - ``source/``: If a trailing slash added, the **content** in ``source`` will be copied into the ``destination``. So if ``destination`` doesn't exist or is empty, this works like a combination of copy and rename.
 </details>
 
+### Kill a window (GUI)
+```shell
+xkill
+```
+
 ### Kill all python
 ```shell
 killall python
