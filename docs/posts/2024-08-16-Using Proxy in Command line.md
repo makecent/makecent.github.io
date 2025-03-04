@@ -41,12 +41,13 @@ The docker proxies could be set by modifying the `/etc/docker/daemon.json` to ma
 {
     ...
     "proxies": {
-      "http-proxy": "http:/127.0.0.1:prot-num",
-      "https-proxy": "http:/127.0.0.1:prot-num",
+      "http-proxy": "http:/127.0.0.1:{prot-num}",
+      "https-proxy": "http:/127.0.0.1:{prot-num}",
       "no-proxy": "..."
     }
 }
 ```
+Remember to replace the prot-num with your VPN prot.
 Then, restart the docker service to enable the modification in the configuration file:
 ```terminal
 sudo systemctl restart docker
